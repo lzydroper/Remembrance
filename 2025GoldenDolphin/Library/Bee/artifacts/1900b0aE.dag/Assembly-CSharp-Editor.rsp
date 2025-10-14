@@ -113,6 +113,7 @@
 -define:ENABLE_TERRAIN
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
+-define:ENABLE_INPUT_SYSTEM
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
@@ -341,7 +342,11 @@
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.4/Editor/VisualScripting.Core/EditorAssetResources/Unity.VisualScripting.TextureAssets.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Cinemachine.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/com.unity.cinemachine.editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ForUI.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
@@ -368,9 +373,6 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"F:/unity/2022.3.33f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"F:/unity/2022.3.33f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
--analyzer:"Library/PackageCache/com.unity.collab-proxy@2.10.0/Lib/Editor/log4netPlastic.dll"
--analyzer:"Library/PackageCache/com.unity.collab-proxy@2.10.0/Lib/Editor/Unity.Plastic.Antlr3.Runtime.dll"
--analyzer:"Library/PackageCache/com.unity.collab-proxy@2.10.0/Lib/Editor/Unity.Plastic.Newtonsoft.Json.dll"
 "Assets/SKCell/CSV/Editor/CSVParser.cs"
 "Assets/SKCell/Editor/Dialogue/SKDialogueEditor.cs"
 "Assets/SKCell/Editor/Dialogue/SKDialoguePlayerEditor.cs"
