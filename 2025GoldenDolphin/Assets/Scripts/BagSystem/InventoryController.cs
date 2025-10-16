@@ -58,6 +58,8 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.Show(false);
             return;
         }
+
+        // Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
         HandleHighlight();
 
         if (Input.GetMouseButtonDown(0))
