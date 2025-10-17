@@ -3,4 +3,6 @@ public class Constants
 {
     public const float tileSizeWidth = 134;
     public const float tileSizeHeight = 134;
+
+    public static bool turn = true;
 }

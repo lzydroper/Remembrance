@@ -37,7 +37,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveUp"",
+                    ""name"": ""MoveUp1"",
                     ""type"": ""Button"",
                     ""id"": ""44d9953f-ca11-4808-aa01-52f691d62e03"",
                     ""expectedControlType"": ""Button"",
@@ -46,7 +46,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveDown"",
+                    ""name"": ""MoveDown1"",
                     ""type"": ""Button"",
                     ""id"": ""de912704-859d-42f5-96b5-9812bb65bf8b"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveLeft"",
+                    ""name"": ""MoveLeft1"",
                     ""type"": ""Button"",
                     ""id"": ""6383a36b-37cc-4289-b193-fc3ec6092c6e"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveRight"",
+                    ""name"": ""MoveRight1"",
                     ""type"": ""Button"",
                     ""id"": ""1c99bd18-2fb4-45d9-9281-219d6eb1949c"",
                     ""expectedControlType"": ""Button"",
@@ -73,7 +73,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Rotate"",
+                    ""name"": ""Rotate1"",
                     ""type"": ""Button"",
                     ""id"": ""77d33d7e-456b-4a14-8186-415c1f20f085"",
                     ""expectedControlType"": ""Button"",
@@ -82,7 +82,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Confirm"",
+                    ""name"": ""Confirm1"",
                     ""type"": ""Button"",
                     ""id"": ""31a467f1-cb42-4904-854b-e57810e9e2ef"",
                     ""expectedControlType"": ""Button"",
@@ -110,7 +110,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveUp"",
+                    ""action"": ""MoveUp1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -121,7 +121,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveDown"",
+                    ""action"": ""MoveDown1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -132,7 +132,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveLeft"",
+                    ""action"": ""MoveLeft1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -143,7 +143,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveRight"",
+                    ""action"": ""MoveRight1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -154,18 +154,18 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""Rotate1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""77144bc5-b3fe-41c8-8ad2-30df03ab01e1"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Confirm"",
+                    ""action"": ""Confirm1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -185,7 +185,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveUp"",
+                    ""name"": ""MoveUp2"",
                     ""type"": ""Button"",
                     ""id"": ""ecd3353c-8639-46cd-8c70-1edf831e0002"",
                     ""expectedControlType"": ""Button"",
@@ -194,7 +194,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveDown"",
+                    ""name"": ""MoveDown2"",
                     ""type"": ""Button"",
                     ""id"": ""b02e3281-4864-44d8-a3a2-5e410830ef3a"",
                     ""expectedControlType"": ""Button"",
@@ -203,7 +203,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveLeft"",
+                    ""name"": ""MoveLeft2"",
                     ""type"": ""Button"",
                     ""id"": ""515dc18c-628f-4bdd-a4ce-1734095b89bb"",
                     ""expectedControlType"": ""Button"",
@@ -212,7 +212,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveRight"",
+                    ""name"": ""MoveRight2"",
                     ""type"": ""Button"",
                     ""id"": ""16d2f9b3-3aec-4cb1-9392-d72c1cf87c80"",
                     ""expectedControlType"": ""Button"",
@@ -221,7 +221,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Rotate"",
+                    ""name"": ""Rotate2"",
                     ""type"": ""Button"",
                     ""id"": ""a8b3854b-4e64-443f-8c3c-5d803026b461"",
                     ""expectedControlType"": ""Button"",
@@ -230,7 +230,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Confirm"",
+                    ""name"": ""Confirm2"",
                     ""type"": ""Button"",
                     ""id"": ""325e85ac-3594-4095-8dfb-32cf2bc16fee"",
                     ""expectedControlType"": ""Button"",
@@ -258,7 +258,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveUp"",
+                    ""action"": ""MoveUp2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -269,7 +269,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveDown"",
+                    ""action"": ""MoveDown2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -280,7 +280,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveLeft"",
+                    ""action"": ""MoveLeft2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -291,7 +291,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveRight"",
+                    ""action"": ""MoveRight2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -302,7 +302,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""Rotate2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -313,7 +313,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Confirm"",
+                    ""action"": ""Confirm2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -353,21 +353,21 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Pause = m_Player1.FindAction("Pause", throwIfNotFound: true);
-        m_Player1_MoveUp = m_Player1.FindAction("MoveUp", throwIfNotFound: true);
-        m_Player1_MoveDown = m_Player1.FindAction("MoveDown", throwIfNotFound: true);
-        m_Player1_MoveLeft = m_Player1.FindAction("MoveLeft", throwIfNotFound: true);
-        m_Player1_MoveRight = m_Player1.FindAction("MoveRight", throwIfNotFound: true);
-        m_Player1_Rotate = m_Player1.FindAction("Rotate", throwIfNotFound: true);
-        m_Player1_Confirm = m_Player1.FindAction("Confirm", throwIfNotFound: true);
+        m_Player1_MoveUp1 = m_Player1.FindAction("MoveUp1", throwIfNotFound: true);
+        m_Player1_MoveDown1 = m_Player1.FindAction("MoveDown1", throwIfNotFound: true);
+        m_Player1_MoveLeft1 = m_Player1.FindAction("MoveLeft1", throwIfNotFound: true);
+        m_Player1_MoveRight1 = m_Player1.FindAction("MoveRight1", throwIfNotFound: true);
+        m_Player1_Rotate1 = m_Player1.FindAction("Rotate1", throwIfNotFound: true);
+        m_Player1_Confirm1 = m_Player1.FindAction("Confirm1", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Pause = m_Player2.FindAction("Pause", throwIfNotFound: true);
-        m_Player2_MoveUp = m_Player2.FindAction("MoveUp", throwIfNotFound: true);
-        m_Player2_MoveDown = m_Player2.FindAction("MoveDown", throwIfNotFound: true);
-        m_Player2_MoveLeft = m_Player2.FindAction("MoveLeft", throwIfNotFound: true);
-        m_Player2_MoveRight = m_Player2.FindAction("MoveRight", throwIfNotFound: true);
-        m_Player2_Rotate = m_Player2.FindAction("Rotate", throwIfNotFound: true);
-        m_Player2_Confirm = m_Player2.FindAction("Confirm", throwIfNotFound: true);
+        m_Player2_MoveUp2 = m_Player2.FindAction("MoveUp2", throwIfNotFound: true);
+        m_Player2_MoveDown2 = m_Player2.FindAction("MoveDown2", throwIfNotFound: true);
+        m_Player2_MoveLeft2 = m_Player2.FindAction("MoveLeft2", throwIfNotFound: true);
+        m_Player2_MoveRight2 = m_Player2.FindAction("MoveRight2", throwIfNotFound: true);
+        m_Player2_Rotate2 = m_Player2.FindAction("Rotate2", throwIfNotFound: true);
+        m_Player2_Confirm2 = m_Player2.FindAction("Confirm2", throwIfNotFound: true);
         // PlayerRebinding
         m_PlayerRebinding = asset.FindActionMap("PlayerRebinding", throwIfNotFound: true);
         m_PlayerRebinding_Newaction = m_PlayerRebinding.FindAction("New action", throwIfNotFound: true);
@@ -433,23 +433,23 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player1;
     private List<IPlayer1Actions> m_Player1ActionsCallbackInterfaces = new List<IPlayer1Actions>();
     private readonly InputAction m_Player1_Pause;
-    private readonly InputAction m_Player1_MoveUp;
-    private readonly InputAction m_Player1_MoveDown;
-    private readonly InputAction m_Player1_MoveLeft;
-    private readonly InputAction m_Player1_MoveRight;
-    private readonly InputAction m_Player1_Rotate;
-    private readonly InputAction m_Player1_Confirm;
+    private readonly InputAction m_Player1_MoveUp1;
+    private readonly InputAction m_Player1_MoveDown1;
+    private readonly InputAction m_Player1_MoveLeft1;
+    private readonly InputAction m_Player1_MoveRight1;
+    private readonly InputAction m_Player1_Rotate1;
+    private readonly InputAction m_Player1_Confirm1;
     public struct Player1Actions
     {
         private @PlayerControl m_Wrapper;
         public Player1Actions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Player1_Pause;
-        public InputAction @MoveUp => m_Wrapper.m_Player1_MoveUp;
-        public InputAction @MoveDown => m_Wrapper.m_Player1_MoveDown;
-        public InputAction @MoveLeft => m_Wrapper.m_Player1_MoveLeft;
-        public InputAction @MoveRight => m_Wrapper.m_Player1_MoveRight;
-        public InputAction @Rotate => m_Wrapper.m_Player1_Rotate;
-        public InputAction @Confirm => m_Wrapper.m_Player1_Confirm;
+        public InputAction @MoveUp1 => m_Wrapper.m_Player1_MoveUp1;
+        public InputAction @MoveDown1 => m_Wrapper.m_Player1_MoveDown1;
+        public InputAction @MoveLeft1 => m_Wrapper.m_Player1_MoveLeft1;
+        public InputAction @MoveRight1 => m_Wrapper.m_Player1_MoveRight1;
+        public InputAction @Rotate1 => m_Wrapper.m_Player1_Rotate1;
+        public InputAction @Confirm1 => m_Wrapper.m_Player1_Confirm1;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -462,24 +462,24 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @MoveUp.started += instance.OnMoveUp;
-            @MoveUp.performed += instance.OnMoveUp;
-            @MoveUp.canceled += instance.OnMoveUp;
-            @MoveDown.started += instance.OnMoveDown;
-            @MoveDown.performed += instance.OnMoveDown;
-            @MoveDown.canceled += instance.OnMoveDown;
-            @MoveLeft.started += instance.OnMoveLeft;
-            @MoveLeft.performed += instance.OnMoveLeft;
-            @MoveLeft.canceled += instance.OnMoveLeft;
-            @MoveRight.started += instance.OnMoveRight;
-            @MoveRight.performed += instance.OnMoveRight;
-            @MoveRight.canceled += instance.OnMoveRight;
-            @Rotate.started += instance.OnRotate;
-            @Rotate.performed += instance.OnRotate;
-            @Rotate.canceled += instance.OnRotate;
-            @Confirm.started += instance.OnConfirm;
-            @Confirm.performed += instance.OnConfirm;
-            @Confirm.canceled += instance.OnConfirm;
+            @MoveUp1.started += instance.OnMoveUp1;
+            @MoveUp1.performed += instance.OnMoveUp1;
+            @MoveUp1.canceled += instance.OnMoveUp1;
+            @MoveDown1.started += instance.OnMoveDown1;
+            @MoveDown1.performed += instance.OnMoveDown1;
+            @MoveDown1.canceled += instance.OnMoveDown1;
+            @MoveLeft1.started += instance.OnMoveLeft1;
+            @MoveLeft1.performed += instance.OnMoveLeft1;
+            @MoveLeft1.canceled += instance.OnMoveLeft1;
+            @MoveRight1.started += instance.OnMoveRight1;
+            @MoveRight1.performed += instance.OnMoveRight1;
+            @MoveRight1.canceled += instance.OnMoveRight1;
+            @Rotate1.started += instance.OnRotate1;
+            @Rotate1.performed += instance.OnRotate1;
+            @Rotate1.canceled += instance.OnRotate1;
+            @Confirm1.started += instance.OnConfirm1;
+            @Confirm1.performed += instance.OnConfirm1;
+            @Confirm1.canceled += instance.OnConfirm1;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -487,24 +487,24 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @MoveUp.started -= instance.OnMoveUp;
-            @MoveUp.performed -= instance.OnMoveUp;
-            @MoveUp.canceled -= instance.OnMoveUp;
-            @MoveDown.started -= instance.OnMoveDown;
-            @MoveDown.performed -= instance.OnMoveDown;
-            @MoveDown.canceled -= instance.OnMoveDown;
-            @MoveLeft.started -= instance.OnMoveLeft;
-            @MoveLeft.performed -= instance.OnMoveLeft;
-            @MoveLeft.canceled -= instance.OnMoveLeft;
-            @MoveRight.started -= instance.OnMoveRight;
-            @MoveRight.performed -= instance.OnMoveRight;
-            @MoveRight.canceled -= instance.OnMoveRight;
-            @Rotate.started -= instance.OnRotate;
-            @Rotate.performed -= instance.OnRotate;
-            @Rotate.canceled -= instance.OnRotate;
-            @Confirm.started -= instance.OnConfirm;
-            @Confirm.performed -= instance.OnConfirm;
-            @Confirm.canceled -= instance.OnConfirm;
+            @MoveUp1.started -= instance.OnMoveUp1;
+            @MoveUp1.performed -= instance.OnMoveUp1;
+            @MoveUp1.canceled -= instance.OnMoveUp1;
+            @MoveDown1.started -= instance.OnMoveDown1;
+            @MoveDown1.performed -= instance.OnMoveDown1;
+            @MoveDown1.canceled -= instance.OnMoveDown1;
+            @MoveLeft1.started -= instance.OnMoveLeft1;
+            @MoveLeft1.performed -= instance.OnMoveLeft1;
+            @MoveLeft1.canceled -= instance.OnMoveLeft1;
+            @MoveRight1.started -= instance.OnMoveRight1;
+            @MoveRight1.performed -= instance.OnMoveRight1;
+            @MoveRight1.canceled -= instance.OnMoveRight1;
+            @Rotate1.started -= instance.OnRotate1;
+            @Rotate1.performed -= instance.OnRotate1;
+            @Rotate1.canceled -= instance.OnRotate1;
+            @Confirm1.started -= instance.OnConfirm1;
+            @Confirm1.performed -= instance.OnConfirm1;
+            @Confirm1.canceled -= instance.OnConfirm1;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -527,23 +527,23 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player2;
     private List<IPlayer2Actions> m_Player2ActionsCallbackInterfaces = new List<IPlayer2Actions>();
     private readonly InputAction m_Player2_Pause;
-    private readonly InputAction m_Player2_MoveUp;
-    private readonly InputAction m_Player2_MoveDown;
-    private readonly InputAction m_Player2_MoveLeft;
-    private readonly InputAction m_Player2_MoveRight;
-    private readonly InputAction m_Player2_Rotate;
-    private readonly InputAction m_Player2_Confirm;
+    private readonly InputAction m_Player2_MoveUp2;
+    private readonly InputAction m_Player2_MoveDown2;
+    private readonly InputAction m_Player2_MoveLeft2;
+    private readonly InputAction m_Player2_MoveRight2;
+    private readonly InputAction m_Player2_Rotate2;
+    private readonly InputAction m_Player2_Confirm2;
     public struct Player2Actions
     {
         private @PlayerControl m_Wrapper;
         public Player2Actions(@PlayerControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_Player2_Pause;
-        public InputAction @MoveUp => m_Wrapper.m_Player2_MoveUp;
-        public InputAction @MoveDown => m_Wrapper.m_Player2_MoveDown;
-        public InputAction @MoveLeft => m_Wrapper.m_Player2_MoveLeft;
-        public InputAction @MoveRight => m_Wrapper.m_Player2_MoveRight;
-        public InputAction @Rotate => m_Wrapper.m_Player2_Rotate;
-        public InputAction @Confirm => m_Wrapper.m_Player2_Confirm;
+        public InputAction @MoveUp2 => m_Wrapper.m_Player2_MoveUp2;
+        public InputAction @MoveDown2 => m_Wrapper.m_Player2_MoveDown2;
+        public InputAction @MoveLeft2 => m_Wrapper.m_Player2_MoveLeft2;
+        public InputAction @MoveRight2 => m_Wrapper.m_Player2_MoveRight2;
+        public InputAction @Rotate2 => m_Wrapper.m_Player2_Rotate2;
+        public InputAction @Confirm2 => m_Wrapper.m_Player2_Confirm2;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,24 +556,24 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @MoveUp.started += instance.OnMoveUp;
-            @MoveUp.performed += instance.OnMoveUp;
-            @MoveUp.canceled += instance.OnMoveUp;
-            @MoveDown.started += instance.OnMoveDown;
-            @MoveDown.performed += instance.OnMoveDown;
-            @MoveDown.canceled += instance.OnMoveDown;
-            @MoveLeft.started += instance.OnMoveLeft;
-            @MoveLeft.performed += instance.OnMoveLeft;
-            @MoveLeft.canceled += instance.OnMoveLeft;
-            @MoveRight.started += instance.OnMoveRight;
-            @MoveRight.performed += instance.OnMoveRight;
-            @MoveRight.canceled += instance.OnMoveRight;
-            @Rotate.started += instance.OnRotate;
-            @Rotate.performed += instance.OnRotate;
-            @Rotate.canceled += instance.OnRotate;
-            @Confirm.started += instance.OnConfirm;
-            @Confirm.performed += instance.OnConfirm;
-            @Confirm.canceled += instance.OnConfirm;
+            @MoveUp2.started += instance.OnMoveUp2;
+            @MoveUp2.performed += instance.OnMoveUp2;
+            @MoveUp2.canceled += instance.OnMoveUp2;
+            @MoveDown2.started += instance.OnMoveDown2;
+            @MoveDown2.performed += instance.OnMoveDown2;
+            @MoveDown2.canceled += instance.OnMoveDown2;
+            @MoveLeft2.started += instance.OnMoveLeft2;
+            @MoveLeft2.performed += instance.OnMoveLeft2;
+            @MoveLeft2.canceled += instance.OnMoveLeft2;
+            @MoveRight2.started += instance.OnMoveRight2;
+            @MoveRight2.performed += instance.OnMoveRight2;
+            @MoveRight2.canceled += instance.OnMoveRight2;
+            @Rotate2.started += instance.OnRotate2;
+            @Rotate2.performed += instance.OnRotate2;
+            @Rotate2.canceled += instance.OnRotate2;
+            @Confirm2.started += instance.OnConfirm2;
+            @Confirm2.performed += instance.OnConfirm2;
+            @Confirm2.canceled += instance.OnConfirm2;
         }
 
         private void UnregisterCallbacks(IPlayer2Actions instance)
@@ -581,24 +581,24 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @MoveUp.started -= instance.OnMoveUp;
-            @MoveUp.performed -= instance.OnMoveUp;
-            @MoveUp.canceled -= instance.OnMoveUp;
-            @MoveDown.started -= instance.OnMoveDown;
-            @MoveDown.performed -= instance.OnMoveDown;
-            @MoveDown.canceled -= instance.OnMoveDown;
-            @MoveLeft.started -= instance.OnMoveLeft;
-            @MoveLeft.performed -= instance.OnMoveLeft;
-            @MoveLeft.canceled -= instance.OnMoveLeft;
-            @MoveRight.started -= instance.OnMoveRight;
-            @MoveRight.performed -= instance.OnMoveRight;
-            @MoveRight.canceled -= instance.OnMoveRight;
-            @Rotate.started -= instance.OnRotate;
-            @Rotate.performed -= instance.OnRotate;
-            @Rotate.canceled -= instance.OnRotate;
-            @Confirm.started -= instance.OnConfirm;
-            @Confirm.performed -= instance.OnConfirm;
-            @Confirm.canceled -= instance.OnConfirm;
+            @MoveUp2.started -= instance.OnMoveUp2;
+            @MoveUp2.performed -= instance.OnMoveUp2;
+            @MoveUp2.canceled -= instance.OnMoveUp2;
+            @MoveDown2.started -= instance.OnMoveDown2;
+            @MoveDown2.performed -= instance.OnMoveDown2;
+            @MoveDown2.canceled -= instance.OnMoveDown2;
+            @MoveLeft2.started -= instance.OnMoveLeft2;
+            @MoveLeft2.performed -= instance.OnMoveLeft2;
+            @MoveLeft2.canceled -= instance.OnMoveLeft2;
+            @MoveRight2.started -= instance.OnMoveRight2;
+            @MoveRight2.performed -= instance.OnMoveRight2;
+            @MoveRight2.canceled -= instance.OnMoveRight2;
+            @Rotate2.started -= instance.OnRotate2;
+            @Rotate2.performed -= instance.OnRotate2;
+            @Rotate2.canceled -= instance.OnRotate2;
+            @Confirm2.started -= instance.OnConfirm2;
+            @Confirm2.performed -= instance.OnConfirm2;
+            @Confirm2.canceled -= instance.OnConfirm2;
         }
 
         public void RemoveCallbacks(IPlayer2Actions instance)
@@ -665,22 +665,22 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     public interface IPlayer1Actions
     {
         void OnPause(InputAction.CallbackContext context);
-        void OnMoveUp(InputAction.CallbackContext context);
-        void OnMoveDown(InputAction.CallbackContext context);
-        void OnMoveLeft(InputAction.CallbackContext context);
-        void OnMoveRight(InputAction.CallbackContext context);
-        void OnRotate(InputAction.CallbackContext context);
-        void OnConfirm(InputAction.CallbackContext context);
+        void OnMoveUp1(InputAction.CallbackContext context);
+        void OnMoveDown1(InputAction.CallbackContext context);
+        void OnMoveLeft1(InputAction.CallbackContext context);
+        void OnMoveRight1(InputAction.CallbackContext context);
+        void OnRotate1(InputAction.CallbackContext context);
+        void OnConfirm1(InputAction.CallbackContext context);
     }
     public interface IPlayer2Actions
     {
         void OnPause(InputAction.CallbackContext context);
-        void OnMoveUp(InputAction.CallbackContext context);
-        void OnMoveDown(InputAction.CallbackContext context);
-        void OnMoveLeft(InputAction.CallbackContext context);
-        void OnMoveRight(InputAction.CallbackContext context);
-        void OnRotate(InputAction.CallbackContext context);
-        void OnConfirm(InputAction.CallbackContext context);
+        void OnMoveUp2(InputAction.CallbackContext context);
+        void OnMoveDown2(InputAction.CallbackContext context);
+        void OnMoveLeft2(InputAction.CallbackContext context);
+        void OnMoveRight2(InputAction.CallbackContext context);
+        void OnRotate2(InputAction.CallbackContext context);
+        void OnConfirm2(InputAction.CallbackContext context);
     }
     public interface IPlayerRebindingActions
     {

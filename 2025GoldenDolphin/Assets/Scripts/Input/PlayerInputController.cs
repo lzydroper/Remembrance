@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Player Input")]
-public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Actions
+public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Actions, PlayerControl.IPlayer2Actions
 {
     private PlayerControl playerControl;
     private PlayerInput playerInput;
@@ -16,6 +16,18 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
 
     // TODO: 添加事件
     public event UnityAction onPause = delegate { };
+    public event UnityAction onMoveUp1 = delegate { };
+    public event UnityAction onMoveDown1 = delegate { };
+    public event UnityAction onMoveLeft1 = delegate { };
+    public event UnityAction onMoveRight1 = delegate { };
+    public event UnityAction onRotate1 = delegate { };
+    public event UnityAction onConfirm1 = delegate { };
+    public event UnityAction onMoveUp2 = delegate { };
+    public event UnityAction onMoveDown2 = delegate { };
+    public event UnityAction onMoveLeft2 = delegate { };
+    public event UnityAction onMoveRight2 = delegate { };
+    public event UnityAction onRotate2 = delegate { };
+    public event UnityAction onConfirm2 = delegate { };
 
     #endregion
 
@@ -27,6 +39,7 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
         
         // TODO： 初始化回调
         playerControl.Player1.SetCallbacks(this);
+        playerControl.Player2.SetCallbacks(this);
     }
 
     private void OnDisable()
@@ -43,19 +56,26 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
         playerControl.Player1.Disable();
     }
 
-    public void EnableGameplayInput()
+    public void EnableGameplay1Input()
     {
+        DisableAllInputs();
         playerControl.Player1.Enable();
+    }
+
+    public void EnableGameplay2Input()
+    {
+        DisableAllInputs();
+        playerControl.Player2.Enable();
     }
     
     private void PlayerControlToRebinding()
     {
-        playerControl.Player1.Disable();
+        DisableAllInputs();
         playerControl.PlayerRebinding.Enable();
     }
     private void PlayerRebindingToControl()
     {
-        playerControl.PlayerRebinding.Disable();
+        DisableAllInputs();
         playerControl.Player1.Enable();
     }
 
@@ -179,34 +199,100 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
         }
     }
 
-    public void OnMoveUp(InputAction.CallbackContext context)
+    public void OnMoveUp2(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveUp2.Invoke();
+        }
     }
 
-    public void OnMoveDown(InputAction.CallbackContext context)
+    public void OnMoveDown2(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveDown2.Invoke();
+        }
     }
 
-    public void OnMoveLeft(InputAction.CallbackContext context)
+    public void OnMoveLeft2(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveLeft2.Invoke();
+        }
     }
 
-    public void OnMoveRight(InputAction.CallbackContext context)
+    public void OnMoveRight2(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveRight2.Invoke();
+        }
     }
 
-    public void OnRotate(InputAction.CallbackContext context)
+    public void OnRotate2(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onRotate2.Invoke();   
+        }
     }
 
-    public void OnConfirm(InputAction.CallbackContext context)
+    public void OnConfirm2(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onConfirm2.Invoke();
+        }
+    }
+
+    public void OnMoveUp1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {   
+            onMoveUp1.Invoke();
+        }
+    }
+
+    public void OnMoveDown1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveDown1.Invoke();   
+        }
+    }
+
+    public void OnMoveLeft1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveLeft1.Invoke();
+        }
+    }
+
+    public void OnMoveRight1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onMoveRight1.Invoke();
+        }
+    }
+
+    public void OnRotate1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onRotate1.Invoke();
+        }
+    }
+
+    public void OnConfirm1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onConfirm1.Invoke();
+        }
     }
 
     #endregion

@@ -120,8 +120,8 @@ public class ItemGrid : MonoBehaviour
     public Vector2 CalculatePositionOnGrid(InventoryItem inventoryItem, int posX, int posY)
     {
         Vector2 position = new Vector2();
-        position.x = posX * Constants.tileSizeWidth + Constants.tileSizeWidth * inventoryItem.WIDTH / 2;
-        position.y = -(posY * Constants.tileSizeHeight + Constants.tileSizeHeight * inventoryItem.HEIGHT / 2);
+        position.x = posX * Constants.tileSizeWidth + inventoryItem.WIDTH*Constants.tileSizeWidth/ 2;
+        position.y = -(posY * Constants.tileSizeHeight + inventoryItem.HEIGHT*Constants.tileSizeHeight / 2);
         return position;
     }
 
@@ -253,6 +253,39 @@ public class ItemGrid : MonoBehaviour
         return inventoryItemSlot[x, y];
     }
 
+    public bool CanPlaceItem(InventoryItem item, int posX, int posY)
+    {
+        if (!BoundaryCheck(posX, posY, item.WIDTH, item.HEIGHT))
+            return false;
+        bool[,] shape = item.GetCurrentShape();
+        for (int x = 0; x < item.WIDTH; x++)
+        {
+            for (int y = 0; y < item.HEIGHT; y++)
+            {
+                if (shape[x, y] && !IsPositionValid(posX + x, posY + y))
+                {
+                    return false;
+                }
+            }
+        }
+
+        for (int x = 0; x < item.WIDTH; x++)
+        {
+            for (int y = 0; y < item.HEIGHT; y++)
+            {
+                if (shape[x, y])
+                {
+                    InventoryItem itemAtPos = inventoryItemSlot[posX + x, posY + y];
+                    if (itemAtPos != null && itemAtPos != item)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
     private void OnDrawGizmos()
     {
         if (validGridPositions == null)
