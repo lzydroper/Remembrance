@@ -10,9 +10,6 @@ namespace PhaseSystem
         {
             turnManager = new TurnManager();
             turnManager.StartTurn();
-
-            // 每个阶段 2 秒自动结束
-            InvokeRepeating(nameof(FinishCurrentPhase), 2f, 2f);
         }
 
         void Update()
@@ -20,13 +17,16 @@ namespace PhaseSystem
             turnManager.UpdateTurn();
         }
 
-        void FinishCurrentPhase()
+        public void FinishCurrentPhase()
         {
-            var phase = turnManager.GetCurrentPhase();
-            if (phase != null)
+            if (!turnManager.isFinished)
             {
-                Debug.Log($"自动结束阶段：{phase.Name}");
-                phase.FinishPhase();
+                var phase = turnManager.GetCurrentPhase();
+                if (phase != null)
+                {
+                    Debug.Log($"自动结束第{turnManager.currentTurnNumber}回合阶段：{phase.Name}");
+                    phase.FinishPhase();
+                }
             }
         }
     }

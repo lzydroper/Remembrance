@@ -4,10 +4,10 @@ namespace PhaseSystem
 {
     public class TurnManager
     {
-        private PhaseManager phaseManager = new PhaseManager();
-        public PhaseBase GetCurrentPhase() => phaseManager.currentPhaseBase;
+        private PhaseManager phaseManager = new();
+        public PhaseBase GetCurrentPhase() => phaseManager.currentPhase;
         public bool isFinished => currentTurnNumber >= totalTurnNumber;
-        private int currentTurnNumber = 0;
+        public int currentTurnNumber { get; private set; } = 0;
         private int totalTurnNumber = 3;
 
         public void StartTurn()

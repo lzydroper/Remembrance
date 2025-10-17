@@ -4,18 +4,30 @@ namespace PhaseSystem
 {
     public class PhaseManager
     {
-        private List<PhaseBase> phases = new List<PhaseBase>();
+        private Dictionary<string, PhaseBase> phases = new();
+        private List<string> phaseNames = new();
         private int currentIndex = -1;
-        public PhaseBase currentPhaseBase { get; private set; }
+        public PhaseBase currentPhase { get; private set; }
 
-        public bool IsAllPhasesDone => currentIndex >= phases.Count;
+        public bool IsAllPhasesDone => currentIndex >= phaseNames.Count;
 
         public PhaseManager()
         {
             // 注册阶段
-            phases.Add(new PhaseBase("准备阶段"));
-            phases.Add(new PhaseBase("行动阶段"));
-            phases.Add(new PhaseBase("结算阶段"));
+            AddPhase("准备阶段");
+            AddPhase("行动阶段");
+            AddPhase("结算阶段");
+        }
+
+        private void AddPhase(string phaseName)
+        {
+            phaseNames.Add(phaseName);
+            phases.Add(phaseName, new PhaseBase(phaseName));
+        }
+
+        public PhaseBase GetPhase(string phaseName)
+        {
+            return phases[phaseName];
         }
 
         public void StartPhases()
@@ -23,27 +35,27 @@ namespace PhaseSystem
             currentIndex = 0;
             if (phases.Count > 0)
             {
-                currentPhaseBase = phases[currentIndex];
-                currentPhaseBase.OnEnter();
+                currentPhase = phases[phaseNames[currentIndex]];
+                currentPhase.OnEnter();
             }
         }
 
         public void Update()
         {
             if (IsAllPhasesDone) return;
-            if (currentPhaseBase == null) return;
+            if (currentPhase == null) return;
 
-            currentPhaseBase.OnUpdate();
+            currentPhase.OnUpdate();
 
-            if (currentPhaseBase.IsFinished)
+            if (currentPhase.IsFinished)
             {
-                currentPhaseBase.OnExit();
+                currentPhase.OnExit();
                 currentIndex++;
 
                 if (!IsAllPhasesDone)
                 {
-                    currentPhaseBase = phases[currentIndex];
-                    currentPhaseBase.OnEnter();
+                    currentPhase = phases[phaseNames[currentIndex]];
+                    currentPhase.OnEnter();
                 }
             }
         }

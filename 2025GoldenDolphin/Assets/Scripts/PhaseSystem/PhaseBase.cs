@@ -7,7 +7,7 @@ namespace PhaseSystem
     {
         public string Name { get; private set; }
         public bool IsFinished { get; private set; }
-        public UnityEvent phaseEvent = new UnityEvent();
+        public UnityEvent phaseEvent = new();
 
         public PhaseBase(string name)
         {
