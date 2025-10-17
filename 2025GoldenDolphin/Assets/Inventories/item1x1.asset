@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1d4c7ac581deb47ba71bb9ebb2bcae, type: 3}
   m_Name: item1x1
   m_EditorClassIdentifier: 
-  width: 1
-  height: 1
+  width: 2
+  height: 2
   itemIcon: {fileID: 21300000, guid: 0c412669cec0936448d9c4f58fd6e2a4, type: 3}
+  shape:
+  - columns: 0101
+  - columns: 0001

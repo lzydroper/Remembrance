@@ -154,8 +154,8 @@ public class InventoryController : MonoBehaviour
         Vector2 position = Input.mousePosition;
         if (selectedItem != null)
         {
-            position.x -= (selectedItem.WIDTH - 1) * ItemGrid.tileSizeWidth / 2;
-            position.y += (selectedItem.HEIGHT - 1) * ItemGrid.tileSizeHeight / 2;
+            position.x -= (selectedItem.WIDTH - 1) * Constants.tileSizeWidth / 2;
+            position.y += (selectedItem.HEIGHT - 1) * Constants.tileSizeHeight / 2;
         }
         return selectedItemGrid.GetTileGridPosition(position);
     }

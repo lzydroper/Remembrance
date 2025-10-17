@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Player Input")]
-public class PlayerInputController : ScriptableObject, PlayerControl.IGamePlayActions
+public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Actions
 {
     private PlayerControl playerControl;
     private PlayerInput playerInput;
@@ -26,7 +26,7 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IGamePlayAc
         playerControl = new PlayerControl();
         
         // TODO： 初始化回调
-        playerControl.GamePlay.SetCallbacks(this);
+        playerControl.Player1.SetCallbacks(this);
     }
 
     private void OnDisable()
@@ -40,23 +40,23 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IGamePlayAc
 
     private void DisableAllInputs()
     {
-        playerControl.GamePlay.Disable();
+        playerControl.Player1.Disable();
     }
 
     public void EnableGameplayInput()
     {
-        playerControl.GamePlay.Enable();
+        playerControl.Player1.Enable();
     }
     
     private void PlayerControlToRebinding()
     {
-        playerControl.GamePlay.Disable();
+        playerControl.Player1.Disable();
         playerControl.PlayerRebinding.Enable();
     }
     private void PlayerRebindingToControl()
     {
         playerControl.PlayerRebinding.Disable();
-        playerControl.GamePlay.Enable();
+        playerControl.Player1.Enable();
     }
 
     #endregion
@@ -177,6 +177,36 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IGamePlayAc
         {
             onPause.Invoke();
         }
+    }
+
+    public void OnMoveUp(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnMoveDown(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnMoveLeft(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnMoveRight(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnConfirm(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
     }
 
     #endregion
