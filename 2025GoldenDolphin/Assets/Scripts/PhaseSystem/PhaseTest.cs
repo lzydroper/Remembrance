@@ -17,16 +17,42 @@ namespace PhaseSystem
             turnManager.UpdateTurn();
         }
 
-        public void FinishCurrentPhase()
+        // --- 用于模拟UI按钮点击的公共方法 ---
+
+        // 模拟玩家1在“准备阶段”选择道具
+        public void OnPlayer1SelectItem()
         {
-            if (!turnManager.isFinished)
+            // 获取当前阶段并尝试转换为 PreparationPhase 类型
+            if (turnManager.GetCurrentPhase() is PreparationPhase prepPhase)
             {
-                var phase = turnManager.GetCurrentPhase();
-                if (phase != null)
-                {
-                    Debug.Log($"自动结束第{turnManager.currentTurnNumber}回合阶段：{phase.Name}");
-                    phase.FinishPhase();
-                }
+                prepPhase.PlayerSelectItem(PlayerID.Player1);
+            }
+        }
+
+        // 模拟玩家2在“准备阶段”选择道具
+        public void OnPlayer2SelectItem()
+        {
+            if (turnManager.GetCurrentPhase() is PreparationPhase prepPhase)
+            {
+                prepPhase.PlayerSelectItem(PlayerID.Player2);
+            }
+        }
+
+        // 模拟玩家1在“结算阶段”确认
+        public void OnPlayer1Confirm()
+        {
+            if (turnManager.GetCurrentPhase() is ResolutionPhase resPhase)
+            {
+                resPhase.PlayerConfirm(PlayerID.Player1);
+            }
+        }
+
+        // 模拟玩家2在“结算阶段”确认
+        public void OnPlayer2Confirm()
+        {
+            if (turnManager.GetCurrentPhase() is ResolutionPhase resPhase)
+            {
+                resPhase.PlayerConfirm(PlayerID.Player2);
             }
         }
     }

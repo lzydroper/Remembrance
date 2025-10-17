@@ -4,46 +4,48 @@ namespace PhaseSystem
 {
     public class PhaseManager
     {
+        // 使用List来保证顺序，用Dictionary来快速查找
         private Dictionary<string, PhaseBase> phases = new();
-        private List<string> phaseNames = new();
+        private List<PhaseBase> phaseOrder = new();
         private int currentIndex = -1;
         public PhaseBase currentPhase { get; private set; }
 
-        public bool IsAllPhasesDone => currentIndex >= phaseNames.Count;
+        public bool IsAllPhasesDone => currentIndex >= phaseOrder.Count;
 
         public PhaseManager()
         {
-            // 注册阶段
-            AddPhase("准备阶段");
-            AddPhase("行动阶段");
-            AddPhase("结算阶段");
+            // 注册具体的阶段实例
+            AddPhase(new PreparationPhase("准备阶段"));
+            AddPhase(new ActionPhase("行动阶段", 5.0f)); // 假设行动阶段持续5秒
+            AddPhase(new ResolutionPhase("结算阶段"));
+            AddPhase(new TurnEndPhase("回合结束阶段", 2.0f)); // 假设过渡持续2秒
         }
 
-        private void AddPhase(string phaseName)
+        private void AddPhase(PhaseBase phase)
         {
-            phaseNames.Add(phaseName);
-            phases.Add(phaseName, new PhaseBase(phaseName));
+            phaseOrder.Add(phase);
+            phases.Add(phase.Name, phase);
         }
 
         public PhaseBase GetPhase(string phaseName)
         {
-            return phases[phaseName];
+            phases.TryGetValue(phaseName, out var phase);
+            return phase;
         }
 
         public void StartPhases()
         {
             currentIndex = 0;
-            if (phases.Count > 0)
+            if (phaseOrder.Count > 0)
             {
-                currentPhase = phases[phaseNames[currentIndex]];
+                currentPhase = phaseOrder[currentIndex];
                 currentPhase.OnEnter();
             }
         }
 
         public void Update()
         {
-            if (IsAllPhasesDone) return;
-            if (currentPhase == null) return;
+            if (IsAllPhasesDone || currentPhase == null) return;
 
             currentPhase.OnUpdate();
 
@@ -54,7 +56,7 @@ namespace PhaseSystem
 
                 if (!IsAllPhasesDone)
                 {
-                    currentPhase = phases[phaseNames[currentIndex]];
+                    currentPhase = phaseOrder[currentIndex];
                     currentPhase.OnEnter();
                 }
             }
