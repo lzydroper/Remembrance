@@ -111,5 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 77584fe9e7eb1cd498c813c252dca5ef, type: 2}
+  itemIcon: {fileID: 9087704855934556177}
   anchorGridPosition: {x: 0, y: 0}
   currentRotation: 0

@@ -19,6 +19,11 @@ namespace PhaseSystem
 
         // --- 用于模拟UI按钮点击的公共方法 ---
 
+        public void Test()
+        {
+            turnManager.GetCurrentPhase().FinishPhase();
+        }
+
         // 模拟玩家1在“准备阶段”选择道具
         public void OnPlayer1SelectItem()
         {

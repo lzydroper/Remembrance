@@ -17,6 +17,7 @@ namespace PhaseSystem
             base.OnEnter();
             timer = duration;
             Debug.Log($"行动阶段开始，持续 {duration} 秒。");
+            // ItemSelectionUI.instance.BagUIPanel.SetActive(true);
         }
 
         public override void OnUpdate()

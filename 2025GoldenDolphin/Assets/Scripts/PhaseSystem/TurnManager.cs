@@ -6,6 +6,7 @@ namespace PhaseSystem
     {
         private PhaseManager phaseManager = new();
         public PhaseBase GetCurrentPhase() => phaseManager.currentPhase;
+        public PhaseBase GetPhase(string phaseName) => phaseManager.GetPhase(phaseName);
         public bool isFinished => currentTurnNumber >= Constants.totalTurnNumber;
         public int currentTurnNumber { get; private set; } = 0;
         // private int totalTurnNumber = 3;

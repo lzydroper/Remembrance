@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BagSystem; // [NEW] 用于构建详细的debug信息
+using BagSystem;
+using SKCell; // [NEW] 用于构建详细的debug信息
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Vector2Int initialCursorPosition = new Vector2Int(1, 1);
 
     [Header("Visuals & Scene References")]
+    [SerializeField] private InventoryItem inventoryItemPrefab;
     [Tooltip("用于表示光标位置的Transform")]
     [SerializeField] private Transform cursorVisual;
     [Tooltip("所有属于此背包的物品实例的父对象")]
@@ -237,6 +239,13 @@ public class InventoryController : MonoBehaviour
 
         heldItem.anchorGridPosition = anchorPosition;
         UpdateHeldItemVisualState();
+        Debug.Log($"添加物品{newItemInstance.name}");
+    }
+    public void AddNewItemToHand(ItemData itemData)
+    {
+        InventoryItem newItemInstance = Instantiate<InventoryItem>(inventoryItemPrefab);
+        newItemInstance.init(itemData);
+        AddNewItemToHand(newItemInstance, Vector2Int.one);
     }
 
     /// <summary>
@@ -403,16 +412,14 @@ public class InventoryController : MonoBehaviour
     }
 
     #endregion
-    
-    [Tooltip("游戏中所有的合成配方列表")]
-    public List<ItemRecipe> recipes;
 
+    [SerializeField] private Itemdb itemdb;
     public ItemData CheckCraftingRecipe()
     {
         List<ItemData> itemsInBag = placedItems.Select(item => item.itemData).ToList();
 
         // 2. 遍历数据库中的每一个配方
-        foreach (var recipe in recipes)
+        foreach (var recipe in itemdb.recipes)
         {
             // 3. 检查数量是否一致。这是一个快速的优化，如果数量都对不上，肯定不是这个配方。
             if (itemsInBag.Count != recipe.ingredients.Count)

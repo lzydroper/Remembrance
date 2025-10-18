@@ -1,21 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SKCell;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class Player : SKMonoSingleton<Player>
 {
     [SerializeField] private PlayerInputController inputController;
 
     [Header("玩家1模块")]
-    [SerializeField] private InventoryController inventoryController1;
-    [SerializeField] private PlayerCursorController cursorController1;
+    [SerializeField] public InventoryController inventoryController1;
+    [SerializeField] public PlayerCursorController cursorController1;
 
     [Header("玩家2模块")]
-    [SerializeField] private InventoryController inventoryController2;
-    [SerializeField] private PlayerCursorController cursorController2;
+    [SerializeField] public InventoryController inventoryController2;
+    [SerializeField] public PlayerCursorController cursorController2;
     
     // 你可以在这里添加其他模块，比如游戏暂停菜单
     // [SerializeField] private PauseMenu pauseMenu;
