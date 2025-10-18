@@ -6,9 +6,9 @@ namespace PhaseSystem
     {
         private PhaseManager phaseManager = new();
         public PhaseBase GetCurrentPhase() => phaseManager.currentPhase;
-        public bool isFinished => currentTurnNumber >= totalTurnNumber;
+        public bool isFinished => currentTurnNumber >= Constants.totalTurnNumber;
         public int currentTurnNumber { get; private set; } = 0;
-        private int totalTurnNumber = 3;
+        // private int totalTurnNumber = 3;
 
         public void StartTurn()
         {

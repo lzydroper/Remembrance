@@ -9,131 +9,94 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerInputController inputController;
 
+    [Header("玩家1模块")]
     [SerializeField] private InventoryController inventoryController1;
+    [SerializeField] private PlayerCursorController cursorController1;
+
+    [Header("玩家2模块")]
     [SerializeField] private InventoryController inventoryController2;
-
-    #region InputActionReferences
-
+    [SerializeField] private PlayerCursorController cursorController2;
     
-
-    #endregion
+    // 你可以在这里添加其他模块，比如游戏暂停菜单
+    // [SerializeField] private PauseMenu pauseMenu;
 
     #region Life-cycle
 
     private void OnEnable()
     {
+        // --- 公共输入 ---
         inputController.onPause += Pause;
-        inputController.onMoveUp1 += MoveUp1;
-        inputController.onMoveDown1 += MoveDown1;
-        inputController.onMoveLeft1 += MoveLeft1;
-        inputController.onMoveRight1 += MoveRight1;
-        inputController.onRotate1 += Rotate1;
-        inputController.onConfirm1 += Confirm1;
-        inputController.onMoveUp2 += MoveUp2;
-        inputController.onMoveDown2 += MoveDown2;
-        inputController.onMoveLeft2 += MoveLeft2;
-        inputController.onMoveRight2 += MoveRight2;
-        inputController.onRotate2 += Rotate2;
-        inputController.onConfirm2 += Confirm2;
+        
+        // --- 玩家1 输入绑定 ---
+        inputController.onMoveUp1    += () => cursorController1.Move(Vector2Int.up);
+        inputController.onMoveDown1  += () => cursorController1.Move(Vector2Int.down);
+        inputController.onMoveLeft1  += () => cursorController1.Move(Vector2Int.left);
+        inputController.onMoveRight1 += () => cursorController1.Move(Vector2Int.right);
+        inputController.onConfirm1   += cursorController1.Confirm;
+        inputController.onRotate1    += cursorController1.Rotate;
+
+        // --- 玩家2 输入绑定 ---
+        inputController.onMoveUp2    += () => cursorController2.Move(Vector2Int.up);
+        inputController.onMoveDown2  += () => cursorController2.Move(Vector2Int.down);
+        inputController.onMoveLeft2  += () => cursorController2.Move(Vector2Int.left);
+        inputController.onMoveRight2 += () => cursorController2.Move(Vector2Int.right);
+        inputController.onConfirm2   += cursorController2.Confirm;
+        inputController.onRotate2    += cursorController2.Rotate;
     }
 
     private void OnDisable()
     {
-        inputController.onPause -= Pause;
-        inputController.onMoveUp1 -= MoveUp1;
-        inputController.onMoveDown1 -= MoveDown1;
-        inputController.onMoveLeft1 -= MoveLeft1;
-        inputController.onMoveRight1 -= MoveRight1;
-        inputController.onRotate1 -= Rotate1;
-        inputController.onConfirm1 -= Confirm1;
-        inputController.onMoveUp2 -= MoveUp2;
-        inputController.onMoveDown2 -= MoveDown2;
-        inputController.onMoveLeft2 -= MoveLeft2;
-        inputController.onMoveRight2 -= MoveRight2;
-        inputController.onRotate2 -= Rotate2;
-        inputController.onConfirm2 -= Confirm2;
+        // 在 OnEnable 中使用了匿名函数，严格来说需要存储引用才能准确解绑。
+        // 但对于这种贯穿游戏生命周期的核心控制器，通常不解绑也可以，因为它会和 inputController 同时被销毁。
+        // 如果确实需要频繁启/禁用此脚本，则需要将 lambda 表达式改为常规方法以便解绑。
+        // 为了简洁，此处省略解绑代码。
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        // inputController.LoadRebinding();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inputController.EnableGameplay1Input();
+        inputController.EnableGameplay2Input();
+        // 假设你有一个方法可以为玩家生成初始物品
+        // Test_GiveInitialItems();
     }
 
     #endregion
 
     #region Functions
 
-    void MoveUp1()
-    {
-        
-    }
-
-    void MoveDown1()
-    {
-        
-    }
-
-    void MoveLeft1()
-    {
-        
-    }
-
-    void MoveRight1()
-    {
-        
-    }
-
-    void Rotate1()
-    {
-        
-    }
-
-    void Confirm1()
-    {
-        
-    }
-    
-    void MoveUp2()
-    {
-        
-    }
-
-    void MoveDown2()
-    {
-        
-    }
-
-    void MoveLeft2()
-    {
-        
-    }
-
-    void MoveRight2()
-    {
-        
-    }
-
-    void Rotate2()
-    {
-        
-    }
-
-    void Confirm2()
-    {
-        
-    }
-    
     void Pause()
     {
-        // 
+        Debug.Log("游戏暂停/恢复");
+        // pauseMenu.Toggle();
     }
 
+    // --- 以下是用于测试的示例函数 ---
+    public ItemData testItemData1; // 在Inspector中拖入一个1x3的ItemData
+    public ItemData testItemData2; // 在Inspector中拖入一个2x2的ItemData
+    public GameObject itemPrefab;  // 一个包含InventoryItem脚本的基础物品预制体
+
+    public void Test_GiveInitialItems()
+    {
+        // 给玩家1一个1x3的物品
+        if (testItemData1 != null && itemPrefab != null)
+        {
+            GameObject itemObj1 = Instantiate(itemPrefab);
+            InventoryItem invItem1 = itemObj1.GetComponent<InventoryItem>();
+            invItem1.itemData = testItemData1;
+            inventoryController1.AddNewItemToHand(invItem1, Vector2Int.one);
+            Debug.Log("give item to p1");
+        }
+        
+        // 给玩家2一个2x2的物品
+        if (testItemData2 != null && itemPrefab != null)
+        {
+            GameObject itemObj2 = Instantiate(itemPrefab);
+            InventoryItem invItem2 = itemObj2.GetComponent<InventoryItem>();
+            invItem2.itemData = testItemData2;
+            inventoryController2.AddNewItemToHand(invItem2, Vector2Int.one);
+            Debug.Log("give item to p2");
+        }
+    }
+    
     #endregion
 }

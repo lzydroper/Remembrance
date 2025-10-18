@@ -110,7 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5b0867d56fff348b364a46366fd36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: ff56a9ea05b64af4c9aa18b105e9b875, type: 2}
-  onGridPositionX: 0
-  onGridPositionY: 0
-  rotated: 0
+  itemData: {fileID: 11400000, guid: 77584fe9e7eb1cd498c813c252dca5ef, type: 2}
+  anchorGridPosition: {x: 0, y: 0}
+  currentRotation: 0

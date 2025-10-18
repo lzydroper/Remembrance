@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c1d4c7ac581deb47ba71bb9ebb2bcae, type: 3}
-  m_Name: book
+  m_Name: book 1
   m_EditorClassIdentifier: 
-  itemName: book
-  icon: {fileID: 21300000, guid: 5cfb0990a73ba734b9c2988c9aff97c6, type: 3}
+  itemName: book2
+  icon: {fileID: 21300000, guid: 89c3a7aadbf64064ea35cc6b94bbc356, type: 3}
   shape:
   - {x: 0, y: 0}
-  - {x: 0, y: 1}
+  - {x: 1, y: 0}

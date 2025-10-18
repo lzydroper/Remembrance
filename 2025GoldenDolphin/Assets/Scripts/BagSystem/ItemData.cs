@@ -7,90 +7,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemData : ScriptableObject
 {
-    public int width = 1;
-    public int height = 1;
-    // public bool[,] shape;
-
-    public Sprite itemIcon;
-
-    [System.Serializable]
-    public class ShapeRow
-    {
-        public bool[] columns;
-        
-        public ShapeRow(int length)
-        {
-            columns = new bool[length];
-            for (int i = 0; i < length; i++)
-            {
-                columns[i] = true;
-            }
-        }
-    }
+    [Tooltip("物品的名称")]
+    public string itemName;
     
-    public ShapeRow[] shape;
+    [Tooltip("物品在UI中显示的图标")]
+    public Sprite icon;
 
-    public void InitializeShape()
-    {
-        shape = new ShapeRow[height];
-        for (int i = 0; i < height; i++)
-        {
-            shape[i] = new ShapeRow(width);
-        }
-    }
-    private void OnValidate()
-    {
-        if (shape == null || shape.Length != height)
-        {
-            InitializeShape();
-        }
-        else
-        {
-            for (int i = 0; i < shape.Length; i++)
-            {
-                if (shape[i].columns == null || shape[i].columns.Length != width)
-                {
-                    shape[i].columns = new bool[width];
-                    for (int j = 0; j < width; j++)
-                    {
-                        shape[i].columns[j] = true;
-                    }
-                }
-            }
-        }
-    }
-
-    public bool[,] GetShapeArray()
-    {
-        bool[,] result = new bool[width, height];
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                result[x, y] = shape[y].columns[x];
-            }
-        }
-
-        return result;
-    }
-
-    public bool[,] GetRotatedShape(bool rotated)
-    {
-        if (!rotated)
-        {
-            return GetShapeArray();
-        }
-        bool[,] original = GetShapeArray();
-        bool[,] rotatedShape = new bool[height, width];
-        
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                rotatedShape[height - 1 - y, x] = original[x, y];
-            }
-        }
-        
-        return rotatedShape;
-    }
+    [Tooltip("定义物品的形状。使用相对于锚点(0,0)的坐标列表。例如，一个1x3的竖条可以是 (0,0), (0,1), (0,2)。")]
+    public List<Vector2Int> shape = new List<Vector2Int> { Vector2Int.zero }; // 默认为1x1
 }

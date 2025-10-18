@@ -5,4 +5,6 @@ public class Constants
     public const float tileSizeHeight = 134;
 
     public static bool turn = true;
+    public const float actionPhaseTime = 12f;   // 行动阶段持续时间
+    public const int totalTurnNumber = 3;       // 总回合数
 }

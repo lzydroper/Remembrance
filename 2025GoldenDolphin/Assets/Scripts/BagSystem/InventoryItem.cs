@@ -1,96 +1,61 @@
-using System.Collections;
 using System.Collections.Generic;
-using SKCell;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
     public ItemData itemData;
+    
+    // 物品在背包网格中的锚点坐标
+    public Vector2Int anchorGridPosition;
+    
+    // 0: 0°, 1: 90°, 2: 180°, 3: 270°
+    public int currentRotation = 0;
 
-    public int HEIGHT
+    /// <summary>
+    /// 获取物品旋转后所有占用的格子坐标（相对于锚点）
+    /// </summary>
+    public List<Vector2Int> GetRotatedShape()
     {
-        get
+        var rotatedShape = new List<Vector2Int>();
+        foreach (var point in itemData.shape)
         {
-            if (rotated == false)
+            switch (currentRotation)
             {
-                return itemData.height;
+                case 0: // 0°
+                    rotatedShape.Add(point);
+                    break;
+                case 1: // 90° clockwise
+                    rotatedShape.Add(new Vector2Int(point.y, -point.x));
+                    break;
+                case 2: // 180°
+                    rotatedShape.Add(new Vector2Int(-point.x, -point.y));
+                    break;
+                case 3: // 270° clockwise
+                    rotatedShape.Add(new Vector2Int(-point.y, point.x));
+                    break;
             }
-
-            return itemData.width;
         }
+        return rotatedShape;
     }
 
-    public int WIDTH
+    /// <summary>
+    /// 获取物品在整个背包网格中实际占用的所有格子坐标
+    /// </summary>
+    public List<Vector2Int> GetOccupiedGridPositions()
     {
-        get
+        var occupiedPositions = new List<Vector2Int>();
+        var rotatedShape = GetRotatedShape();
+        foreach (var point in rotatedShape)
         {
-            if (rotated == false)
-            {
-                return itemData.width;
-            }
-
-            return itemData.height;
+            occupiedPositions.Add(anchorGridPosition + point);
         }
-    }
-
-    public int onGridPositionX;
-    public int onGridPositionY;
-
-    public bool rotated = false;
-    public void Set(ItemData itemData)
-    {
-        this.itemData = itemData;
-        // TODO: 改UI
-        SKCell.SKUtils.GetComponentNonAlloc<SKImage>(gameObject).sprite = itemData.itemIcon;
-        // GetComponent<Image>().sprite = itemData.itemIcon;
-
-        Vector2 size = new Vector2();
-        size.x = itemData.width * Constants.tileSizeWidth;
-        size.y = itemData.height * Constants.tileSizeHeight;
-        SKCell.SKUtils.GetComponentNonAlloc<RectTransform>(gameObject).sizeDelta = size;
-        // GetComponent<RectTransform>().sizeDelta = size;
+        return occupiedPositions;
     }
 
     public void Rotate()
     {
-        rotated = !rotated;
-        // RectTransform rectTransform = GetComponent<RectTransform>();
-        RectTransform rectTransform = SKCell.SKUtils.GetComponentNonAlloc<RectTransform>(gameObject);
-        if (rotated)
-        {
-            rectTransform.rotation = Quaternion.Euler(0, 0, 90f);
-            rectTransform.sizeDelta = new Vector2(itemData.height * Constants.tileSizeWidth,
-                itemData.width * Constants.tileSizeHeight);
-        }
-        else
-        {
-            rectTransform.rotation = Quaternion.Euler(0, 0, 0f);
-            rectTransform.sizeDelta = new Vector2(itemData.width * Constants.tileSizeWidth,
-                itemData.height * Constants.tileSizeHeight);
-        }
+        currentRotation = (currentRotation + 1) % 4;
+        // 你可以在这里添加旋转模型的视觉表现代码
+        transform.Rotate(0, 0, -90);
     }
-
-    public bool[,] GetCurrentShape()
-    {
-        return itemData.GetRotatedShape(rotated);
-    }
-    // public bool[,] GetRotatedShape()
-    // {
-    //     if (!rotated)
-    //     {
-    //         return itemData.shape;
-    //     }
-    //
-    //     bool[,] rotatedShape = new bool[itemData.height, itemData.width];
-    //     for (int x = 0; x < itemData.width; x++)
-    //     {
-    //         for (int y = 0; y < itemData.height; y++)
-    //         {
-    //             rotatedShape[itemData.height - 1 - y, x] = itemData.shape[x, y];
-    //         }
-    //     }
-    //
-    //     return rotatedShape;
-    // }
 }
