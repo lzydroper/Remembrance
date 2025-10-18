@@ -44,8 +44,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c975ea3b0e6934943ba2182a29f4e6f9, type: 3}
-        m_Scale: {x: 7.6, y: 7.44}
+        m_Texture: {fileID: 2800000, guid: e5a1eca51f41b7640b1a52f49a816335, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -85,8 +85,8 @@ Material:
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfColor1: {r: 0.9245283, g: 0.855929, b: 0.74718165, a: 1}
-    - _SelfColor2: {r: 0.9559748, g: 0.8210053, b: 0.7545587, a: 1}
-    - _SelfColor3: {r: 0.99371064, g: 0.9642281, b: 0.89683944, a: 1}
-    - _ShadowColor: {r: 0.69182384, g: 0.63391286, b: 0.5982753, a: 1}
+    - _SelfColor1: {r: 0.98742133, g: 0.89102006, b: 0.80422044, a: 1}
+    - _SelfColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _SelfColor3: {r: 0.8930817, g: 0.85949755, b: 0.7779359, a: 1}
+    - _ShadowColor: {r: 0.49685526, g: 0.4031803, b: 0.37029773, a: 1}
   m_BuildTextureStacks: []

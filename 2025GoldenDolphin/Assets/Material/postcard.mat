@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test1
+  m_Name: postcard
   m_Shader: {fileID: 4800000, guid: dde0f32da8eae0a43b6659e6a75765df, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _OutlineColor
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 82cef00e00b6aee4ab36a47376a3a512, type: 3}
+        m_Texture: {fileID: 2800000, guid: a328be7c2e335b049abfa54af68f4894, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -71,11 +71,11 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.0141
+    - _Outline: 0.019
     - _Parallax: 0.02
-    - _SelfThreshold1: 0.262
-    - _SelfThreshold2: 0.541
-    - _ShadowIntensity: 0.609
+    - _SelfThreshold1: 0.436
+    - _SelfThreshold2: 0.586
+    - _ShadowIntensity: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -85,9 +85,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfColor1: {r: 0.9056604, g: 0.6994726, b: 0.48131, a: 1}
-    - _SelfColor2: {r: 0.8301887, g: 0.66399485, b: 0.58217627, a: 1}
-    - _SelfColor3: {r: 0.9811321, g: 0.88609266, b: 0.66334397, a: 1}
-    - _ShadowColor: {r: 0.5031446, g: 0.38631824, b: 0.30220318, a: 1}
+    - _OutlineColor: {r: 0.735849, g: 0.5669277, b: 0.6324662, a: 1}
+    - _SelfColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _SelfColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _SelfColor3: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0.69182384, g: 0.583848, b: 0.54171103, a: 1}
   m_BuildTextureStacks: []
