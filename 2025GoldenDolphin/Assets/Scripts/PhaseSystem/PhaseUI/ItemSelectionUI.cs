@@ -285,7 +285,7 @@ namespace PhaseSystem
                 {
                     endAnimationTime += Constants.endAniShortTime;
                 }
-                Debug.Log("p1 create item");
+                Debug.Log($"p1 create item :{p1Result.itemName}");
             }
             if (p2Result != null)
             {
@@ -298,7 +298,7 @@ namespace PhaseSystem
                 {
                     endAnimationTime += Constants.endAniShortTime;
                 }
-                Debug.Log("p2 create item");
+                Debug.Log($"p2 create item :{p2Result.itemName}");
             }
             StartCoroutine(PlayEndAnimation(p1Long, p2Long, p1Result, p2Result));
         }

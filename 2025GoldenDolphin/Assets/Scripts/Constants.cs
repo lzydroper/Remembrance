@@ -18,4 +18,7 @@ public class Constants
     // public const int totalTurnNumber = 3;       // 总回合数
 
     public static bool isStart = false;
+    
+    // 网格大小
+    public const float cellSize = 100f;
 }
