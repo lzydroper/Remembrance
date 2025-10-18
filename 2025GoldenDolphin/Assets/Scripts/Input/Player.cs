@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 public class Player : SKMonoSingleton<Player>
 {
-    [SerializeField] private PlayerInputController inputController;
+    [SerializeField] public PlayerInputController inputController;
 
     [Header("玩家1模块")]
     [SerializeField] public InventoryController inventoryController1;

@@ -15,6 +15,8 @@ namespace PhaseSystem
         public override void OnEnter()
         {
             base.OnEnter();
+            // 启用玩家输入
+            Player.instance.inputController.EnableAllInputs();
             timer = duration;
             Debug.Log($"行动阶段开始，持续 {duration} 秒。");
             // ItemSelectionUI.instance.BagUIPanel.SetActive(true);

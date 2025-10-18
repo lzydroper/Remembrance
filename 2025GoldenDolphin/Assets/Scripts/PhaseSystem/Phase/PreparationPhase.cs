@@ -23,6 +23,8 @@ namespace PhaseSystem
         public override void OnEnter()
         {
             base.OnEnter();
+            // 禁用玩家输入
+            Player.instance.inputController.DisableAllInputs();
             player1Selected = false;
             player2Selected = false;
             currentPlayer = PlayerID.Player1; // 玩家1先开始
@@ -59,7 +61,7 @@ namespace PhaseSystem
             // 并将它们传递给其他系统，比如玩家的背包管理器
             // PlayerInventoryManager.Instance.AddItem(PlayerID.Player1, p1Choice);
             // PlayerInventoryManager.Instance.AddItem(PlayerID.Player2, p2Choice);
-            ItemSelectionUI.instance.BagUIPanel.SetActive(true);
+            // ItemSelectionUI.instance.BagUIPanel.SetActive(true);
             Player.instance.inventoryController1.AddNewItemToHand(p1Choice);
             Player.instance.inventoryController2.AddNewItemToHand(p2Choice);
     

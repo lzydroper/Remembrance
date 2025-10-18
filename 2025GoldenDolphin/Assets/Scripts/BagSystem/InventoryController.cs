@@ -26,6 +26,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Transform cursorVisual;
     [Tooltip("所有属于此背包的物品实例的父对象")]
     [SerializeField] private Transform itemContainer;
+    // [SerializeField] private InventoryItem resultReview;    // 每次place后尝试有无组合结果
 
     // --- 状态变量 ---
     private InventoryItem[,] grid;
@@ -40,7 +41,7 @@ public class InventoryController : MonoBehaviour
     // --- 事件 ---
     public event Action onCursorEnterUI = delegate { };
     public event Action onCursorLeaveUI = delegate { };
-    public event Action<InventoryItem, bool> OnPlacementValidityChanged = delegate { };
+    // public event Action<InventoryItem, bool> OnPlacementValidityChanged = delegate { };
 
     private void Awake()
     {
@@ -302,7 +303,17 @@ public class InventoryController : MonoBehaviour
 
         // 放置后，物品的位置已经是正确的，我们只需要清空手牌
         heldItem = null;
+        // UpdateResultReview();
     }
+
+    // private void UpdateResultReview()
+    // {
+    //     ItemData itemData = CheckCraftingRecipe();
+    //     if (itemData is not null)
+    //     {
+    //         resultReview.init(itemData);
+    //     }
+    // }
 
     private void PickUpItem(InventoryItem itemToPickUp)
     {
@@ -316,6 +327,7 @@ public class InventoryController : MonoBehaviour
 
         // UpdateCursorVisualPosition();
         UpdateHeldItemVisualState();
+        // UpdateResultReview();
     }
 
     private void RemoveItemFromGrid(InventoryItem item)
@@ -363,7 +375,7 @@ public class InventoryController : MonoBehaviour
         
         // 更新有效性状态（颜色等）
         bool isValid = CheckPlacementValidity(heldItem);
-        OnPlacementValidityChanged.Invoke(heldItem, isValid);
+        // OnPlacementValidityChanged.Invoke(heldItem, isValid);
         
         // 示例：直接改变颜色来反馈是否可放置
         var renderer = heldItem.GetComponentInChildren<Image>();
@@ -414,6 +426,7 @@ public class InventoryController : MonoBehaviour
     #endregion
 
     [SerializeField] private Itemdb itemdb;
+    [SerializeField] private ItemData shit;
     public ItemData CheckCraftingRecipe()
     {
         List<ItemData> itemsInBag = placedItems.Select(item => item.itemData).ToList();
@@ -443,6 +456,6 @@ public class InventoryController : MonoBehaviour
 
         // 遍历完所有配方都没有找到匹配的
         Debug.Log("未找到匹配的合成配方。");
-        return null;
+        return shit;
     }
 }

@@ -32,7 +32,7 @@ namespace PhaseSystem
         {
             base.Awake();
             selectionPanel.SetActive(false); // 默认隐藏
-            BagUIPanel.SetActive(false);
+            // BagUIPanel.SetActive(false);
         }
 
         void Update()
@@ -186,6 +186,6 @@ namespace PhaseSystem
             OnSelectionComplete?.Invoke(player1Choice, player2Choice);
         }
         
-        [SerializeField] public GameObject BagUIPanel;
+        // [SerializeField] public GameObject BagUIPanel;
     }
 }
