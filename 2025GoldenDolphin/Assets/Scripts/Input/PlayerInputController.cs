@@ -54,7 +54,7 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
     public void DisableAllInputs()
     {
         playerControl.Player1.Disable();
-        playerControl.Player2.Enable();
+        playerControl.Player2.Disable();
     }
 
     public void EnableAllInputs()

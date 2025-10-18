@@ -43,6 +43,21 @@ public class Player : SKMonoSingleton<Player>
         inputController.onMoveRight2 += () => cursorController2.Move(Vector2Int.right);
         inputController.onConfirm2   += cursorController2.Confirm;
         inputController.onRotate2    += cursorController2.Rotate;
+        
+        inputController.DisableAllInputs();
+        InactivateCursor();
+    }
+
+    public void InactivateCursor()
+    {
+        inventoryController1.OnCursorExit();
+        inventoryController2.OnCursorExit();
+    }
+
+    public void ActivateCursor()
+    {
+        inventoryController1.OnCursorEnter();
+        inventoryController2.OnCursorEnter();
     }
 
     private void OnDisable()
@@ -55,8 +70,8 @@ public class Player : SKMonoSingleton<Player>
 
     void Start()
     {
-        inputController.EnableGameplay1Input();
-        inputController.EnableGameplay2Input();
+        // inputController.EnableGameplay1Input();
+        // inputController.EnableGameplay2Input();
         // 假设你有一个方法可以为玩家生成初始物品
         // Test_GiveInitialItems();
     }

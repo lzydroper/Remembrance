@@ -444,7 +444,8 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: -1878770228073959127, guid: 0927f9889e29dcf4b97b621392e4f7f2, type: 3}
   cursorVisual: {fileID: 1361699006}
   itemContainer: {fileID: 1477972629}
-  itemdb: {fileID: 0}
+  itemdb: {fileID: 11400000, guid: 3dbc615a26864784292600267f3b8074, type: 2}
+  shit: {fileID: 11400000, guid: d5bd0d69b41ae0b49a9d3140bd73deb0, type: 2}
 --- !u!1 &228469662
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +455,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228469663}
-  - component: {fileID: 228469665}
   - component: {fileID: 228469664}
+  - component: {fileID: 228469666}
   m_Layer: 0
   m_Name: PhaseManager
   m_TagString: Untagged
@@ -499,8 +500,9 @@ MonoBehaviour:
   player1Cursor: {fileID: 762587343}
   player2Cursor: {fileID: 846362909}
   itemdb: {fileID: 11400000, guid: 3dbc615a26864784292600267f3b8074, type: 2}
-  BagUIPanel: {fileID: 390225365}
---- !u!114 &228469665
+  player1Score: 0
+  player2Score: 0
+--- !u!114 &228469666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -509,9 +511,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 228469662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0be8001521f4482699691e9d6d4c9a76, type: 3}
+  m_Script: {fileID: 11500000, guid: 6889a7f14e9e417a8e15cafed97d6d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStarted: 0
 --- !u!1 &277852681
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,9 +662,9 @@ MonoBehaviour:
   onPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 228469665}
-        m_TargetAssemblyTypeName: PhaseSystem.TurnTest, Assembly-CSharp
-        m_MethodName: Test
+      - m_Target: {fileID: 228469666}
+        m_TargetAssemblyTypeName: PhaseSystem.TurnManager, Assembly-CSharp
+        m_MethodName: StartTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -774,7 +777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.113708, y: 13.499908}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1581.7723, y: 571.00006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &393309746
@@ -1143,7 +1146,8 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: -1878770228073959127, guid: 0927f9889e29dcf4b97b621392e4f7f2, type: 3}
   cursorVisual: {fileID: 1274854924}
   itemContainer: {fileID: 1838513189}
-  itemdb: {fileID: 0}
+  itemdb: {fileID: 11400000, guid: 3dbc615a26864784292600267f3b8074, type: 2}
+  shit: {fileID: 11400000, guid: d5bd0d69b41ae0b49a9d3140bd73deb0, type: 2}
 --- !u!1 &626091688
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,7 +3311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -399}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2084211475

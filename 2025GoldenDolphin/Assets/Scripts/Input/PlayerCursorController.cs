@@ -14,26 +14,24 @@ public class PlayerCursorController : MonoBehaviour
     // --- 引用 ---
     [Header("上下文引用")]
     [SerializeField] private InventoryController inventoryController;
-    // TODO: 在此添加对你的UI控制器的引用, 例如: [SerializeField] private UIController uiController;
 
     [Header("区域边界配置")]
     [Tooltip("背包区域在通用坐标系中所占的矩形范围")]
     [SerializeField] private RectInt inventoryBounds = new RectInt(0, 0, 4, 4);
     
-    // TODO: 定义你的UI区域的边界
     [Tooltip("UI区域在通用坐标系中所占的矩形范围")]
-    [SerializeField] private RectInt uiBounds = new RectInt(0, -1, 4, 1); // 示例: 一个在背包下方的4格宽UI区域
+    [SerializeField] private RectInt uiBounds = new RectInt(1, -1, 2, 1); // 示例: 一个在背包下方的2格宽UI区域
 
     // --- 状态 ---
     private Vector2Int _currentPosition; // 光标当前的通用坐标
     private CursorContext _currentContext = CursorContext.None;
 
-    private void Start()
-    {
-        // 设置初始位置和上下文
-        _currentPosition = new Vector2Int(inventoryBounds.x + 1, inventoryBounds.y + 1);
-        EnterContext(DetermineContext(_currentPosition));
-    }
+    // private void Start()
+    // {
+    //     // 设置初始位置和上下文
+    //     _currentPosition = new Vector2Int(inventoryBounds.x + 1, inventoryBounds.y + 1);
+    //     EnterContext(DetermineContext(_currentPosition));
+    // }
 
     /// <summary>
     /// 核心移动方法，由 Player.cs 调用
@@ -152,7 +150,7 @@ public class PlayerCursorController : MonoBehaviour
                 break;
             case CursorContext.UI:
                  // TODO: 调用你的UI控制器的 OnCursorMove 方法
-                // Vector2Int localUIPos = _currentPosition - uiBounds.min;
+                Vector2Int localUIPos = _currentPosition - uiBounds.min;
                 // uiController.OnCursorMove(localUIPos);
                 break;
         }

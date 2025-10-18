@@ -8,5 +8,6 @@ namespace BagSystem
     {
         [Tooltip("游戏中所有的物品列表")] public List<ItemData> items = new();
         [Tooltip("游戏中所有的合成配方列表")] public List<ItemRecipe> recipes = new();
+        [Tooltip("游戏中所有的配方解锁列表")] public HashSet<ItemData> locklists = new();
     }
 }

@@ -15,11 +15,12 @@ namespace PhaseSystem
         public PhaseManager()
         {
             // 注册具体的阶段实例
-            AddPhase(new EmptyPhase("起始空阶段"));      // 后续流程内通过finish这个阶段来实现进入准备阶段（屎山代码开始发力）
+            // AddPhase(new EmptyPhase("起始空阶段"));      // 后续流程内通过finish这个阶段来实现进入准备阶段
+            AddPhase(new TimerPhase("起始动画阶段", Constants.startPhaseTime));
             AddPhase(new PreparationPhase("准备阶段"));
             AddPhase(new ActionPhase("行动阶段", Constants.actionPhaseTime));
             AddPhase(new ResolutionPhase("结算阶段"));
-            AddPhase(new EmptyPhase("结束空阶段"));      // 后续流程内通过finish这个阶段来实现
+            // AddPhase(new EmptyPhase("结束空阶段"));      // 后续流程内通过finish这个阶段来实现
             // AddPhase(new TurnEndPhase("回合结束阶段", 2.0f)); // 假设过渡持续2秒
         }
 

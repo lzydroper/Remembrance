@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
@@ -185,7 +186,59 @@ namespace PhaseSystem
             // 触发事件，通知PreparationPhase阶段可以结束了
             OnSelectionComplete?.Invoke(player1Choice, player2Choice);
         }
-        
-        // [SerializeField] public GameObject BagUIPanel;
+
+        public int player1Score = 0;
+        public int player2Score = 0;
+
+        public bool needPlayEndAnimation { get; private set; } = false;
+        public float endAnimationTime { get; private set; } = 0f;
+        public void resetEndAnimationTIme() => endAnimationTime = 0;
+
+        // 由actionPhase调用，结算最终分数
+        public void CalculateScore()
+        {
+            ItemData p1Result = Player.instance.inventoryController1.RemoveHeldItem();
+            ItemData p2Result = Player.instance.inventoryController2.RemoveHeldItem();
+            if (p1Result == null && p2Result == null)
+            {
+                endAnimationTime = 0f;
+                Debug.Log("p1 and p2 create nothing");
+                return;
+            }
+            bool p1Long = false, p2Long = false;
+            if (p1Result != null)
+            {
+                if (itemdb.locklists.Add(p1Result))
+                {
+                    p1Long = true;
+                    endAnimationTime += Constants.endAniLongTime;
+                }
+                else
+                {
+                    endAnimationTime += Constants.endAniShortTime;
+                }
+                Debug.Log("p1 create item");
+            }
+            if (p2Result != null)
+            {
+                if (itemdb.locklists.Add(p2Result))
+                {
+                    p2Long = true;
+                    endAnimationTime += Constants.endAniLongTime;
+                }
+                else
+                {
+                    endAnimationTime += Constants.endAniShortTime;
+                }
+                Debug.Log("p2 create item");
+            }
+            StartCoroutine(PlayEndAnimation(p1Long, p2Long, p1Result, p2Result));
+        }
+
+        public IEnumerator PlayEndAnimation(bool p1Long, bool p2Long, ItemData p1Result, ItemData p2Result)
+        {
+            yield return new WaitForEndOfFrame();
+            Debug.Log("慢拔out!");
+        }
     }
 }

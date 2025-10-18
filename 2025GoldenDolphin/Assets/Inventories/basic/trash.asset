@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1d4c7ac581deb47ba71bb9ebb2bcae, type: 3}
   m_Name: trash
   m_EditorClassIdentifier: 
-  width: 2
-  height: 3
-  itemIcon: {fileID: 0}
+  itemName: 
+  icon: {fileID: 0}
+  score: 0
   shape:
-  - columns: 0100
-  - columns: 0100
-  - columns: 0101
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}

@@ -26,7 +26,6 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Transform cursorVisual;
     [Tooltip("所有属于此背包的物品实例的父对象")]
     [SerializeField] private Transform itemContainer;
-    // [SerializeField] private InventoryItem resultReview;    // 每次place后尝试有无组合结果
 
     // --- 状态变量 ---
     private InventoryItem[,] grid;
@@ -103,14 +102,15 @@ public class InventoryController : MonoBehaviour
                 Debug.LogWarning($"[{gameObject.name}] 无法放置物品。");
             }
         }
-        else // 如果手上没物品，尝试拾取
-        {
-            InventoryItem itemToPickUp = grid[localGridPosition.x, localGridPosition.y];
-            if (itemToPickUp != null)
-            {
-                PickUpItem(itemToPickUp);
-            }
-        }
+        // 不准拾取T_T
+        // else // 如果手上没物品，尝试拾取
+        // {
+        //     InventoryItem itemToPickUp = grid[localGridPosition.x, localGridPosition.y];
+        //     if (itemToPickUp != null)
+        //     {
+        //         PickUpItem(itemToPickUp);
+        //     }
+        // }
     }
     
     public void RotateHeldItem()
@@ -232,8 +232,7 @@ public class InventoryController : MonoBehaviour
     /// <param name="anchorPosition"></param>
     public void AddNewItemToHand(InventoryItem newItemInstance, Vector2Int anchorPosition)
     {
-        if (heldItem != null) Destroy(heldItem.gameObject);
-        
+        // RemoveHeldItem();
         heldItem = newItemInstance;
         if(itemContainer != null) heldItem.transform.SetParent(itemContainer);
         else heldItem.transform.SetParent(this.transform);
@@ -247,6 +246,18 @@ public class InventoryController : MonoBehaviour
         InventoryItem newItemInstance = Instantiate<InventoryItem>(inventoryItemPrefab);
         newItemInstance.init(itemData);
         AddNewItemToHand(newItemInstance, Vector2Int.one);
+    }
+    
+    // 强制清除手持物品，并强制烹饪，返回烹饪结果
+    // 时间到后由actionPhase调用UI的相关接口来调用这个函数
+    public ItemData RemoveHeldItem()
+    {
+        if (heldItem != null)
+        {
+            Destroy(heldItem.gameObject);
+            return CookIt();
+        }
+        return null;
     }
 
     /// <summary>
@@ -427,9 +438,11 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private Itemdb itemdb;
     [SerializeField] private ItemData shit;
-    public ItemData CheckCraftingRecipe()
+    public ItemData CookIt()
     {
         List<ItemData> itemsInBag = placedItems.Select(item => item.itemData).ToList();
+        if (itemsInBag.Count == 0)
+            return null;
 
         // 2. 遍历数据库中的每一个配方
         foreach (var recipe in itemdb.recipes)
@@ -456,6 +469,8 @@ public class InventoryController : MonoBehaviour
 
         // 遍历完所有配方都没有找到匹配的
         Debug.Log("未找到匹配的合成配方。");
+        // 有消耗物品，清除背包内放置物品
+        placedItems.Clear();
         return shit;
     }
 }

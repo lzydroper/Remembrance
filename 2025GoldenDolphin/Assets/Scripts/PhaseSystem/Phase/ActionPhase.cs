@@ -17,6 +17,8 @@ namespace PhaseSystem
             base.OnEnter();
             // 启用玩家输入
             Player.instance.inputController.EnableAllInputs();
+            // 激活光标
+            Player.instance.ActivateCursor();
             timer = duration;
             Debug.Log($"行动阶段开始，持续 {duration} 秒。");
             // ItemSelectionUI.instance.BagUIPanel.SetActive(true);
@@ -32,6 +34,15 @@ namespace PhaseSystem
             {
                 FinishPhase();
             }
+        }
+
+        public override void OnExit()
+        {
+            // base.OnExit();
+            // 时间结束，删除拿在手里的物品，并强制合成
+            ItemSelectionUI.instance.CalculateScore();
+            // 关闭光标
+            Player.instance.InactivateCursor();
         }
     }
 }
