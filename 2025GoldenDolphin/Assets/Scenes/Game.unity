@@ -4414,9 +4414,10 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -6504434589349173825, guid: a1961f22cb6cfe44dafb6f25b99e1837, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 459754512}
   m_ExposedReferences:
-    m_References: []
+    m_References:
+    - 59788ea5bcf039b48bcc3b2ddcb56ae6: {fileID: 459754514}
 --- !u!1 &1952877274
 GameObject:
   m_ObjectHideFlags: 0
