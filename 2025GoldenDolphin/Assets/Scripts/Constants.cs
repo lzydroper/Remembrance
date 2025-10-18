@@ -21,4 +21,7 @@ public class Constants
     public static float longAnimTime = 5f;
     public static float shortAnimTime = 4f;
     public static bool isStart = false;
+    
+    // 网格大小
+    public const float cellSize = 100f;
 }
