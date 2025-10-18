@@ -71,9 +71,9 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.018
+    - _Outline: 0
     - _Parallax: 0.02
-    - _SelfThreshold1: 0.747
+    - _SelfThreshold1: 0.275
     - _SelfThreshold2: 0.644
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
