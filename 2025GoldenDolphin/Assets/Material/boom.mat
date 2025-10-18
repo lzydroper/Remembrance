@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: trash_bag
+  m_Name: boom
   m_Shader: {fileID: 4800000, guid: dde0f32da8eae0a43b6659e6a75765df, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -44,8 +44,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c975ea3b0e6934943ba2182a29f4e6f9, type: 3}
-        m_Scale: {x: 7.6, y: 7.44}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -71,10 +71,10 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.0288
+    - _Outline: 0.018
     - _Parallax: 0.02
-    - _SelfThreshold1: 0.262
-    - _SelfThreshold2: 0.541
+    - _SelfThreshold1: 0.747
+    - _SelfThreshold2: 0.644
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -84,9 +84,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfColor1: {r: 0.4043352, g: 0.44131812, b: 0.47798735, a: 1}
-    - _SelfColor2: {r: 0.6394129, g: 0.70794904, b: 0.76729554, a: 1}
-    - _SelfColor3: {r: 1, g: 0.9399768, b: 0.81960785, a: 1}
-    - _ShadowColor: {r: 0.5660378, g: 0.46192783, b: 0.40049836, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SelfColor1: {r: 0.67621917, g: 0.76764023, b: 0.8238993, a: 1}
+    - _SelfColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _SelfColor3: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0.09999997, g: 0.09999997, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

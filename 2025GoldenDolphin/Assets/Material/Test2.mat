@@ -88,5 +88,5 @@ Material:
     - _SelfColor1: {r: 0.6536133, g: 0.78013647, b: 0.8553459, a: 1}
     - _SelfColor2: {r: 0.69123054, g: 0.91573393, b: 0.9433962, a: 1}
     - _SelfColor3: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.5176471, g: 0.42213172, b: 0.3764706, a: 1}
+    - _ShadowColor: {r: 0.40821168, g: 0.44636956, b: 0.6037736, a: 1}
   m_BuildTextureStacks: []

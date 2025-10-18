@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: trash_bag
+  m_Name: pencil
   m_Shader: {fileID: 4800000, guid: dde0f32da8eae0a43b6659e6a75765df, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -71,7 +71,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.0288
+    - _Outline: 0.056
     - _Parallax: 0.02
     - _SelfThreshold1: 0.262
     - _SelfThreshold2: 0.541
@@ -85,8 +85,8 @@ Material:
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfColor1: {r: 0.4043352, g: 0.44131812, b: 0.47798735, a: 1}
-    - _SelfColor2: {r: 0.6394129, g: 0.70794904, b: 0.76729554, a: 1}
-    - _SelfColor3: {r: 1, g: 0.9399768, b: 0.81960785, a: 1}
-    - _ShadowColor: {r: 0.5660378, g: 0.46192783, b: 0.40049836, a: 1}
+    - _SelfColor1: {r: 0.21494396, g: 0.3537384, b: 0.47798735, a: 1}
+    - _SelfColor2: {r: 0.23298123, g: 0.40260085, b: 0.47798735, a: 1}
+    - _SelfColor3: {r: 0.6920612, g: 0.8483532, b: 0.9056604, a: 1}
+    - _ShadowColor: {r: 0.57232696, g: 0.47762474, b: 0.41934645, a: 1}
   m_BuildTextureStacks: []

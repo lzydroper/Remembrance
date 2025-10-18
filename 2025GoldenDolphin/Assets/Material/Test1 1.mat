@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _MainTex
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -85,8 +85,8 @@ Material:
     - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfColor1: {r: 0.6792453, g: 0.4338322, b: 0.35243854, a: 1}
-    - _SelfColor2: {r: 0.9559748, g: 0.8210053, b: 0.7545587, a: 1}
-    - _SelfColor3: {r: 1, g: 0.94689023, b: 0.82075465, a: 1}
-    - _ShadowColor: {r: 0.5660378, g: 0.46192783, b: 0.40049836, a: 1}
+    - _SelfColor1: {r: 0.9433962, g: 0.8823383, b: 0.76836354, a: 1}
+    - _SelfColor2: {r: 1, g: 0.9609942, b: 0.86477983, a: 1}
+    - _SelfColor3: {r: 0.98742133, g: 0.74829787, b: 0.65517575, a: 1}
+    - _ShadowColor: {r: 0.7169812, g: 0.58608574, b: 0.50278866, a: 1}
   m_BuildTextureStacks: []
