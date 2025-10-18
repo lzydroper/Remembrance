@@ -15,7 +15,7 @@ public class Constants
     // 玩家得分情况
     public static int p1Score = 0;
     public static int p2Score = 0;
-    public const int totalTurnNumber = 3;       // 总回合数
+    // public const int totalTurnNumber = 3;       // 总回合数
 
     public static bool isStart = false;
 }
