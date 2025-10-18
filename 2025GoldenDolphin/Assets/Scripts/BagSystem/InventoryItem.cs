@@ -1,9 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
     public ItemData itemData;
+    public Image itemIcon;
+    public void init(ItemData itemData)
+    {
+        this.itemData = itemData;
+        this.itemIcon.sprite = this.itemData.icon;
+    }
     
     // 物品在背包网格中的锚点坐标
     public Vector2Int anchorGridPosition;

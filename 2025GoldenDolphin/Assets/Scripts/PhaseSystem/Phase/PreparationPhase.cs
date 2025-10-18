@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PhaseSystem
 {
@@ -14,7 +15,10 @@ namespace PhaseSystem
         private bool player2Selected;
         private PlayerID currentPlayer;
 
-        public PreparationPhase(string name) : base(name) { }
+        public PreparationPhase(string name) : base(name)
+        {
+            // ItemSelectionUI.instance.OnSelectionComplete += FinishPhase;
+        }
 
         public override void OnEnter()
         {
@@ -26,15 +30,40 @@ namespace PhaseSystem
             
             // TODO: 调用显示选择物品的界面
             // 紧接着禁用玩家2的光标，将玩家1的光标显示出来
+            if (ItemSelectionUI.instance != null)
+            {
+                ItemSelectionUI.instance.OnSelectionComplete += HandleSelectionComplete;
+                ItemSelectionUI.instance.StartSelection();
+            }
+            else
+            {
+                Debug.LogError("找不到 ItemSelectionUI 实例！准备阶段将立即结束。");
+                FinishPhase(); // 如果UI不存在，直接结束，防止游戏卡死
+            }
         }
 
-        public override void OnUpdate()
+        // public override void OnUpdate()
+        // {
+        //     // 这个阶段的结束条件是双方都选择完毕
+        //     if (player1Selected && player2Selected)
+        //     {
+        //         FinishPhase();
+        //     }
+        // }
+        
+        private void HandleSelectionComplete(ItemData p1Choice, ItemData p2Choice)
         {
-            // 这个阶段的结束条件是双方都选择完毕
-            if (player1Selected && player2Selected)
-            {
-                FinishPhase();
-            }
+            Debug.Log($"准备阶段收到UI选择完成信号。P1: {p1Choice.itemName}, P2: {p2Choice.itemName}");
+    
+            // 在这里，你可以访问 p1Choice 和 p2Choice
+            // 并将它们传递给其他系统，比如玩家的背包管理器
+            // PlayerInventoryManager.Instance.AddItem(PlayerID.Player1, p1Choice);
+            // PlayerInventoryManager.Instance.AddItem(PlayerID.Player2, p2Choice);
+            ItemSelectionUI.instance.BagUIPanel.SetActive(true);
+            Player.instance.inventoryController1.AddNewItemToHand(p1Choice);
+            Player.instance.inventoryController2.AddNewItemToHand(p2Choice);
+    
+            FinishPhase();
         }
         
         public void PlayerSelectItem(PlayerID player)
@@ -45,7 +74,7 @@ namespace PhaseSystem
                 Debug.LogWarning($"现在是 {currentPlayer} 的回合，{player} 无法操作！");
                 return;
             }
-
+        
             if (player == PlayerID.Player1)
             {
                 player1Selected = true;
@@ -63,7 +92,10 @@ namespace PhaseSystem
 
         public override void OnExit()
         {
-            // TODO: 移动光标至背包中，生成选择的物品到手上
+            if (ItemSelectionUI.instance != null)
+            {
+                ItemSelectionUI.instance.OnSelectionComplete -= HandleSelectionComplete;
+            }
         }
     }
 }
