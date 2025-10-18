@@ -54,6 +54,8 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
     private void DisableAllInputs()
     {
         playerControl.Player1.Disable();
+        playerControl.Player2.Disable();
+        playerControl.PlayerRebinding.Disable();
     }
 
     public void EnableGameplay1Input()
@@ -79,6 +81,13 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
         playerControl.Player1.Enable();
     }
 
+    public void PLayer1AndPlayer2ToControl()
+    {
+        DisableAllInputs();
+        playerControl.Player1.Enable();
+        playerControl.Player2.Enable();
+    }
+    
     #endregion
 
     #region Rebinding

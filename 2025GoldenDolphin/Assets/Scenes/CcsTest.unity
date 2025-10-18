@@ -526,6 +526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: object1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 37cb002d66d8a1447a319577494e926e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2677304124955947278, guid: 37cb002d66d8a1447a319577494e926e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.49
@@ -683,6 +687,10 @@ PrefabInstance:
     - target: {fileID: 5837866756194827343, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
       propertyPath: m_Name
       value: boom-smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837866756194827343, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7637819279850626552, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
       propertyPath: m_IsActive

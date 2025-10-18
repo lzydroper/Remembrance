@@ -77,7 +77,7 @@ namespace SKCell
         public float delayedFillLerpSpeed = 0.2f;
 
         [Header("Events")]
-        [SerializeField] UnityEvent onValueChanged;
+        public UnityEvent onValueChanged;
         [SerializeField] UnityEvent onFull, onEmpty, onHalf, onStart;
 
         private GameObject slider, circularSlider;

@@ -22,7 +22,7 @@ namespace SKCell
         public SKUIPanelState initialState = SKUIPanelState.Inactive;
         [HideInInspector] public bool active = false;
 
-        [Header("Hierachy Management")]
+        [Header("Hierarchy Management")]
         public SKUIPanelLeafManagementMethod leafPanelMethod = SKUIPanelLeafManagementMethod.OneLeafPanelActive;
         [Range(0f,2f)]
         public float leafActivationLag = 0f;

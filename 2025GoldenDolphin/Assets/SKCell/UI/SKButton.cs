@@ -14,7 +14,7 @@ namespace SKCell
 {
     [RequireComponent(typeof(CanvasGroup))]
     [AddComponentMenu("SKCell/UI/SKButton")]
-    public class SKButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IFadable
+    public class SKButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IFadable,ISelectHandler,IDeselectHandler
     {
         #region Fields
 
@@ -88,6 +88,36 @@ namespace SKCell
         [Header("On Start Event")]
         [SerializeField] SKButtonEvent onStart;
 
+        [Header("Navigation")]
+        [SerializeField] private Navigation.Mode navigationMode = Navigation.Mode.Automatic;
+        [SerializeField] private Selectable selectOnUp;
+        [SerializeField] private Selectable selectOnDown;
+        [SerializeField] private Selectable selectOnLeft;
+        [SerializeField] private Selectable selectOnRight;
+
+        public Navigation navigation
+        {
+            get
+            {
+                return new Navigation()
+                {
+                    mode = navigationMode,
+                    selectOnUp = selectOnUp,
+                    selectOnDown = selectOnDown,
+                    selectOnLeft = selectOnLeft,
+                    selectOnRight = selectOnRight
+                };
+            }
+            set
+            {
+                navigationMode = value.mode;
+                selectOnUp = value.selectOnUp;
+                selectOnDown = value.selectOnDown;
+                selectOnLeft = value.selectOnLeft;
+                selectOnRight = value.selectOnRight;
+            }
+        }
+        
         #endregion
         #region Private Fields
         [HideInInspector] public bool initialized = false;
@@ -98,6 +128,7 @@ namespace SKCell
         private Animator anim;
         private CanvasGroup canvasGroup;
         private float initialScale = 1;
+        private bool isSelected = false;
         #endregion
         private void Start()
         {
@@ -330,6 +361,36 @@ namespace SKCell
             this.interactable = interactable;
             OnInteractabilityChange();
         }
+        private void TransitSelected()
+        {
+            // 选中状态的过渡效果
+            if (transitionMode != SKButtonTransitionMode.Animation)
+            {
+                // 可以添加特殊的选中颜色或缩放
+                if (useScaleTransition)
+                    transform.localScale = new Vector3(mouseOverScale, mouseOverScale, mouseOverScale);
+            }
+            else
+            {
+                if (anim != null)
+                {
+                    anim.ResetTrigger("Selected");
+                    anim.SetTrigger("Selected");
+                }
+            }
+        }
+        // 添加键盘提交支持
+        private void Update()
+        {
+            if (isSelected && interactable)
+            {
+                // 检测回车键或空格键按下
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                {
+                    OnPointerClick(new PointerEventData(EventSystem.current));
+                }
+            }
+        }
         #endregion
         #region Events
         public void OnPointerClick(PointerEventData eventData)
@@ -434,7 +495,7 @@ namespace SKCell
             }
             isHovering = false;
             if(!isHolding)
-            TransitNormal();
+                TransitNormal();
         }
 
         private void OnHoldStays()
@@ -468,6 +529,20 @@ namespace SKCell
                 TransitNormal();
             else
                 TransitInactive();
+        }
+        // 实现ISelectHandler接口
+        public void OnSelect(BaseEventData eventData)
+        {
+            isSelected = true;
+            // 添加选中状态的视觉反馈
+            TransitSelected();
+        }
+
+        // 实现IDeselectHandler接口
+        public void OnDeselect(BaseEventData eventData)
+        {
+            isSelected = false;
+            TransitNormal();
         }
         #endregion
         #region Public Methods
@@ -651,6 +726,14 @@ namespace SKCell
             {
                 canvasGroup.alpha = 0;
                 SKCore.FixedTick000 -= FadeOutCR;
+            }
+        }
+        // 添加Select方法
+        public void Select()
+        {
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(gameObject);
             }
         }
         #endregion
