@@ -75,6 +75,7 @@ Material:
     - _Parallax: 0.02
     - _SelfThreshold1: 0.262
     - _SelfThreshold2: 0.541
+    - _ShadowIntensity: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -88,5 +89,5 @@ Material:
     - _SelfColor1: {r: 0.98742133, g: 0.89102006, b: 0.80422044, a: 1}
     - _SelfColor2: {r: 1, g: 1, b: 1, a: 1}
     - _SelfColor3: {r: 0.8930817, g: 0.85949755, b: 0.7779359, a: 1}
-    - _ShadowColor: {r: 0.49685526, g: 0.4031803, b: 0.37029773, a: 1}
+    - _ShadowColor: {r: 0.59119487, g: 0.3978481, b: 0.32534304, a: 1}
   m_BuildTextureStacks: []
