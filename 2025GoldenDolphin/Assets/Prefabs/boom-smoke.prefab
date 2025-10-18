@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3301223948852354522}
   - component: {fileID: 2885453895329533901}
   - component: {fileID: 139658231797780997}
+  - component: {fileID: -2513365994295065399}
   m_Layer: 0
   m_Name: boom-smoke
   m_TagString: Untagged
@@ -4899,6 +4900,28 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!64 &-2513365994295065399
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837866756194827343}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &7637819279850626552
 GameObject:
   m_ObjectHideFlags: 0

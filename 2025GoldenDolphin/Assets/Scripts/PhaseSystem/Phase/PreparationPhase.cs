@@ -62,7 +62,6 @@ namespace PhaseSystem
             // ItemSelectionUI.instance.BagUIPanel.SetActive(true);
             Player.instance.inventoryController1.AddNewItemToHand(p1Choice);
             Player.instance.inventoryController2.AddNewItemToHand(p2Choice);
-    
             FinishPhase();
         }
         
