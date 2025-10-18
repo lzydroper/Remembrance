@@ -16,12 +16,15 @@ namespace PhaseSystem
         [SerializeField] private GameObject player2Cursor; // 玩家2的光标
 
         [SerializeField] private Itemdb itemdb;
-        private int player1SelectedIndex = -1; 
+        private int firstPlayerSelectedIndex = -1; 
         private List<ItemData> currentRandomItems;
         private ItemData player1Choice;
         private ItemData player2Choice;
         
         private PlayerID currentPlayer;
+        // 新增变量来记录本回合的先后手顺序
+        private PlayerID firstPlayer;
+        private PlayerID secondPlayer;
         private int currentIndex;
         private bool isSelectionActive = false;
 
@@ -62,12 +65,30 @@ namespace PhaseSystem
                 itemDisplays[i].Setup(currentRandomItems[i]);
             }
             
-            // 3. 重置状态并由玩家1开始
-            player1Choice = null;
-            player2Choice = null;
-            currentIndex = 0;
-            player1SelectedIndex = -1; // 重置P1选择索引
-            SwitchPlayer(PlayerID.Player1);
+            // // 3. 重置状态并由玩家1开始
+            // player1Choice = null;
+            // player2Choice = null;
+            // currentIndex = 0;
+            // firstPlayerSelectedIndex = -1; // 重置上个玩家
+            // SwitchPlayer(PlayerID.Player1);
+            //
+            // isSelectionActive = true;
+            // selectionPanel.SetActive(true);
+            if (Constants.turn) // true = P1 优先
+            {
+                firstPlayer = PlayerID.Player1;
+                secondPlayer = PlayerID.Player2;
+            }
+            else // false = P2 优先
+            {
+                firstPlayer = PlayerID.Player2;
+                secondPlayer = PlayerID.Player1;
+            }
+            Constants.turn = !Constants.turn;
+            Debug.Log($"本回合由 <color=cyan>{firstPlayer}</color> 优先选择。");
+            
+            // 使用决定好的先手玩家开始
+            SwitchPlayer(firstPlayer);
             
             isSelectionActive = true;
             selectionPanel.SetActive(true);
@@ -107,39 +128,72 @@ namespace PhaseSystem
 
             } 
             // 核心逻辑: 如果当前是玩家2，并且光标想移动到的位置是P1已经选了的位置，就继续移动
-            while (currentPlayer == PlayerID.Player2 && currentIndex == player1SelectedIndex);
+            while (currentPlayer == secondPlayer && currentIndex == firstPlayerSelectedIndex);
         
             UpdateCursorPosition();
         }
 
         private void ConfirmSelection()
         {
-            // 再次检查，防止玩家2在某种边缘情况下选中了已被占用的项
-            if (currentPlayer == PlayerID.Player2 && currentIndex == player1SelectedIndex)
+            // // 再次检查，防止玩家2在某种边缘情况下选中了已被占用的项
+            // if (currentPlayer == PlayerID.Player2 && currentIndex == firstPlayerSelectedIndex)
+            // {
+            //     Debug.Log("这个物品已经被玩家1选择了！");
+            //     return;
+            // }
+            // ItemData selectedItem = currentRandomItems[currentIndex];
+            //
+            // if (currentPlayer == PlayerID.Player1)
+            // {
+            //     player1Choice = selectedItem;
+            //     firstPlayerSelectedIndex = currentIndex; // 记录P1的选择
+            //     Debug.Log($"玩家1 选择了: {player1Choice.itemName}");
+            //
+            //     // 将被选中的物品UI设置为不可用状态
+            //     itemDisplays[firstPlayerSelectedIndex].SetAsUnavailable();
+            //     
+            //     // 切换到玩家2
+            //     SwitchPlayer(PlayerID.Player2);
+            // }
+            // else // PlayerID.Player2
+            // {
+            //     player2Choice = selectedItem;
+            //     Debug.Log($"玩家2 选择了: {player2Choice.itemName}");
+            //     
+            //     // 双方都选择完毕，结束流程
+            //     EndSelection();
+            // }
+            if (currentPlayer == secondPlayer && currentIndex == firstPlayerSelectedIndex)
             {
-                Debug.Log("这个物品已经被玩家1选择了！");
+                Debug.Log($"这个物品已经被 {firstPlayer} 选择了！");
                 return;
             }
+            
             ItemData selectedItem = currentRandomItems[currentIndex];
             
-            if (currentPlayer == PlayerID.Player1)
+            // --- 修改点 5: 使用 firstPlayer/secondPlayer 逻辑重构 ---
+            if (currentPlayer == firstPlayer)
             {
-                player1Choice = selectedItem;
-                player1SelectedIndex = currentIndex; // 记录P1的选择
-                Debug.Log($"玩家1 选择了: {player1Choice.itemName}");
+                // 先手玩家进行选择
+                if (firstPlayer == PlayerID.Player1) player1Choice = selectedItem;
+                else player2Choice = selectedItem;
+
+                firstPlayerSelectedIndex = currentIndex; // 记录先手玩家的选择
+                Debug.Log($"{firstPlayer} (先手) 选择了: {selectedItem.itemName}");
             
-                // 将被选中的物品UI设置为不可用状态
-                itemDisplays[player1SelectedIndex].SetAsUnavailable();
+                itemDisplays[firstPlayerSelectedIndex].SetAsUnavailable();
                 
-                // 切换到玩家2
-                SwitchPlayer(PlayerID.Player2);
+                // 切换到后手玩家
+                SwitchPlayer(secondPlayer);
             }
-            else // PlayerID.Player2
+            else // 当前玩家是 secondPlayer
             {
-                player2Choice = selectedItem;
-                Debug.Log($"玩家2 选择了: {player2Choice.itemName}");
+                // 后手玩家进行选择
+                if (secondPlayer == PlayerID.Player1) player1Choice = selectedItem;
+                else player2Choice = selectedItem;
+
+                Debug.Log($"{secondPlayer} (后手) 选择了: {selectedItem.itemName}");
                 
-                // 双方都选择完毕，结束流程
                 EndSelection();
             }
         }
@@ -148,20 +202,34 @@ namespace PhaseSystem
         {
             currentPlayer = newPlayer;
         
-            if (currentPlayer == PlayerID.Player1)
+            // --- 修改点 6: 确保后手玩家初始位置正确 ---
+            if (currentPlayer == secondPlayer)
             {
-                currentIndex = 0; // P1开始时总是从第一个开始
-            }
-            else // 切换到P2时
-            {
-                // 为P2找到一个不是P1已选项的初始位置
+                // 为后手玩家找到一个不是先手玩家已选项的初始位置
                 currentIndex = 0;
-                if (currentIndex == player1SelectedIndex)
+                if (currentIndex == firstPlayerSelectedIndex)
                 {
-                    // 如果第一个就是被选的，自动跳到下一个
-                    MoveCursor(1); 
+                    MoveCursor(1); // 如果第一个就是被选的，自动跳到下一个
                 }
             }
+            else // currentPlayer == firstPlayer
+            {
+                currentIndex = 0; // 先手玩家总是从第一个开始
+            }
+            // if (currentPlayer == PlayerID.Player1)
+            // {
+            //     currentIndex = 0; // P1开始时总是从第一个开始
+            // }
+            // else // 切换到P2时
+            // {
+            //     // 为P2找到一个不是P1已选项的初始位置
+            //     currentIndex = 0;
+            //     if (currentIndex == firstPlayerSelectedIndex)
+            //     {
+            //         // 如果第一个就是被选的，自动跳到下一个
+            //         MoveCursor(1); 
+            //     }
+            // }
         
             UpdateCursorPosition();
         }
