@@ -23,8 +23,8 @@ public class PlayerCursorController : MonoBehaviour
     [SerializeField] private RectInt uiBounds = new RectInt(1, -1, 2, 1); // 示例: 一个在背包下方的2格宽UI区域
 
     // --- 状态 ---
-    private Vector2Int _currentPosition; // 光标当前的通用坐标
-    private CursorContext _currentContext = CursorContext.None;
+    public Vector2Int _currentPosition = Vector2Int.one; // 光标当前的通用坐标
+    public CursorContext _currentContext = CursorContext.None;
 
     // private void Start()
     // {

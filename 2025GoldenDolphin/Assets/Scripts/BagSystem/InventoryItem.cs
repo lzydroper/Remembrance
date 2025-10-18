@@ -8,6 +8,7 @@ public class InventoryItem : MonoBehaviour
     private RectTransform rectTransform;
     public ItemData itemData;
     public Image itemIcon;
+    public List<Vector2Int> shape;
 
     private void Awake()
     {
@@ -17,8 +18,9 @@ public class InventoryItem : MonoBehaviour
     public void init(ItemData itemData)
     {
         this.itemData = itemData;
-        this.itemIcon.sprite = this.itemData.icon;
-        UpdateVisuals();
+        shape = itemData.shape;
+        // this.itemIcon.sprite = this.itemData.icon;
+        // UpdateVisuals();
     }
     
     /// <summary>
@@ -102,6 +104,7 @@ public class InventoryItem : MonoBehaviour
                     break;
             }
         }
+        shape = rotatedShape;
         return rotatedShape;
     }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9087704855934556177}
   - component: {fileID: -1878770228073959127}
   m_Layer: 0
-  m_Name: book
+  m_Name: trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,8 +37,8 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 222, y: 222}
-  m_Pivot: {x: 0.25, y: 0.5}
+  m_SizeDelta: {x: 333, y: 333}
+  m_Pivot: {x: 0.3333333, y: 0.16666667}
 --- !u!114 &8643728966357106559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59fb66c61d02c5840bd65f8e732ecca1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e9b45579f963dd40aa53f4d62604b3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5b0867d56fff348b364a46366fd36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 77584fe9e7eb1cd498c813c252dca5ef, type: 2}
+  itemData: {fileID: 11400000, guid: 90b3c786fb343a14ea5f2add0c47b810, type: 2}
   itemIcon: {fileID: 9087704855934556177}
   shape: []
   anchorGridPosition: {x: 0, y: 0}
