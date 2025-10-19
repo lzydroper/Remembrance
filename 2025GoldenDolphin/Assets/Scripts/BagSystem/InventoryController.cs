@@ -482,11 +482,11 @@ public class InventoryController : MonoBehaviour
                 continue; // 跳过这个配方，检查下一个
             }
 
-            foreach (var item in recipe.ingredients)
-            {
-                if (!itemsInBag.Contains(item))
-                    continue;
-            }
+            // foreach (var item in recipe.ingredients)
+            // {
+            //     if (!itemsInBag.Contains(item))
+            //         continue;
+            // }
             // // 4. 【核心】处理无序匹配：将两边的列表都进行排序，然后比较。
             // //    我们通过物品名称(itemName)来排序，确保排序结果的唯一性和稳定性。
             // var sortedItemsInBag = itemsInBag.Select(data => data.itemName).OrderBy(name => name).ToList();
@@ -497,11 +497,34 @@ public class InventoryController : MonoBehaviour
             // {
             //    
             // }
-            // 找到了匹配的配方！
-            Debug.Log($"合成匹配成功！配方：{string.Join(", ", recipe.ingredients)} -> {recipe.result.itemName}");
-            recipe.result.score = CalculateValueBasedOnShapeCount(recipe.ingredients);
-            ClearGrid();
-            return recipe.result;
+            // 创建背包物品的临时拷贝，用于后续的移除操作
+            var itemsInBagCopy = new List<ItemData>(itemsInBag);
+            bool isMatch = true; // 先假设是匹配的
+
+            // 遍历当前配方的所有材料
+            foreach (var ingredient in recipe.ingredients)
+            {
+                // 尝试从拷贝中移除一个当前材料
+                if (itemsInBagCopy.Remove(ingredient))
+                {
+                    // 移除成功，说明背包里有这个材料，继续检查下一个材料
+                }
+                else
+                {
+                    // 移除失败，说明背包里没有这个材料或数量不够
+                    isMatch = false; // 标记为不匹配
+                    break; // 立刻中断这个配方的检查
+                }
+            }
+
+            if (isMatch)
+            {
+                // 找到了匹配的配方！
+                Debug.Log($"合成匹配成功！配方：{string.Join(", ", recipe.ingredients)} -> {recipe.result.itemName}");
+                recipe.result.score = CalculateValueBasedOnShapeCount(recipe.ingredients);
+                ClearGrid();
+                return recipe.result;
+            }
         }
 
         // 遍历完所有配方都没有找到匹配的
