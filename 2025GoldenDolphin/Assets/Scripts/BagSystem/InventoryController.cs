@@ -479,6 +479,7 @@ public class InventoryController : MonoBehaviour
             {
                 // 找到了匹配的配方！
                 Debug.Log($"合成匹配成功！配方：{string.Join(", ", sortedRecipeIngredients)} -> {recipe.result.itemName}");
+                recipe.result.score = CalculateValueBasedOnShapeCount(recipe.ingredients);
                 return recipe.result;
             }
         }
@@ -488,5 +489,36 @@ public class InventoryController : MonoBehaviour
         // 有消耗物品，清除背包内放置物品
         placedItems.Clear();
         return shit;
+    }
+    
+    private int CalculateValueBasedOnShapeCount(List<ItemData> ingredients)
+    {
+        // 安全检查：如果列表为null或为空，直接返回0或一个默认值
+        if (ingredients == null || ingredients.Count == 0)
+        {
+            return 0; // 或者可以根据你的逻辑抛出异常或返回-1
+        }
+        int totalShapeCount = ingredients.Sum(itemData => itemData.shape.Count);
+        // 根据总和结果进行判断并返回相应的值
+        if (totalShapeCount >= 11)
+        {
+            return 6;
+        }
+        else if (totalShapeCount >= 9) // 范围是 9 或 10
+        {
+            return 5;
+        }
+        else if (totalShapeCount >= 7) // 范围是 7 或 8
+        {
+            return 4;
+        }
+        else if (totalShapeCount >= 5) // 范围是 5 或 6
+        {
+            return 3;
+        }
+        else
+        {
+            return 0; 
+        }
     }
 }

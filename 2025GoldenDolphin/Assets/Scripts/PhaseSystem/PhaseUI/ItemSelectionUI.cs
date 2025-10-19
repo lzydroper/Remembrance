@@ -375,6 +375,21 @@ namespace PhaseSystem
                 Debug.Log($"p2 create item :{p2Result.itemName}");
             }
             StartCoroutine(PlayEndAnimation(p1Long, p2Long, p1Result, p2Result));
+            // 好人加分，坏人减分
+            int p1AddScore = 0;
+            if (p1Result != null)
+            {
+                p1AddScore = p1Result.isGood ? p1Result.score : -p1Result.score;
+            }
+            int p2AddScore = 0;
+            if (p2Result != null)
+            {
+                p2AddScore = p2Result.isGood ? -p2Result.score : p2Result.score;
+            }
+            StartCoroutine(AnimateScoreCounting(p1ScoreText, p1CurScore, p1AddScore, duration));
+            StartCoroutine(AnimateScoreCounting(p1ScoreText, p2CurScore, p2AddScore, duration));
+            p1CurScore += p1AddScore;
+            p2CurScore += p2AddScore;
         }
 
         public IEnumerator PlayEndAnimation(bool p1Long, bool p2Long, ItemData p1Result, ItemData p2Result)
@@ -394,5 +409,42 @@ namespace PhaseSystem
             Debug.Log("慢拔out!");
         }
         
+        
+        // 得分动画部分
+        private int p1CurScore = 0;
+        private int p2CurScore = 0;
+        [SerializeField] private SKText p1ScoreText;
+        [SerializeField] private SKText p2ScoreText;
+        [SerializeField] private float duration = 1.5f;
+        private IEnumerator AnimateScoreCounting(SKText scoreText, int startScore, int addedScore, float duration)
+        {
+            float elapsedTime = 0f;
+            int scoreDifference = addedScore;
+
+            // 如果没有分数变化，直接设置最终值并退出
+            if (scoreDifference == 0)
+            {
+                yield break;
+            }
+
+            while (elapsedTime < duration)
+            {
+                // 计算当前时间进度
+                float progress = elapsedTime / duration;
+        
+                // 根据进度计算当前应该达到的分数
+                int currentDisplayScore = startScore + (int)(scoreDifference * progress);
+
+                // 更新UI文本
+                scoreText.text = currentDisplayScore.ToString();
+        
+                // 等待下一帧
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // 动画结束后，确保显示的是最终的精确分数
+            scoreText.text = (startScore + addedScore).ToString();
+        }
     }
 }

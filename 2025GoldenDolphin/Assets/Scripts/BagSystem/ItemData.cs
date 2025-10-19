@@ -22,4 +22,6 @@ public class ItemData : ScriptableObject
     public List<Vector2Int> shape = new List<Vector2Int> { Vector2Int.zero }; // 默认为1x1
 
     public GameObject object3D;
+
+    public bool isGood;
 }
