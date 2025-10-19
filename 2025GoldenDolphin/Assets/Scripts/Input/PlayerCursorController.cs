@@ -45,6 +45,14 @@ public class PlayerCursorController : MonoBehaviour
 
         // 根据新位置判断新的上下文
         CursorContext newContext = DetermineContext(newPosition);
+        
+        // 如果我们当前在UI区域，并且目标位置在Inventory区域，则阻止这次移动。
+        if (_currentContext == CursorContext.UI && newContext == CursorContext.Inventory)
+        {
+            Debug.Log($"[{gameObject.name}] 移动被阻止: 不允许从UI区域返回背包。");
+            // 通过将 newContext 强制设为 None，我们可以利用下面已有的 "else" 逻辑来处理移动失败的情况。
+            newContext = CursorContext.None;
+        }
 
         // 如果新位置是有效的（不属于None），则更新位置
         if (newContext != CursorContext.None)
@@ -164,5 +172,47 @@ public class PlayerCursorController : MonoBehaviour
                 uiController.OnCursorMove(localUIPos);
                 break;
         }
+    }
+    
+    /// <summary>
+    /// 立即将光标切换到UI区域的第一个元素。
+    /// 如果玩家正手持物品，此操作将被阻止。
+    /// </summary>
+    public void SwitchToUI()
+    {
+        // 1. 前提条件检查：遵守“手持物品时不能进入UI”的规则
+        if (inventoryController != null && inventoryController.IsHoldingItem)
+        {
+            Debug.LogWarning("SwitchToUI called, but action is blocked because an item is being held.");
+            // (可选) 在这里播放一个“失败”或“被阻止”的音效
+            // SKAudioManager.instance.PlaySound("blocked_sound");
+            return; // 中断函数执行
+        }
+
+        // 2. 确定目标位置：UI区域的第一个元素通常是其左下角坐标
+        Vector2Int targetPosition = uiBounds.min;
+
+        // 检查是否已经在了，避免不必要的操作
+        if (_currentContext == CursorContext.UI && _currentPosition == targetPosition)
+        {
+            return;
+        }
+
+        // 3. 执行上下文切换
+        // 首先，离开当前的上下文（无论是Inventory还是None）
+        ExitContext(_currentContext);
+
+        // 然后，立即更新光标的内部状态
+        _currentPosition = targetPosition;
+        _currentContext = CursorContext.UI;
+
+        // 接着，进入新的UI上下文
+        EnterContext(_currentContext);
+
+        // 4. 通知UI控制器光标已经移动到了具体位置，以便更新高亮等视觉效果
+        NotifyMove();
+
+        // (可选) 播放一个切换音效，使其与手动移动的感觉一致
+        // SKAudioManager.instance.PlaySound("move");
     }
 }
