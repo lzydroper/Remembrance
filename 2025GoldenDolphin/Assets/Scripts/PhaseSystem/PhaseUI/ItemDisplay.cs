@@ -6,7 +6,7 @@ namespace PhaseSystem
 {
     public class ItemDisplay : MonoBehaviour
     {
-        [SerializeField] private Image iconImage;
+        [SerializeField] public Image iconImage;
         // [SerializeField] private TextMeshProUGUI nameText;
 
         private ItemData currentItem;

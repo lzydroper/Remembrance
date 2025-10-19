@@ -128,4 +128,15 @@ public class InventoryItem : MonoBehaviour
         // 你可以在这里添加旋转模型的视觉表现代码
         transform.Rotate(0, 0, -90);
     }
+
+    public void SetSprite(bool grid, bool highlight)
+    {
+        Sprite normalSprite = grid ? itemData.gridSprite : itemData.selectUISprite;
+    
+        // 2. 再根据 grid 决定是使用 gridSpriteHighlighted 还是 selectUISpriteHighlighted
+        Sprite highlightedSprite = grid ? itemData.gridSpriteHighlighted : itemData.selectUISpriteHighlighted;
+
+        // 3. 最后根据 highlight 从上面选出的两个 Sprite 中决定最终使用哪一个
+        itemIcon.sprite = highlight ? highlightedSprite : normalSprite;
+    }
 }

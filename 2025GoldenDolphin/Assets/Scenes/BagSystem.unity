@@ -366,7 +366,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 1306.8862, y: 301.00006}
-  m_SizeDelta: {x: 549.77246, y: 540}
+  m_SizeDelta: {x: 444, y: 444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114270281
 MonoBehaviour:
@@ -500,6 +500,7 @@ MonoBehaviour:
   player1Cursor: {fileID: 762587343}
   player2Cursor: {fileID: 846362909}
   itemdb: {fileID: 11400000, guid: 3dbc615a26864784292600267f3b8074, type: 2}
+  objectGenerateTransform: {fileID: 0}
   player1Score: 0
   player2Score: 0
 --- !u!114 &228469666
@@ -515,6 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStarted: 0
+  progressSlider: {fileID: 0}
 --- !u!1 &277852681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1080,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -515.99994, y: -15.5}
-  m_SizeDelta: {x: 549.77246, y: 540}
+  m_SizeDelta: {x: 444, y: 444}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!114 &528377338
 MonoBehaviour:
@@ -1198,6 +1200,8 @@ MonoBehaviour:
     y: -1
     width: 4
     height: 1
+  _currentPosition: {x: 1, y: 1}
+  _currentContext: 0
 --- !u!4 &626091690
 Transform:
   m_ObjectHideFlags: 0
@@ -1935,7 +1939,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 111, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274854925
 MonoBehaviour:
@@ -2372,7 +2376,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 111, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361699007
 MonoBehaviour:
@@ -2820,6 +2824,8 @@ MonoBehaviour:
     y: -1
     width: 4
     height: 1
+  _currentPosition: {x: 1, y: 1}
+  _currentContext: 0
 --- !u!1 &1740189146
 GameObject:
   m_ObjectHideFlags: 0

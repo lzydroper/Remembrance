@@ -86,33 +86,33 @@ public class Player : SKMonoSingleton<Player>
         // pauseMenu.Toggle();
     }
 
-    // --- 以下是用于测试的示例函数 ---
-    public ItemData testItemData1; // 在Inspector中拖入一个1x3的ItemData
-    public ItemData testItemData2; // 在Inspector中拖入一个2x2的ItemData
-    public GameObject itemPrefab;  // 一个包含InventoryItem脚本的基础物品预制体
-
-    public void Test_GiveInitialItems()
-    {
-        // 给玩家1一个1x3的物品
-        if (testItemData1 != null && itemPrefab != null)
-        {
-            GameObject itemObj1 = Instantiate(itemPrefab);
-            InventoryItem invItem1 = itemObj1.GetComponent<InventoryItem>();
-            invItem1.itemData = testItemData1;
-            inventoryController1.AddNewItemToHand(invItem1, Vector2Int.one);
-            Debug.Log("give item to p1");
-        }
-        
-        // 给玩家2一个2x2的物品
-        if (testItemData2 != null && itemPrefab != null)
-        {
-            GameObject itemObj2 = Instantiate(itemPrefab);
-            InventoryItem invItem2 = itemObj2.GetComponent<InventoryItem>();
-            invItem2.itemData = testItemData2;
-            inventoryController2.AddNewItemToHand(invItem2, Vector2Int.one);
-            Debug.Log("give item to p2");
-        }
-    }
+    // // --- 以下是用于测试的示例函数 ---
+    // public ItemData testItemData1; // 在Inspector中拖入一个1x3的ItemData
+    // public ItemData testItemData2; // 在Inspector中拖入一个2x2的ItemData
+    // public GameObject itemPrefab;  // 一个包含InventoryItem脚本的基础物品预制体
+    //
+    // public void Test_GiveInitialItems()
+    // {
+    //     // 给玩家1一个1x3的物品
+    //     if (testItemData1 != null && itemPrefab != null)
+    //     {
+    //         GameObject itemObj1 = Instantiate(itemPrefab);
+    //         InventoryItem invItem1 = itemObj1.GetComponent<InventoryItem>();
+    //         invItem1.itemData = testItemData1;
+    //         inventoryController1.AddNewItemToHand(invItem1, Vector2Int.one);
+    //         Debug.Log("give item to p1");
+    //     }
+    //     
+    //     // 给玩家2一个2x2的物品
+    //     if (testItemData2 != null && itemPrefab != null)
+    //     {
+    //         GameObject itemObj2 = Instantiate(itemPrefab);
+    //         InventoryItem invItem2 = itemObj2.GetComponent<InventoryItem>();
+    //         invItem2.itemData = testItemData2;
+    //         inventoryController2.AddNewItemToHand(invItem2, Vector2Int.one);
+    //         Debug.Log("give item to p2");
+    //     }
+    // }
     
     #endregion
 }

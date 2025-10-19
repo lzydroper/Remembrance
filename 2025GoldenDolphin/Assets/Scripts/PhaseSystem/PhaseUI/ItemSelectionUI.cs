@@ -95,11 +95,23 @@ namespace PhaseSystem
             Constants.turn = !Constants.turn;
             Debug.Log($"本回合由 <color=cyan>{firstPlayer}</color> 优先选择。");
             
-            // 使用决定好的先手玩家开始
-            SwitchPlayer(firstPlayer);
-            
             isSelectionActive = true;
             selectionPanel.SetActive(true);
+            
+            // 使用决定好的先手玩家开始
+            SwitchPlayer(firstPlayer);
+            StartCoroutine(InitializeSelectionRoutine());
+        }
+        
+        private IEnumerator InitializeSelectionRoutine()
+        {
+            // 等待下一帧。到下一帧开始时，所有UI布局肯定已经计算完毕。
+            // yield return new WaitForEndOfFrame(); // 这个更精确，但 yield return null; 通常也足够了
+            yield return null; 
+
+            // 现在，itemDisplays 的 transform.position 已经是正确的值了
+            // 在这里调用 SwitchPlayer 来设置第一个玩家的光标位置
+            SwitchPlayer(firstPlayer);
         }
 
         private void HandleInput()
@@ -138,7 +150,10 @@ namespace PhaseSystem
             // 核心逻辑: 如果当前是玩家2，并且光标想移动到的位置是P1已经选了的位置，就继续移动
             while (currentPlayer == secondPlayer && currentIndex == firstPlayerSelectedIndex);
         
-            UpdateCursorPosition();
+            // UpdateCursorPosition();
+            // 为当前开高光，取消之前的高光
+            itemDisplays[initialIndex].iconImage.sprite = currentRandomItems[initialIndex].selectUISprite;
+            itemDisplays[currentIndex].iconImage.sprite = currentRandomItems[currentIndex].selectUISpriteHighlighted;
         }
 
         private void ConfirmSelection()
@@ -240,8 +255,9 @@ namespace PhaseSystem
             //         MoveCursor(1); 
             //     }
             // }
-        
-            UpdateCursorPosition();
+            // 高光选中
+            
+            itemDisplays[currentIndex].iconImage.sprite = currentRandomItems[currentIndex].selectUISpriteHighlighted;
         }
 
         private void UpdateCursorPosition()
@@ -253,7 +269,10 @@ namespace PhaseSystem
             inactiveCursor.SetActive(false);
 
             // 将光标移动到当前选中物品的位置
+            // Debug.Log($"global({itemDisplays[currentIndex].transform.localPosition})");
+            // activeCursor.transform.SetParent(itemDisplays[currentIndex].transform);
             activeCursor.transform.position = itemDisplays[currentIndex].transform.position;
+            // Debug.Log($"local({activeCursor.transform.position})");
         }
 
         private void EndSelection()

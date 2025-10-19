@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +10,10 @@ public class ItemData : ScriptableObject
     
     [Tooltip("物品在UI中显示的图标")]
     public Sprite icon;
+    public Sprite selectUISprite;
+    public Sprite selectUISpriteHighlighted;
+    public Sprite gridSprite;
+    public Sprite gridSpriteHighlighted;
 
     [Tooltip("物品被合成出来的分数")]
     public int score = 0;

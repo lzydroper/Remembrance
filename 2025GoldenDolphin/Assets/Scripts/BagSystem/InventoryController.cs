@@ -21,7 +21,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Vector2Int initialCursorPosition = new Vector2Int(1, 1);
 
     [Header("Visuals & Scene References")]
-    [SerializeField] private InventoryItem inventoryItemPrefab;
+    // [SerializeField] private InventoryItem inventoryItemPrefab;
     [Tooltip("用于表示光标位置的Transform")]
     [SerializeField] private Transform cursorVisual;
     [Tooltip("所有属于此背包的物品实例的父对象")]
@@ -314,6 +314,8 @@ public class InventoryController : MonoBehaviour
         {
             grid[pos.x, pos.y] = heldItem;
         }
+        // 放置后更新状态
+        UpdateHeldItemVisualState(false);
 
         // 放置后，物品的位置已经是正确的，我们只需要清空手牌
         heldItem = null;
@@ -380,7 +382,7 @@ public class InventoryController : MonoBehaviour
     }
     
     // [MODIFIED] 这个函数现在同时负责更新颜色和位置
-    private void UpdateHeldItemVisualState()
+    private void UpdateHeldItemVisualState(bool selected = true)
     {
         if (heldItem == null) return;
         
@@ -392,10 +394,11 @@ public class InventoryController : MonoBehaviour
         // OnPlacementValidityChanged.Invoke(heldItem, isValid);
         
         // 示例：直接改变颜色来反馈是否可放置
+        heldItem.SetSprite(true, selected);
         var renderer = heldItem.GetComponentInChildren<Image>();
         if (renderer != null)
         {
-            renderer.color = isValid ? Color.green : Color.red;
+            renderer.color = isValid ? Color.white : Color.red;
         }
     }
     
