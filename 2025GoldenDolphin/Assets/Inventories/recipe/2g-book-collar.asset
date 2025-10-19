@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4438dd455a4cc3a12828016e45b8ea, type: 3}
   m_Name: 2g-book-collar
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 77584fe9e7eb1cd498c813c252dca5ef, type: 2}
+  - {fileID: 11400000, guid: 02de0fc5457e7ba448159b4662c62ecb, type: 2}
+  result: {fileID: 11400000, guid: 798a133bfb90dcb46b277744e56674c4, type: 2}

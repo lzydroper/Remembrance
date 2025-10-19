@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4438dd455a4cc3a12828016e45b8ea, type: 3}
   m_Name: 3g-chocolate-trash-collar
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 2b69f16aa93a51c40afdf3dab35a13f4, type: 2}
+  - {fileID: 11400000, guid: 90b3c786fb343a14ea5f2add0c47b810, type: 2}
+  - {fileID: 11400000, guid: 02de0fc5457e7ba448159b4662c62ecb, type: 2}
+  result: {fileID: 11400000, guid: 81be0b94a6f89924a955cf6b55266e9b, type: 2}

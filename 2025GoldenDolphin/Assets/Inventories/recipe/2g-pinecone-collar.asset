@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4438dd455a4cc3a12828016e45b8ea, type: 3}
   m_Name: 2g-pinecone-collar
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 1813d386426c49f4bac971155cda67b8, type: 2}
+  - {fileID: 11400000, guid: 02de0fc5457e7ba448159b4662c62ecb, type: 2}
+  result: {fileID: 11400000, guid: 921dd51c9b376a74d86824194045b9dd, type: 2}

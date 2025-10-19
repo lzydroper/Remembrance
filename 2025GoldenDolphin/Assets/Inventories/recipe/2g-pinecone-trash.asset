@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4438dd455a4cc3a12828016e45b8ea, type: 3}
   m_Name: 2g-pinecone-trash
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 1813d386426c49f4bac971155cda67b8, type: 2}
+  - {fileID: 11400000, guid: 90b3c786fb343a14ea5f2add0c47b810, type: 2}
+  result: {fileID: 11400000, guid: a34300033fdf3f94ca8b24bc9434e1a4, type: 2}

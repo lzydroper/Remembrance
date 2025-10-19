@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4438dd455a4cc3a12828016e45b8ea, type: 3}
   m_Name: 3b-book-pinecone-postcard
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 77584fe9e7eb1cd498c813c252dca5ef, type: 2}
+  - {fileID: 11400000, guid: 1813d386426c49f4bac971155cda67b8, type: 2}
+  - {fileID: 11400000, guid: a0b533d7d14e59e40ae67dab7a51aaf4, type: 2}
+  result: {fileID: 11400000, guid: 5692c199144720f4ab4cd7b6d8a575a9, type: 2}

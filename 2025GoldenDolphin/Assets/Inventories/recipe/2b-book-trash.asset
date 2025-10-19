@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4438dd455a4cc3a12828016e45b8ea, type: 3}
   m_Name: 2b-book-trash
   m_EditorClassIdentifier: 
-  ingredients: []
-  result: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: 77584fe9e7eb1cd498c813c252dca5ef, type: 2}
+  - {fileID: 11400000, guid: 90b3c786fb343a14ea5f2add0c47b810, type: 2}
+  result: {fileID: 11400000, guid: f5cf9cb86f6b3ee43b542131186003a3, type: 2}
