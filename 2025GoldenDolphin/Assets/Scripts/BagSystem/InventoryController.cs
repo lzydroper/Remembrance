@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BagSystem;
+using PhaseSystem;
 using SKCell; // [NEW] 用于构建详细的debug信息
 using UnityEngine;
 using UnityEngine.UI;
@@ -328,6 +329,18 @@ public class InventoryController : MonoBehaviour
         // 放置后，物品的位置已经是正确的，我们只需要清空手牌
         heldItem = null;
         // UpdateResultReview();
+        
+        // 放置物品后强制切换UI
+        if (playerID == PlayerID.Player1)
+        {
+            Player.instance.cursorController1.SwitchToUI();
+            Debug.Log("玩家1跳转至UI");
+        }
+        else
+        {
+            Player.instance.cursorController2.SwitchToUI();
+            Debug.Log("玩家2跳转至UI");
+        }
     }
 
     // private void UpdateResultReview()
@@ -521,4 +534,7 @@ public class InventoryController : MonoBehaviour
             return 0; 
         }
     }
+    
+    // 记住Player
+    [SerializeField] PlayerID playerID;
 }
