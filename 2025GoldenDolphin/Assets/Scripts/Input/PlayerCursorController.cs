@@ -41,18 +41,25 @@ public class PlayerCursorController : MonoBehaviour
     /// </summary>
     public void Move(Vector2Int direction)
     {
+        if (_currentContext == CursorContext.UI && direction == Vector2Int.up)
+        {
+            Debug.Log($"[{gameObject.name}] 移动被阻止: 不允许从UI区域向上移动。");
+            // (可选) 可以在这里播放一个“无效操作”的音效
+            return; // 直接退出函数，不进行任何移动计算
+        }
+        
         Vector2Int newPosition = _currentPosition + direction;
 
         // 根据新位置判断新的上下文
         CursorContext newContext = DetermineContext(newPosition);
-        
-        // 如果我们当前在UI区域，并且目标位置在Inventory区域，则阻止这次移动。
-        if (_currentContext == CursorContext.UI && newContext == CursorContext.Inventory)
-        {
-            Debug.Log($"[{gameObject.name}] 移动被阻止: 不允许从UI区域返回背包。");
-            // 通过将 newContext 强制设为 None，我们可以利用下面已有的 "else" 逻辑来处理移动失败的情况。
-            newContext = CursorContext.None;
-        }
+        //
+        // // 如果我们当前在UI区域，并且目标位置在Inventory区域，则阻止这次移动。
+        // if (_currentContext == CursorContext.UI && newContext == CursorContext.Inventory)
+        // {
+        //     Debug.Log($"[{gameObject.name}] 移动被阻止: 不允许从UI区域返回背包。");
+        //     // 通过将 newContext 强制设为 None，我们可以利用下面已有的 "else" 逻辑来处理移动失败的情况。
+        //     newContext = CursorContext.None;
+        // }
 
         // 如果新位置是有效的（不属于None），则更新位置
         if (newContext != CursorContext.None)
