@@ -17,6 +17,9 @@ public class Constants
     public static int p2Score = 0;
     // public const int totalTurnNumber = 3;       // 总回合数
 
+    // 动画时长
+    public static float longAnimTime = 5f;
+    public static float shortAnimTime = 4f;
     public static bool isStart = false;
     
     // 网格大小

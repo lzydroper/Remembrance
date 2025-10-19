@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BagSystem;
 using SKCell;
+using UnityEngine.InputSystem;
 
 namespace PhaseSystem
 {
@@ -28,6 +29,10 @@ namespace PhaseSystem
         private int currentIndex;
         private bool isSelectionActive = false;
 
+        private WaitForSeconds waitForLongAnim;
+        private WaitForSeconds waitForShortAnim;
+
+        [SerializeField] private Transform objectGenerateTransform;
         // 提供一个事件，在选择全部完成后通知外部系统
         // public event System.Action OnSelectionComplete;
         public event System.Action<ItemData, ItemData> OnSelectionComplete;
@@ -37,6 +42,9 @@ namespace PhaseSystem
             base.Awake();
             selectionPanel.SetActive(false); // 默认隐藏
             // BagUIPanel.SetActive(false);
+
+            waitForLongAnim = new WaitForSeconds(Constants.longAnimTime);
+            waitForShortAnim = new WaitForSeconds(Constants.shortAnimTime);
         }
 
         void Update()
@@ -99,15 +107,15 @@ namespace PhaseSystem
             // 根据当前玩家处理不同的输入
             if (currentPlayer == PlayerID.Player1)
             {
-                if (Input.GetKeyDown(KeyCode.A)) MoveCursor(-1);
-                if (Input.GetKeyDown(KeyCode.D)) MoveCursor(1);
-                if (Input.GetKeyDown(KeyCode.Space)) ConfirmSelection();
+                if (Keyboard.current.aKey.wasPressedThisFrame) MoveCursor(-1);
+                if (Keyboard.current.dKey.wasPressedThisFrame) MoveCursor(1);
+                if (Keyboard.current.spaceKey.wasPressedThisFrame) ConfirmSelection();
             }
             else // PlayerID.Player2
             {
-                if (Input.GetKeyDown(KeyCode.LeftArrow)) MoveCursor(-1);
-                if (Input.GetKeyDown(KeyCode.RightArrow)) MoveCursor(1);
-                if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)) ConfirmSelection();
+                if (Keyboard.current.leftArrowKey.wasPressedThisFrame) MoveCursor(-1);
+                if (Keyboard.current.rightArrowKey.wasPressedThisFrame) MoveCursor(1);
+                if (Keyboard.current.numpadEnterKey.wasPressedThisFrame) ConfirmSelection();
             }
         }
 
@@ -196,6 +204,8 @@ namespace PhaseSystem
                 
                 EndSelection();
             }
+
+            GameObject.Instantiate(selectedItem.object3D, objectGenerateTransform);
         }
 
         private void SwitchPlayer(PlayerID newPlayer)
@@ -305,6 +315,17 @@ namespace PhaseSystem
 
         public IEnumerator PlayEndAnimation(bool p1Long, bool p2Long, ItemData p1Result, ItemData p2Result)
         {
+            if (p1Result != null)
+            {
+                DirectorManager.instance.PlayDirector(p1Long,p1Result);
+                yield return p1Long ? waitForLongAnim : waitForShortAnim;
+            }
+
+            if (p2Result != null)
+            {
+                DirectorManager.instance.PlayDirector(p2Long,p2Result);
+                yield return p2Long ? waitForLongAnim : waitForShortAnim;
+            }
             yield return new WaitForEndOfFrame();
             Debug.Log("慢拔out!");
         }

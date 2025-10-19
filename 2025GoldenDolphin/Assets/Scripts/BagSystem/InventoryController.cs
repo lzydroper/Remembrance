@@ -237,14 +237,17 @@ public class InventoryController : MonoBehaviour
         if(itemContainer != null) heldItem.transform.SetParent(itemContainer);
         else heldItem.transform.SetParent(this.transform);
 
+        // 重置初始状态
         heldItem.anchorGridPosition = anchorPosition;
         UpdateHeldItemVisualState();
+        OnCursorMove(Vector2Int.one);
         Debug.Log($"添加物品{newItemInstance.name}");
     }
     public void AddNewItemToHand(ItemData itemData)
     {
-        InventoryItem newItemInstance = Instantiate<InventoryItem>(inventoryItemPrefab);
-        newItemInstance.init(itemData);
+        int index = itemdb.items.IndexOf(itemData);
+        InventoryItem newItemInstance = Instantiate<GameObject>(itemdb.prefabs[index]).GetComponentInChildren<InventoryItem>();
+        // newItemInstance.init(itemData);
         AddNewItemToHand(newItemInstance, Vector2Int.one);
     }
     

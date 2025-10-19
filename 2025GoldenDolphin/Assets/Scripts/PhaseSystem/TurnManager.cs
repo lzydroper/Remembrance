@@ -1,5 +1,6 @@
 using SKCell;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PhaseSystem
 {
@@ -11,12 +12,15 @@ namespace PhaseSystem
         public bool isFinished => currentTurnNumber >= Constants.totalTurnNumber;
         public int currentTurnNumber { get; private set; } = 0;
         public bool isStarted = false;
+
+        [SerializeField] private Slider progressSlider;
         // private int totalTurnNumber = 3;
 
         // 开始回合调用接口
         public void StartTurn()
         {
             Debug.Log($"=== 开始第 {currentTurnNumber + 1} 回合 ===");
+            progressSlider.value = (currentTurnNumber + 1) / Constants.totalTurnNumber;
             phaseManager.StartPhases();
             isStarted = true;
         }

@@ -60,9 +60,10 @@ namespace PhaseSystem
             // PlayerInventoryManager.Instance.AddItem(PlayerID.Player1, p1Choice);
             // PlayerInventoryManager.Instance.AddItem(PlayerID.Player2, p2Choice);
             // ItemSelectionUI.instance.BagUIPanel.SetActive(true);
+            Player.instance.cursorController1._currentPosition = Vector2Int.one;
+            Player.instance.cursorController2._currentPosition = Vector2Int.one;
             Player.instance.inventoryController1.AddNewItemToHand(p1Choice);
             Player.instance.inventoryController2.AddNewItemToHand(p2Choice);
-    
             FinishPhase();
         }
         
