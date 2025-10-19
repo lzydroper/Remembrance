@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using BagSystem;
+using DG.Tweening;
 using SKCell;
 using UnityEngine.InputSystem;
 
@@ -13,8 +14,8 @@ namespace PhaseSystem
         [Header("UI组件引用")]
         [SerializeField] private GameObject selectionPanel; // 整个选择界面的父对象
         [SerializeField] private ItemDisplay[] itemDisplays = new ItemDisplay[4]; // 4个物品显示槽
-        [SerializeField] private GameObject player1Cursor; // 玩家1的光标
-        [SerializeField] private GameObject player2Cursor; // 玩家2的光标
+        // [SerializeField] private GameObject player1Cursor; // 玩家1的光标
+        // [SerializeField] private GameObject player2Cursor; // 玩家2的光标
 
         [SerializeField] private Itemdb itemdb;
         private int firstPlayerSelectedIndex = -1; 
@@ -153,7 +154,9 @@ namespace PhaseSystem
             // UpdateCursorPosition();
             // 为当前开高光，取消之前的高光
             itemDisplays[initialIndex].iconImage.sprite = currentRandomItems[initialIndex].selectUISprite;
+            itemDisplays[initialIndex].transform.DOScale(Vector3.one, scaleTime);
             itemDisplays[currentIndex].iconImage.sprite = currentRandomItems[currentIndex].selectUISpriteHighlighted;
+            itemDisplays[currentIndex].transform.DOScale(selectScale, scaleTime);
         }
 
         private void ConfirmSelection()
@@ -204,6 +207,7 @@ namespace PhaseSystem
                 firstPlayerSelectedIndex = currentIndex; // 记录先手玩家的选择
                 Debug.Log($"{firstPlayer} (先手) 选择了: {selectedItem.itemName}");
             
+                itemDisplays[currentIndex].transform.DOScale(Vector3.one, scaleTime);
                 itemDisplays[firstPlayerSelectedIndex].SetAsUnavailable();
                 
                 // 切换到后手玩家
@@ -217,6 +221,7 @@ namespace PhaseSystem
 
                 Debug.Log($"{secondPlayer} (后手) 选择了: {selectedItem.itemName}");
                 
+                itemDisplays[currentIndex].transform.DOScale(Vector3.one, scaleTime);
                 EndSelection();
             }
 
@@ -258,22 +263,25 @@ namespace PhaseSystem
             // 高光选中
             
             itemDisplays[currentIndex].iconImage.sprite = currentRandomItems[currentIndex].selectUISpriteHighlighted;
+            itemDisplays[currentIndex].transform.DOScale(selectScale, scaleTime);
         }
-
-        private void UpdateCursorPosition()
-        {
-            GameObject activeCursor = (currentPlayer == PlayerID.Player1) ? player1Cursor : player2Cursor;
-            GameObject inactiveCursor = (currentPlayer == PlayerID.Player1) ? player2Cursor : player1Cursor;
-
-            activeCursor.SetActive(true);
-            inactiveCursor.SetActive(false);
-
-            // 将光标移动到当前选中物品的位置
-            // Debug.Log($"global({itemDisplays[currentIndex].transform.localPosition})");
-            // activeCursor.transform.SetParent(itemDisplays[currentIndex].transform);
-            activeCursor.transform.position = itemDisplays[currentIndex].transform.position;
-            // Debug.Log($"local({activeCursor.transform.position})");
-        }
+        
+        private Vector3 selectScale =  new Vector3(1.5f, 1.5f, 1f);
+        private float scaleTime = 0.5f;
+        // private void UpdateCursorPosition()
+        // {
+        //     GameObject activeCursor = (currentPlayer == PlayerID.Player1) ? player1Cursor : player2Cursor;
+        //     GameObject inactiveCursor = (currentPlayer == PlayerID.Player1) ? player2Cursor : player1Cursor;
+        //
+        //     activeCursor.SetActive(true);
+        //     inactiveCursor.SetActive(false);
+        //
+        //     // 将光标移动到当前选中物品的位置
+        //     // Debug.Log($"global({itemDisplays[currentIndex].transform.localPosition})");
+        //     // activeCursor.transform.SetParent(itemDisplays[currentIndex].transform);
+        //     activeCursor.transform.position = itemDisplays[currentIndex].transform.position;
+        //     // Debug.Log($"local({activeCursor.transform.position})");
+        // }
 
         private void EndSelection()
         {

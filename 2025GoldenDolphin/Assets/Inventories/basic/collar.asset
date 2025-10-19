@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: collar
   icon: {fileID: 21300000, guid: d77efeb0d441f95409240387d78691c8, type: 3}
+  selectUISprite: {fileID: 21300000, guid: 9ae266a6f5e262b42ae981794e3aa990, type: 3}
+  selectUISpriteHighlighted: {fileID: 21300000, guid: 4a81d2eaee530de459c727c2a0187b29, type: 3}
+  gridSprite: {fileID: 21300000, guid: d77efeb0d441f95409240387d78691c8, type: 3}
+  gridSpriteHighlighted: {fileID: 21300000, guid: a228c3eb04960294397aa012f0485851, type: 3}
   score: 0
   shape:
   - {x: 0, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 1, y: -1}
+  object3D: {fileID: 0}

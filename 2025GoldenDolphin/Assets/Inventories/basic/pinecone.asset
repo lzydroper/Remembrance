@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: pinecone
   icon: {fileID: 21300000, guid: 14d9a5b7e26a7bf459bf7e2815fd89d2, type: 3}
+  selectUISprite: {fileID: 21300000, guid: 7108aecdf71406e4fa4caed20ef9f522, type: 3}
+  selectUISpriteHighlighted: {fileID: 21300000, guid: 3f4e9a67a6a0fa743ab53121f69e5caf, type: 3}
+  gridSprite: {fileID: 21300000, guid: 14d9a5b7e26a7bf459bf7e2815fd89d2, type: 3}
+  gridSpriteHighlighted: {fileID: 21300000, guid: 947e8e056a0222f438dd437e82286929, type: 3}
   score: 0
   shape:
   - {x: 0, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
+  object3D: {fileID: 0}

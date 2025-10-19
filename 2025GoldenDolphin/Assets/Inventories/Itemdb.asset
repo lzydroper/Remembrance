@@ -20,4 +20,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0b533d7d14e59e40ae67dab7a51aaf4, type: 2}
   - {fileID: 11400000, guid: 90b3c786fb343a14ea5f2add0c47b810, type: 2}
   recipes: []
-  prefabs: []
+  prefabs:
+  - {fileID: 2225509326009505046, guid: 0927f9889e29dcf4b97b621392e4f7f2, type: 3}
+  - {fileID: 2225509326009505046, guid: 6d758d5ef74e77a4e9e702dda7ed5dd2, type: 3}
+  - {fileID: 2225509326009505046, guid: 01d74b60ec26f9044bc34dd31994e9e0, type: 3}
+  - {fileID: 2225509326009505046, guid: c0d70a87a1366cb488c92f3cf474a4ec, type: 3}
+  - {fileID: 2225509326009505046, guid: b5f73cfdcd150914a9c3fba9ea48250a, type: 3}
+  - {fileID: 2225509326009505046, guid: 4ee97c6aab1458c4dbd071204b62af34, type: 3}
