@@ -315,7 +315,13 @@ public class InventoryController : MonoBehaviour
             grid[pos.x, pos.y] = heldItem;
         }
         // 放置后更新状态
-        UpdateHeldItemVisualState(false);
+        // UpdateHeldItemVisualState(false);
+        heldItem.SetSprite(true, false); // 设置为网格的非高亮状态
+        var renderer = heldItem.GetComponentInChildren<Image>();
+        if (renderer != null)
+        {
+            renderer.color = Color.white; // 确保颜色是正常的白色
+        }
 
         // 放置后，物品的位置已经是正确的，我们只需要清空手牌
         heldItem = null;
