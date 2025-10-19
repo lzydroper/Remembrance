@@ -19,7 +19,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1813d386426c49f4bac971155cda67b8, type: 2}
   - {fileID: 11400000, guid: a0b533d7d14e59e40ae67dab7a51aaf4, type: 2}
   - {fileID: 11400000, guid: 90b3c786fb343a14ea5f2add0c47b810, type: 2}
-  recipes: []
+  recipes:
+  - {fileID: 11400000, guid: 21c2cb53960fc41468913f8d4a3e4108, type: 2}
+  - {fileID: 11400000, guid: db06378bd461d11499ff53186a426545, type: 2}
+  - {fileID: 11400000, guid: e7ca34ef8fd80d4479e65bd2bf6906a5, type: 2}
+  - {fileID: 11400000, guid: d8b824cd387624740984cff272ff66f3, type: 2}
+  - {fileID: 11400000, guid: b3e5450c4509429408d1e801699d8a5d, type: 2}
+  - {fileID: 11400000, guid: b83e4023e772c684cbbc11c3270ea16e, type: 2}
+  - {fileID: 11400000, guid: 451ab66140cffb74192c359e9da9c7df, type: 2}
+  - {fileID: 11400000, guid: d6ea433cb335a3540a150a254670ae8a, type: 2}
+  - {fileID: 11400000, guid: 060738e3da55fb546aee640fa2699672, type: 2}
+  - {fileID: 11400000, guid: 9eaf2f1483d848f4f928b8ec5ac087f5, type: 2}
+  - {fileID: 11400000, guid: 98c150c81bf05584790569ee0188e6a5, type: 2}
+  - {fileID: 11400000, guid: 7d285f5b026481145b98754ffa5dd99b, type: 2}
+  - {fileID: 11400000, guid: a3c003f418bebb343bfa05133f9dfb95, type: 2}
+  - {fileID: 11400000, guid: 11585e9a1c6ebc84194ccd905853dafd, type: 2}
+  - {fileID: 11400000, guid: 3e96355efbee24743a18905ac5e0da1d, type: 2}
+  - {fileID: 11400000, guid: 8b8b3f5c074d19a4b812690dd0a1467b, type: 2}
   prefabs:
   - {fileID: 2225509326009505046, guid: 0927f9889e29dcf4b97b621392e4f7f2, type: 3}
   - {fileID: 2225509326009505046, guid: 6d758d5ef74e77a4e9e702dda7ed5dd2, type: 3}

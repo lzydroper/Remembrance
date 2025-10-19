@@ -482,20 +482,26 @@ public class InventoryController : MonoBehaviour
                 continue; // 跳过这个配方，检查下一个
             }
 
-            // 4. 【核心】处理无序匹配：将两边的列表都进行排序，然后比较。
-            //    我们通过物品名称(itemName)来排序，确保排序结果的唯一性和稳定性。
-            var sortedItemsInBag = itemsInBag.Select(data => data.itemName).OrderBy(name => name).ToList();
-            var sortedRecipeIngredients = recipe.ingredients.Select(data => data.itemName).OrderBy(name => name).ToList();
+            foreach (var item in recipe.ingredients)
+            {
+                if (!itemsInBag.Contains(item))
+                    continue;
+            }
+            // // 4. 【核心】处理无序匹配：将两边的列表都进行排序，然后比较。
+            // //    我们通过物品名称(itemName)来排序，确保排序结果的唯一性和稳定性。
+            // var sortedItemsInBag = itemsInBag.Select(data => data.itemName).OrderBy(name => name).ToList();
+            // var sortedRecipeIngredients = recipe.ingredients.Select(data => data.itemName).OrderBy(name => name).ToList();
             
             // 5. 使用 LINQ 的 SequenceEqual 来比较两个排好序的列表是否完全相同。
-            if (sortedItemsInBag.SequenceEqual(sortedRecipeIngredients))
-            {
-                // 找到了匹配的配方！
-                Debug.Log($"合成匹配成功！配方：{string.Join(", ", sortedRecipeIngredients)} -> {recipe.result.itemName}");
-                recipe.result.score = CalculateValueBasedOnShapeCount(recipe.ingredients);
-                ClearGrid();
-                return recipe.result;
-            }
+            // if (sortedItemsInBag.SequenceEqual(sortedRecipeIngredients))
+            // {
+            //    
+            // }
+            // 找到了匹配的配方！
+            Debug.Log($"合成匹配成功！配方：{string.Join(", ", recipe.ingredients)} -> {recipe.result.itemName}");
+            recipe.result.score = CalculateValueBasedOnShapeCount(recipe.ingredients);
+            ClearGrid();
+            return recipe.result;
         }
 
         // 遍历完所有配方都没有找到匹配的

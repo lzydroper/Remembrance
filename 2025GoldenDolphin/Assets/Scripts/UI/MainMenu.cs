@@ -20,6 +20,7 @@ public class MainMenu : SKMonoSingleton<MainMenu>
     [SerializeField] private GameObject cameraMachine1;
     [SerializeField] private GameObject cameraMachine2;
 
+    [SerializeField] private GameObject objects;
     public Image panel;
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class MainMenu : SKMonoSingleton<MainMenu>
         // SceneLoader.Instance.Load("Game");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        objects.SetActive(false);
         StartCoroutine(StartGameCoroutine());
         director.Play();
         Constants.isStart = true;

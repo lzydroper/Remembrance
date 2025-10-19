@@ -8,7 +8,8 @@ using UnityEngine.Playables;
 
 public class DirectorManager : SKMonoSingleton<DirectorManager>
 {
-    public Dictionary<KeyValuePair<bool,ItemData>, PlayableDirector> directors;
+    public Dictionary<KeyValuePair<bool, ItemData>, PlayableDirector> directors =
+        new Dictionary<KeyValuePair<bool, ItemData>, PlayableDirector>();
     [SerializeField] private List<PlayableDirector> Directors; 
     [SerializeField] private List<ItemData> items; 
     private void Start()
@@ -21,6 +22,12 @@ public class DirectorManager : SKMonoSingleton<DirectorManager>
 
     public void PlayDirector(bool isLong,ItemData itemData)
     {
-        directors[new KeyValuePair<bool, ItemData>(isLong,itemData)].Play();
+        KeyValuePair<bool, ItemData> key = new KeyValuePair<bool, ItemData>(isLong, itemData);
+        if(directors.ContainsKey(key))
+            directors[key].Play();
+        else
+        {
+            SKUtils.EditorLogNormal("There is no shit.");
+        }
     }
 }

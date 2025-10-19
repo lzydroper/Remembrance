@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine.UI;
 
 namespace BagSystem
@@ -11,7 +12,7 @@ namespace BagSystem
         private int _selectedIndex = -1; // -1 表示没有选中任何按钮
         public bool thinkBtn { get; private set; }= false;
         public bool cookBtn { get; private set; } = false;
-
+        
         public void ResetBtn()
         {
             thinkBtn = false;
@@ -93,12 +94,31 @@ namespace BagSystem
         #endregion
         
         #region 视觉效果处理
+        [SerializeField] private Button confirm;
+        [SerializeField] private Button think;
 
+        [SerializeField] private Sprite confirmSprite1;
+        [SerializeField] private Sprite confirmSprite2;
+        [SerializeField] private Sprite waitSprite1;
+        [SerializeField] private Sprite waitSprite2;
         /// <summary>
         /// 根据当前选中的索引更新所有按钮的视觉效果
         /// </summary>
         private void UpdateVisuals()
         {
+            switch (_selectedIndex)
+            {
+                case 0: // 第一个按钮：“修复”
+                    confirm.GetComponent<Image>().sprite = confirmSprite2;
+                    think.GetComponent<Image>().sprite = waitSprite1;
+                    // OnFixButtonClicked?.Invoke();
+                    break;
+                case 1: // 第二个按钮：“再等等”
+                    think.GetComponent<Image>().sprite = waitSprite2;
+                    confirm.GetComponent<Image>().sprite = confirmSprite1;
+                    // OnWaitButtonClicked?.Invoke();
+                    break;
+            }
         }
 
         /// <summary>

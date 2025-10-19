@@ -335,12 +335,12 @@ namespace PhaseSystem
             ItemData p1Result = Player.instance.inventoryController1.RemoveHeldItem();
             if (p1Result == null && p1Finish)
             {
-                p1Result = Player.instance.inventoryController1.CookIt();
+                p1Result = Player.instance.uiController1.thinkBtn ? null : Player.instance.inventoryController1.CookIt();
             }
             ItemData p2Result = Player.instance.inventoryController2.RemoveHeldItem();
             if (p2Result == null && p2Finish)
             {
-                p2Result = Player.instance.inventoryController2.CookIt();
+                p2Result = Player.instance.uiController2.thinkBtn ? null : Player.instance.inventoryController2.CookIt();
             }
             if (p1Result == null && p2Result == null)
             {
@@ -388,13 +388,14 @@ namespace PhaseSystem
                 p2AddScore = p2Result.isGood ? -p2Result.score : p2Result.score;
             }
             StartCoroutine(AnimateScoreCounting(p1ScoreText, p1CurScore, p1AddScore, duration));
-            StartCoroutine(AnimateScoreCounting(p1ScoreText, p2CurScore, p2AddScore, duration));
+            StartCoroutine(AnimateScoreCounting(p2ScoreText, p2CurScore, p2AddScore, duration));
             p1CurScore += p1AddScore;
             p2CurScore += p2AddScore;
         }
 
         public IEnumerator PlayEndAnimation(bool p1Long, bool p2Long, ItemData p1Result, ItemData p2Result)
         {
+            TurnManager.instance.gameUI.SetActive(false);
             if (p1Result != null)
             {
                 DirectorManager.instance.PlayDirector(p1Long,p1Result);
@@ -407,6 +408,7 @@ namespace PhaseSystem
                 yield return p2Long ? waitForLongAnim : waitForShortAnim;
             }
             yield return new WaitForEndOfFrame();
+            TurnManager.instance.gameUI.SetActive(true);
             // Debug.Log("慢拔out!");
         }
         

@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using SKCell;
 using UnityEngine;
+using PhaseSystem;
 
 public class TurnCountAnim : SKMonoSingleton<TurnCountAnim>
 {
     [SerializeField] private SKText turnText;
     [SerializeField] private Vector3 transformToSize = new Vector3(1, 1, 1);
-
+    
     private WaitForSeconds waitForFade;
 
     private void Start()
@@ -30,8 +31,11 @@ public class TurnCountAnim : SKMonoSingleton<TurnCountAnim>
 
     IEnumerator turnCoroutine()
     {
+        TurnManager.instance.gameUI.SetActive(false);
         turnText.gameObject.transform.DOScale(transformToSize, 1f);
         yield return waitForFade;
         turnText.gameObject.transform.DOScale(Vector3.zero, 1f);
+        TurnManager.instance.gameUI.SetActive(true);
+        TurnManager.instance.animating = false;
     }
 }

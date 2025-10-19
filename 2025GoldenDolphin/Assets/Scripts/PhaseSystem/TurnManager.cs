@@ -26,13 +26,15 @@ namespace PhaseSystem
         private float t = 0f;
 
         private float preValue = 0;
+        
+        public GameObject gameUI;
 
-        [SerializeField] private GameObject gameUI;
+        private WaitForSeconds waitForNextPhase;
         // private int totalTurnNumber = 3;
-
         private void Start()
         {
             waitForDelayFill = new WaitForSeconds(fillDelay);
+            waitForNextPhase = new WaitForSeconds(4f);
         }
 
         // 开始回合调用接口
@@ -59,6 +61,7 @@ namespace PhaseSystem
             }
         }
 
+        public bool animating = false;
         public void UpdateTurn()
         {
             if (!isFinished)
@@ -68,9 +71,10 @@ namespace PhaseSystem
                 if (phaseManager.IsAllPhasesDone)
                 {
                     currentTurnNumber++;
-                    if (!isFinished)
+                    if (!isFinished && !animating)
                     {
-                        TurnCountAnim.instance.ActiveAnim(TurnManager.instance.currentTurnNumber);
+                        animating = true;
+                        TurnCountAnim.instance.ActiveAnim(currentTurnNumber + 1);
                         phaseManager.StartPhases();
                     }
                     else
@@ -80,7 +84,7 @@ namespace PhaseSystem
                 }
             }
         }
-
+        
         IEnumerator BufferFillingCoroutine(float target)
         {
             yield return waitForDelayFill;
