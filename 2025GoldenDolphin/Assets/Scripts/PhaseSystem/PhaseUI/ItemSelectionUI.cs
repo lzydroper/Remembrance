@@ -13,8 +13,8 @@ namespace PhaseSystem
         [Header("UI组件引用")]
         [SerializeField] private GameObject selectionPanel; // 整个选择界面的父对象
         [SerializeField] private ItemDisplay[] itemDisplays = new ItemDisplay[4]; // 4个物品显示槽
-        [SerializeField] private GameObject player1Cursor; // 玩家1的光标
-        [SerializeField] private GameObject player2Cursor; // 玩家2的光标
+        // [SerializeField] private GameObject player1Cursor; // 玩家1的光标
+        // [SerializeField] private GameObject player2Cursor; // 玩家2的光标
 
         [SerializeField] private Itemdb itemdb;
         private int firstPlayerSelectedIndex = -1; 
@@ -260,20 +260,20 @@ namespace PhaseSystem
             itemDisplays[currentIndex].iconImage.sprite = currentRandomItems[currentIndex].selectUISpriteHighlighted;
         }
 
-        private void UpdateCursorPosition()
-        {
-            GameObject activeCursor = (currentPlayer == PlayerID.Player1) ? player1Cursor : player2Cursor;
-            GameObject inactiveCursor = (currentPlayer == PlayerID.Player1) ? player2Cursor : player1Cursor;
-
-            activeCursor.SetActive(true);
-            inactiveCursor.SetActive(false);
-
-            // 将光标移动到当前选中物品的位置
-            // Debug.Log($"global({itemDisplays[currentIndex].transform.localPosition})");
-            // activeCursor.transform.SetParent(itemDisplays[currentIndex].transform);
-            activeCursor.transform.position = itemDisplays[currentIndex].transform.position;
-            // Debug.Log($"local({activeCursor.transform.position})");
-        }
+        // private void UpdateCursorPosition()
+        // {
+        //     GameObject activeCursor = (currentPlayer == PlayerID.Player1) ? player1Cursor : player2Cursor;
+        //     GameObject inactiveCursor = (currentPlayer == PlayerID.Player1) ? player2Cursor : player1Cursor;
+        //
+        //     activeCursor.SetActive(true);
+        //     inactiveCursor.SetActive(false);
+        //
+        //     // 将光标移动到当前选中物品的位置
+        //     // Debug.Log($"global({itemDisplays[currentIndex].transform.localPosition})");
+        //     // activeCursor.transform.SetParent(itemDisplays[currentIndex].transform);
+        //     activeCursor.transform.position = itemDisplays[currentIndex].transform.position;
+        //     // Debug.Log($"local({activeCursor.transform.position})");
+        // }
 
         private void EndSelection()
         {
