@@ -493,15 +493,44 @@ public class InventoryController : MonoBehaviour
                 // 找到了匹配的配方！
                 Debug.Log($"合成匹配成功！配方：{string.Join(", ", sortedRecipeIngredients)} -> {recipe.result.itemName}");
                 recipe.result.score = CalculateValueBasedOnShapeCount(recipe.ingredients);
+                ClearGrid();
                 return recipe.result;
             }
         }
 
         // 遍历完所有配方都没有找到匹配的
         Debug.Log("未找到匹配的合成配方。");
-        // 有消耗物品，清除背包内放置物品
-        placedItems.Clear();
+        ClearGrid();
         return shit;
+    }
+
+    private void ClearGrid()
+    {
+        // 1. 遍历所有已放置的物品并销毁它们的GameObject
+        //    我们从列表的末尾向前遍历，这样在删除时不会影响索引
+        for (int i = placedItems.Count - 1; i >= 0; i--)
+        {
+            InventoryItem item = placedItems[i];
+            if (item != null)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
+        // 2. 清空列表
+        placedItems.Clear();
+
+        // 3. 重置网格数组，确保所有格子都为空
+        grid = new InventoryItem[gridSizeX, gridSizeY];
+        
+        // (可选，但推荐) 4. 如果玩家手上正拿着物品，也一并清除
+        if (heldItem != null)
+        {
+            Destroy(heldItem.gameObject);
+            heldItem = null;
+        }
+
+        Debug.Log($"[{gameObject.name}] 背包已清空。");
     }
     
     private int CalculateValueBasedOnShapeCount(List<ItemData> ingredients)
