@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8043725268536120775}
   - component: {fileID: 6091840969287609169}
   - component: {fileID: 947425625829626136}
-  - component: {fileID: 6567339195886317863}
+  - component: {fileID: -8253805390647875625}
   m_Layer: 0
-  m_Name: BookAndPinecone
+  m_Name: PostcardAndBookAndRubbish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6e6ef8d985c05e743ab0f320c82e9b33, type: 2}
+  - {fileID: 2100000, guid: 8f17bf906ff7bcb4a8c1a22dbf6092d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6567339195886317863
+--- !u!64 &-8253805390647875625
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
