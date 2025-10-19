@@ -26,7 +26,12 @@ namespace PhaseSystem
 
         public override void OnUpdate()
         {
-            if (timer > 0)
+            if (ItemSelectionUI.instance.p1Finish && ItemSelectionUI.instance.p2Finish)
+            {
+                Debug.Log("提前结束回合");
+                FinishPhase();
+            }
+            else if (timer > 0 )
             {
                 timer -= Time.deltaTime;
             }

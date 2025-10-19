@@ -32,6 +32,7 @@ public class InventoryController : MonoBehaviour
     private List<InventoryItem> placedItems = new List<InventoryItem>();
     // private Vector2Int cursorPosition;
     private InventoryItem heldItem = null;
+    public bool IsHoldingItem => heldItem != null;
     // private bool isCursorInUI = false;
     // [NEW] 记录光标进入UI区域前的位置
     // private Vector2Int lastValidGridPosition;
@@ -411,6 +412,8 @@ public class InventoryController : MonoBehaviour
     
     public bool IsValidUniversalPosition(Vector2Int universalPosition, RectInt inventoryBounds)
     {
+        // 手里拿着东西不准下去
+        
         // 1. 首先检查这个通用坐标是否在背包的矩形边界内
         if (!inventoryBounds.Contains(universalPosition))
         {

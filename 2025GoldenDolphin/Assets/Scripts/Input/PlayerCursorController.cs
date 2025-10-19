@@ -1,5 +1,6 @@
 using System;
 using SKCell;
+using BagSystem;
 using UnityEngine;
 
 public class PlayerCursorController : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerCursorController : MonoBehaviour
     // --- 引用 ---
     [Header("上下文引用")]
     [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private UIController uiController;
 
     [Header("区域边界配置")]
     [Tooltip("背包区域在通用坐标系中所占的矩形范围")]
@@ -80,9 +82,8 @@ public class PlayerCursorController : MonoBehaviour
                 inventoryController.OnConfirmAction(localInventoryPos);
                 break;
             case CursorContext.UI:
-                // TODO: 调用你的UI控制器的确认方法
-                // Vector2Int localUIPos = _currentPosition - uiBounds.min;
-                // uiController.OnConfirmAction(localUIPos);
+                Vector2Int localUIPos = _currentPosition - uiBounds.min;
+                uiController.OnConfirmAction(localUIPos);
                 break;
         }
     }
@@ -106,7 +107,17 @@ public class PlayerCursorController : MonoBehaviour
             return CursorContext.Inventory;
         }
         // TODO: 将区域判定逻辑改为自己的
-        if (uiBounds.Contains(position)) return CursorContext.UI;
+        if (uiBounds.Contains(position))
+        {
+            if (inventoryController != null && inventoryController.IsHoldingItem)
+            {
+                // 手里有东西，不准进入UI区域，将此区域视为无效（None）
+                Debug.Log("手持物品，无法进入UI区域！");
+                return CursorContext.None; 
+            }
+            return CursorContext.UI;
+        }
+
         return CursorContext.None;
     }
 
@@ -121,8 +132,7 @@ public class PlayerCursorController : MonoBehaviour
                 NotifyMove(); // 进入时立刻通知一次位置
                 break;
             case CursorContext.UI:
-                // TODO: 调用你的UI控制器的 OnCursorEnter 方法
-                // uiController.OnCursorEnter();
+                uiController.OnCursorEnter();
                 break;
         }
     }
@@ -136,8 +146,7 @@ public class PlayerCursorController : MonoBehaviour
                 inventoryController.OnCursorExit();
                 break;
             case CursorContext.UI:
-                // TODO: 调用你的UI控制器的 OnCursorExit 方法
-                // uiController.OnCursorExit();
+                uiController.OnCursorExit();
                 break;
         }
     }
@@ -151,9 +160,8 @@ public class PlayerCursorController : MonoBehaviour
                 inventoryController.OnCursorMove(localInventoryPos);
                 break;
             case CursorContext.UI:
-                 // TODO: 调用你的UI控制器的 OnCursorMove 方法
                 Vector2Int localUIPos = _currentPosition - uiBounds.min;
-                // uiController.OnCursorMove(localUIPos);
+                uiController.OnCursorMove(localUIPos);
                 break;
         }
     }

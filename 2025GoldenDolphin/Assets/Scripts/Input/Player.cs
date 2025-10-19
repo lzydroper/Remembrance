@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BagSystem;
 using SKCell;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,10 +14,12 @@ public class Player : SKMonoSingleton<Player>
     [Header("玩家1模块")]
     [SerializeField] public InventoryController inventoryController1;
     [SerializeField] public PlayerCursorController cursorController1;
+    [SerializeField] public UIController uiController1;
 
     [Header("玩家2模块")]
     [SerializeField] public InventoryController inventoryController2;
     [SerializeField] public PlayerCursorController cursorController2;
+    [SerializeField] public UIController uiController2;
     
     // 你可以在这里添加其他模块，比如游戏暂停菜单
     // [SerializeField] private PauseMenu pauseMenu;

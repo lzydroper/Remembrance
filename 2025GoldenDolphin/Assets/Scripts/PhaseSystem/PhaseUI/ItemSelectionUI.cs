@@ -37,11 +37,31 @@ namespace PhaseSystem
         // 提供一个事件，在选择全部完成后通知外部系统
         // public event System.Action OnSelectionComplete;
         public event System.Action<ItemData, ItemData> OnSelectionComplete;
+        
+        // 各种按钮状态
+        public bool p1Finish = false;
+        public bool p2Finish = false;
+        private void BtnClicked(PlayerID player)
+        {
+            if (player == PlayerID.Player1)
+            {
+                p1Finish = true;
+            }
+            if (player == PlayerID.Player2)
+            {
+                p2Finish = true;
+            }
+        }
 
         protected override void Awake()
         {
             base.Awake();
             selectionPanel.SetActive(false); // 默认隐藏
+            Player.instance.uiController1.BtnUIPanel.SetActive(false);
+            Player.instance.uiController2.BtnUIPanel.SetActive(false);
+            // 开始订阅结束事件
+            Player.instance.uiController1.OnBtnClicked += () => { BtnClicked(PlayerID.Player1); };
+            Player.instance.uiController2.OnBtnClicked += () => { BtnClicked(PlayerID.Player2); };
             // BagUIPanel.SetActive(false);
 
             waitForLongAnim = new WaitForSeconds(Constants.longAnimTime);
@@ -98,6 +118,13 @@ namespace PhaseSystem
             
             isSelectionActive = true;
             selectionPanel.SetActive(true);
+            Player.instance.uiController1.BtnUIPanel.SetActive(false);
+            Player.instance.uiController2.BtnUIPanel.SetActive(false);
+            // 重置
+            Player.instance.uiController1.ResetBtn();
+            Player.instance.uiController2.ResetBtn();
+            p1Finish = false;
+            p2Finish = false;
             
             // 使用决定好的先手玩家开始
             SwitchPlayer(firstPlayer);
@@ -287,6 +314,8 @@ namespace PhaseSystem
         {
             isSelectionActive = false;
             selectionPanel.SetActive(false);
+            Player.instance.uiController1.BtnUIPanel.SetActive(true);
+            Player.instance.uiController2.BtnUIPanel.SetActive(true);
             Debug.Log("所有玩家选择完毕！");
             // 触发事件，通知PreparationPhase阶段可以结束了
             OnSelectionComplete?.Invoke(player1Choice, player2Choice);
@@ -303,7 +332,15 @@ namespace PhaseSystem
         public void CalculateScore()
         {
             ItemData p1Result = Player.instance.inventoryController1.RemoveHeldItem();
+            if (p1Result == null && p1Finish)
+            {
+                p1Result = Player.instance.inventoryController1.CookIt();
+            }
             ItemData p2Result = Player.instance.inventoryController2.RemoveHeldItem();
+            if (p2Result == null && p2Finish)
+            {
+                p2Result = Player.instance.inventoryController2.CookIt();
+            }
             if (p1Result == null && p2Result == null)
             {
                 endAnimationTime = 0f;
@@ -356,5 +393,6 @@ namespace PhaseSystem
             yield return new WaitForEndOfFrame();
             Debug.Log("慢拔out!");
         }
+        
     }
 }
