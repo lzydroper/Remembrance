@@ -129,6 +129,7 @@ namespace PhaseSystem
             // 使用决定好的先手玩家开始
             SwitchPlayer(firstPlayer);
             StartCoroutine(InitializeSelectionRoutine());
+            endAnimationTime = 0f;
         }
         
         private IEnumerator InitializeSelectionRoutine()
