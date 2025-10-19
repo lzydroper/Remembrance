@@ -530,7 +530,8 @@ public class InventoryController : MonoBehaviour
         // 遍历完所有配方都没有找到匹配的
         Debug.Log("未找到匹配的合成配方。");
         ClearGrid();
-        return null;
+        // return null;
+        return shit;
     }
 
     private void ClearGrid()
