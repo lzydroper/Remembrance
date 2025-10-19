@@ -33,7 +33,7 @@ namespace SKCell
         {
             AudioSource audioSource = new GameObject("Audio").AddComponent<AudioSource>();
             audioSource.transform.SetParent(root);
-            musicSources.Add(audioSource, volume);
+            musicSources.Add(audioSource, volume == 1f ? Constants.musicValue : volume);
             audioSource.clip = GetAudioClip(id, 1);
             audioSource.clip.LoadAudioData();
             audioSource.loop = loop;
@@ -63,7 +63,7 @@ namespace SKCell
         {
             AudioSource audioSource = new GameObject("Audio").AddComponent<AudioSource>();
             audioSource.transform.SetParent(root);
-            soundSources.Add(audioSource, volume);
+            soundSources.Add(audioSource, volume == 1f ? Constants.sfxValue : volume);
             audioSource.clip = GetAudioClip(id, 1);
             audioSource.clip.LoadAudioData();
             audioSource.loop = loop;

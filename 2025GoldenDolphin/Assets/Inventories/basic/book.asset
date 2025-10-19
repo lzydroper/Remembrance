@@ -22,4 +22,5 @@ MonoBehaviour:
   shape:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
-  object3D: {fileID: 0}
+  object3D: {fileID: 9563220105175720, guid: 25c07c2e1ec70f84dbacf6027b2c349a, type: 3}
+  isGood: 0

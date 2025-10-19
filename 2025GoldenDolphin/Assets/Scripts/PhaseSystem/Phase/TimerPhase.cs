@@ -1,3 +1,4 @@
+using SKCell;
 using UnityEngine;
 
 namespace PhaseSystem
@@ -15,6 +16,7 @@ namespace PhaseSystem
         public override void OnEnter()
         {
             base.OnEnter();
+            // SKUtils.EditorLogNormal("1111");
             timer = duration;
             // Debug.Log($"回合结束，进入过渡阶段，持续 {duration} 秒。");
         }

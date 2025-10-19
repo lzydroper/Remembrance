@@ -39,13 +39,18 @@ namespace PhaseSystem
         public void StartTurn()
         {
             Debug.Log($"=== 开始第 {currentTurnNumber + 1} 回合 ===");
-            gameUI.SetActive(true);
-            TurnCountAnim.instance.ActiveAnim(currentTurnNumber + 1);
-            StartCoroutine(BufferFillingCoroutine((float)(currentTurnNumber + 1) / Constants.totalTurnNumber));
-            phaseManager.StartPhases();
+            StartCoroutine(StartTurnCoroutine());
             isStarted = true;
         }
 
+        IEnumerator StartTurnCoroutine()
+        {
+            TurnCountAnim.instance.ActiveAnim(TurnManager.instance.currentTurnNumber + 1);
+            yield return new WaitForSeconds(5f);
+            gameUI.SetActive(true);
+            StartCoroutine(BufferFillingCoroutine((float)(currentTurnNumber + 1) / Constants.totalTurnNumber));
+            phaseManager.StartPhases();
+        }
         void Update()
         {
             if (isStarted && !isFinished)
@@ -65,6 +70,7 @@ namespace PhaseSystem
                     currentTurnNumber++;
                     if (!isFinished)
                     {
+                        TurnCountAnim.instance.ActiveAnim(TurnManager.instance.currentTurnNumber);
                         phaseManager.StartPhases();
                     }
                     else

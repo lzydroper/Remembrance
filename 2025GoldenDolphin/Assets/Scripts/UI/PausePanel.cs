@@ -12,25 +12,22 @@ public class PausePanel : PersistentSinglenton<PausePanel>
     public Image panel;
     [SerializeField] private SKButton backButton;
 
-    [SerializeField] private SKSlider musicSlider;
+    [SerializeField] private Slider musicSlider;
 
-    [SerializeField] private SKSlider sfxSlider;
-
-    [SerializeField] private AudioSource musicSource;
-
-    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private Slider sfxSlider;
+    
     // Start is called before the first frame update
     void Start()
     {
-        musicSlider.SetValueRaw(musicSource.volume);
-        sfxSlider.SetValueRaw(sfxSource.volume);
-        musicSlider.onValueChanged.AddListener(() =>
+        musicSlider.value = Constants.musicValue;
+        sfxSlider.value = Constants.sfxValue;
+        musicSlider.onValueChanged.AddListener((float value)=>
         {
-            musicSource.volume = musicSlider.value;
+            Constants.musicValue = value;
         });
-        sfxSlider.onValueChanged.AddListener(() =>
+        sfxSlider.onValueChanged.AddListener((float value) =>
         {
-            sfxSource.volume = sfxSlider.value;
+            Constants.sfxValue = value;
         });
         backButton.AddListener(SKButtonEventType.OnPressed,Back);
         DontDestroyOnLoad(canvas);

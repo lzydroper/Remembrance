@@ -252,7 +252,8 @@ namespace PhaseSystem
                 EndSelection();
             }
 
-            GameObject.Instantiate(selectedItem.object3D, objectGenerateTransform);
+            GameObject newItem = GameObject.Instantiate(selectedItem.object3D, objectGenerateTransform);
+            newItem.transform.position = objectGenerateTransform.transform.position;
         }
 
         private void SwitchPlayer(PlayerID newPlayer)
@@ -406,7 +407,7 @@ namespace PhaseSystem
                 yield return p2Long ? waitForLongAnim : waitForShortAnim;
             }
             yield return new WaitForEndOfFrame();
-            Debug.Log("慢拔out!");
+            // Debug.Log("慢拔out!");
         }
         
         

@@ -31,6 +31,8 @@ public class ExitPanel : PersistentSinglenton<ExitPanel>
     public void Open()
     {
         // StartCoroutine(OpenCoroutine());
+        ContinueButton.gameObject.SetActive(true);
+        ExitButton.gameObject.SetActive(true);
         ContinueButton.FadeIn();
         ExitButton.FadeIn();
     }

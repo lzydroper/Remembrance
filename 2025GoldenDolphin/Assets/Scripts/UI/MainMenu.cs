@@ -34,7 +34,7 @@ public class MainMenu : SKMonoSingleton<MainMenu>
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Quit();
+                Quit();
         }
     }
 
@@ -66,6 +66,8 @@ public class MainMenu : SKMonoSingleton<MainMenu>
     {
         ExitPanel.Instance.Open();
         PanelTransition.Instance.TransmitPanel(panel,ExitPanel.Instance.panel);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     IEnumerator StartGameCoroutine()

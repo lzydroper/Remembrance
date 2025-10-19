@@ -23,4 +23,5 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
-  object3D: {fileID: 0}
+  object3D: {fileID: 2353860308743782485, guid: 0e61e0196cc30af418273a60bdce5886, type: 3}
+  isGood: 0
