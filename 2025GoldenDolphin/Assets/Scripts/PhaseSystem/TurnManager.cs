@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using SKCell;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 namespace PhaseSystem
@@ -30,6 +31,13 @@ namespace PhaseSystem
         public GameObject gameUI;
 
         private WaitForSeconds waitForNextPhase;
+
+        [SerializeField] private PlayableDirector end1;
+        
+        [SerializeField] private PlayableDirector end2;
+        [SerializeField] private PlayableDirector end3;
+
+        [SerializeField] private GameObject endPanel;
         // private int totalTurnNumber = 3;
         private void Start()
         {
@@ -51,6 +59,7 @@ namespace PhaseSystem
             yield return new WaitForSeconds(5f);
             gameUI.SetActive(true);
             StartCoroutine(BufferFillingCoroutine((float)(currentTurnNumber + 1) / Constants.totalTurnNumber));
+            Debug.Log($"current {(float)(currentTurnNumber + 1) / Constants.totalTurnNumber}");
             phaseManager.StartPhases();
         }
         void Update()
@@ -79,6 +88,19 @@ namespace PhaseSystem
                     }
                     else
                     {
+                        endPanel.SetActive(true);
+                        if (Constants.p1Score > Constants.p2Score)
+                        {
+                            end1.Play();
+                        }
+                        else if (Constants.p1Score < Constants.p2Score)
+                        {
+                            end2.Play();
+                        }
+                        else
+                        {
+                            end3.Play();
+                        }
                         Debug.Log("=== 所有回合结束 ===");
                     }
                 }
@@ -93,6 +115,7 @@ namespace PhaseSystem
             {
                 t += Time.deltaTime * fillSpeed;
                 progressSlider.value = Mathf.Lerp(preValue, target, t);
+                preValue = target;
                 yield return null;
             }
         }

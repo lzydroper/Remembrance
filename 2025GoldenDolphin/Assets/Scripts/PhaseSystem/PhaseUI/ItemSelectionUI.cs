@@ -392,6 +392,8 @@ namespace PhaseSystem
             StartCoroutine(AnimateScoreCounting(p2ScoreText, p2CurScore, p2AddScore, duration));
             p1CurScore += p1AddScore;
             p2CurScore += p2AddScore;
+            Constants.p1Score = p1CurScore;
+            Constants.p2Score = p2CurScore;
         }
 
         public IEnumerator PlayEndAnimation(bool p1Long, bool p2Long, ItemData p1Result, ItemData p2Result)

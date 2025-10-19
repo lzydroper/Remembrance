@@ -10,7 +10,7 @@ public class Constants
     public const float actionPhaseTime = 12f;   // 行动阶段持续时间
     public const float endAniShortTime = 8f;
     public const float endAniLongTime = 8f;
-    public const int totalTurnNumber = 1;       // 总回合数
+    public const int totalTurnNumber = 10;       // 总回合数
     
     // 玩家得分情况
     public static int p1Score = 0;
