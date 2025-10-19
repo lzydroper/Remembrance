@@ -16,8 +16,8 @@ namespace SKCell
         public float musicVolume = 1;
         public float soundVolume = 1;
 
-        private string MUSIC_PATH = "AudioClip/Music/";
-        private string SOUND_PATH = "AudioClip/Sound/";
+        private string MUSIC_PATH = "Audio/Music/";
+        private string SFX_PATH = "Audio/SFX/";
 
         private Dictionary<AudioSource, float> musicSources = new Dictionary<AudioSource, float>();
         private Dictionary<AudioSource, float> soundSources = new Dictionary<AudioSource, float>();
@@ -29,7 +29,7 @@ namespace SKCell
             DontDestroyOnLoad(root.gameObject);
         }
 
-        public AudioSource PlayMusic(string id, Action action = null, bool loop = false, float volume = 1f, float pitch = 1f, float damp = 0f)
+        public AudioSource PlayMusic(string id, Action action = null, bool loop = true, float volume = 1f, float pitch = 1f, float damp = 0f)
         {
             AudioSource audioSource = new GameObject("Audio").AddComponent<AudioSource>();
             audioSource.transform.SetParent(root);
@@ -189,7 +189,7 @@ namespace SKCell
             SKUtils.StartProcedureUnscaled(SKCurve.LinearIn, dampTime, (f) =>
             {
                 if(audioSource)
-                audioSource.volume = oVolume * (1 - f) * musicVolume;
+                    audioSource.volume = oVolume * (1 - f) * musicVolume;
             }, (f) =>
             {
                 Destroy(audioSource.gameObject);
@@ -207,7 +207,7 @@ namespace SKCell
                         path = MUSIC_PATH;
                         break;
                     case 1:
-                        path = SOUND_PATH;
+                        path = SFX_PATH;
                         break;
                 }
                 AudioClip ac = Resources.Load(path + id) as AudioClip;

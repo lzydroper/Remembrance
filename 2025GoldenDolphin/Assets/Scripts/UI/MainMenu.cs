@@ -51,8 +51,10 @@ public class MainMenu : SKMonoSingleton<MainMenu>
 
     void Pause()
     {
-        PausePanel.Instance.Enactive();
         PanelTransition.Instance.TransmitPanel(panel, PausePanel.Instance.panel);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PausePanel.Instance.Enactive();
     }
 
     void About()
@@ -73,6 +75,7 @@ public class MainMenu : SKMonoSingleton<MainMenu>
         pauseButton.gameObject.SetActive(false);
         aboutButton.gameObject.SetActive(false);
         panel.DOFade(0, 1f);
+        SKAudioManager.instance.PlaySound("startGame");
         yield return new WaitForSeconds(1f);
         startGameButton.gameObject.SetActive(false);
         panel.gameObject.SetActive(false);

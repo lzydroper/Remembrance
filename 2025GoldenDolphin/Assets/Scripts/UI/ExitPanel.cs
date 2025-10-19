@@ -55,7 +55,7 @@ public class ExitPanel : PersistentSinglenton<ExitPanel>
         ContinueButton.FadeOut();
         ExitButton.gameObject.SetActive(false);
         if (Constants.isStart == false) 
-            PanelTransition.Instance.TransmitPanel(panel, MainMenu.instance.panel);
+            PanelTransition.Instance.TransmitPanel(panel, MainMenu.instance.panel, true);
         else
         {
             panel.DOFade(0, 1f);

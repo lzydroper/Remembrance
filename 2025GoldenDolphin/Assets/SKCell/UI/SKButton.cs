@@ -149,6 +149,10 @@ namespace SKCell
             canvasGroup = SKUtils.GetComponentNonAlloc<CanvasGroup>(gameObject);
 
             onStart.Invoke();
+            onPress.AddListener(() =>
+            {
+                SKAudioManager.instance.PlaySound("click");
+            });
         }
         #region Editor
 #if UNITY_EDITOR
@@ -584,7 +588,7 @@ namespace SKCell
                 case SKButtonEventType.OnPointerEnter:
                     onPointerEnter.AddListener(action);
                     break;
-                case SKButtonEventType.OnpointerExit:
+                case SKButtonEventType.OnPointerExit:
                     onPointerExit.AddListener(action);
                     break;
                 case SKButtonEventType.OnPointerUp:
@@ -627,7 +631,7 @@ namespace SKCell
                 case SKButtonEventType.OnPointerEnter:
                     onPointerEnter.RemoveListener(action);
                     break;
-                case SKButtonEventType.OnpointerExit:
+                case SKButtonEventType.OnPointerExit:
                     onPointerExit.RemoveListener(action);
                     break;
                 case SKButtonEventType.OnPointerUp:
@@ -670,7 +674,7 @@ namespace SKCell
                 case SKButtonEventType.OnPointerEnter:
                     onPointerEnter.RemoveAllListeners();
                     break;
-                case SKButtonEventType.OnpointerExit:
+                case SKButtonEventType.OnPointerExit:
                     onPointerExit.RemoveAllListeners();
                     break;
                 case SKButtonEventType.OnPointerUp:
@@ -756,7 +760,7 @@ namespace SKCell
         OnHoldUp,
         OnHoldUp2,
         OnPointerEnter,
-        OnpointerExit,
+        OnPointerExit,
         OnPointerUp,
         OnPointerDown
     }

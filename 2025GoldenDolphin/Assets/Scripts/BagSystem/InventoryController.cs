@@ -95,6 +95,7 @@ public class InventoryController : MonoBehaviour
             // 注意: 检查有效性时，物品的位置已经是正确的 (在OnCursorMove里更新了)
             if (CheckPlacementValidity(heldItem))
             {
+                SKAudioManager.instance.PlaySound("confirm");
                 PlaceHeldItem();
             }
             else

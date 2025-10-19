@@ -51,11 +51,13 @@ public class PausePanel : PersistentSinglenton<PausePanel>
     {
         // StartCoroutine(BackCoroutine());
         backButton.FadeOut();
-        if (Constants.isStart == false) 
-            PanelTransition.Instance.TransmitPanel(panel,MainMenu.instance.panel);
+        if (Constants.isStart == false)
+            PanelTransition.Instance.TransmitPanel(panel, MainMenu.instance.panel, true);
         else
         {
             StartCoroutine(BackCoroutine());
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 

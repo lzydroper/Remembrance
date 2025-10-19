@@ -1,4 +1,5 @@
 using System;
+using SKCell;
 using UnityEngine;
 
 public class PlayerCursorController : MonoBehaviour
@@ -57,6 +58,7 @@ public class PlayerCursorController : MonoBehaviour
             
             // 通知当前的上下文，光标移动了
             NotifyMove();
+            SKAudioManager.instance.PlaySound("move");
         }
         else
         {
