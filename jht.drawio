@@ -1,0 +1,166 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0" version="28.2.8">
+  <diagram name="第 1 页" id="2rzV8YioPUzvfHm1Ag26">
+    <mxGraphModel dx="1034" dy="540" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oDVYdv91sTslRcaeYLeh-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="6RP0QAjsa1oV8hMiZYkX-2" target="6RP0QAjsa1oV8hMiZYkX-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6RP0QAjsa1oV8hMiZYkX-2" value="回合开始" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="6RP0QAjsa1oV8hMiZYkX-4" target="6RP0QAjsa1oV8hMiZYkX-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="6RP0QAjsa1oV8hMiZYkX-4" target="oDVYdv91sTslRcaeYLeh-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6RP0QAjsa1oV8hMiZYkX-4" value="回合开始结算" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="6RP0QAjsa1oV8hMiZYkX-6" target="oDVYdv91sTslRcaeYLeh-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="6RP0QAjsa1oV8hMiZYkX-6" target="oDVYdv91sTslRcaeYLeh-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6RP0QAjsa1oV8hMiZYkX-6" value="玩家轮流选择物品" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-1" target="oDVYdv91sTslRcaeYLeh-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-1" value="玩家各自在自己的背包内放置物品" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-5" target="oDVYdv91sTslRcaeYLeh-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-5" value="系统随机从基础物品池中选择四样物品，供玩家轮流选择" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-6" value="每件物品被选择后不能再被其他玩家选择" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-7" value="效果触发时间点在回合开始的，发动效果" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-8" target="oDVYdv91sTslRcaeYLeh-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-15" value="再等等" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oDVYdv91sTslRcaeYLeh-13">
+          <mxGeometry x="0.5032" relative="1" as="geometry">
+            <mxPoint y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-8" target="oDVYdv91sTslRcaeYLeh-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-18" value="修复" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oDVYdv91sTslRcaeYLeh-14">
+          <mxGeometry x="0.5558" y="3" relative="1" as="geometry">
+            <mxPoint x="-4" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-8" value="玩家选择任意选项后进入下一阶段" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-10" target="oDVYdv91sTslRcaeYLeh-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-10" value="无任何效果" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-22" value="所有玩家选择完毕后" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oDVYdv91sTslRcaeYLeh-21">
+          <mxGeometry x="0.4274" y="-1" relative="1" as="geometry">
+            <mxPoint x="7" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-11" value="记录该玩家选择修复" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-19" target="oDVYdv91sTslRcaeYLeh-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-19" target="oDVYdv91sTslRcaeYLeh-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-19" value="修复结果结算，若无人选择修复，跳过该阶段" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="750" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-23" target="oDVYdv91sTslRcaeYLeh-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-23" target="oDVYdv91sTslRcaeYLeh-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-23" value="回合结束结算" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="870" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-24" target="oDVYdv91sTslRcaeYLeh-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-24" target="oDVYdv91sTslRcaeYLeh-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-24" value="对于选择修复的玩家，消耗其背包内所有物品进行组合" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="750" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-25" target="oDVYdv91sTslRcaeYLeh-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-25" value="若配方表中有结果，记录待增加/减少的分数，记录合成效果" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-26" target="oDVYdv91sTslRcaeYLeh-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-26" value="若配方表中无结果，合成出指定物品“错误胶片”" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-31" value="效果触发时间点在回合结束的，发动效果" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="870" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-32" target="oDVYdv91sTslRcaeYLeh-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-32" value="根据记录的分数，为玩家增加/减少分数" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="990" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-33" value="根据组合结果，依次播放所有玩家对应的timeline动画" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="750" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-36" target="oDVYdv91sTslRcaeYLeh-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-40" value="回合数已满" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oDVYdv91sTslRcaeYLeh-39">
+          <mxGeometry x="-0.1607" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oDVYdv91sTslRcaeYLeh-36" target="oDVYdv91sTslRcaeYLeh-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-42" value="回合数不足" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="oDVYdv91sTslRcaeYLeh-41">
+          <mxGeometry x="-0.03" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-36" value="已过回合数加一" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1109" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-37" value="根据分数判断胜利玩家，播放对应timeline动画" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oDVYdv91sTslRcaeYLeh-38" value="回到回合开始" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1109" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
