@@ -56,7 +56,7 @@ public class MyBtn : MonoBehaviour
     }
 
     // 当按钮被确认（点击）时调用
-    public void OnClick()
+    public virtual void OnClick()
     {
         if (!_isInteractable) return; // 如果不可交互，则不执行任何操作
 
@@ -72,7 +72,10 @@ public class MyBtn : MonoBehaviour
 
         _isInteractable = false;
         _image.color = confirmedColor;
+    }
 
+    public void SetParentFocus()
+    {
         // 通知父导航器，它需要更新焦点
         if (_navigationParent != null)
         {

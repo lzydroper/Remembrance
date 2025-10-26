@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using PhaseSystem;
 using UnityEngine;
 
 public class MyBtnNavigation : MonoBehaviour
@@ -9,8 +8,9 @@ public class MyBtnNavigation : MonoBehaviour
     [SerializeField] private bool setForPlayer1 = true;
     [SerializeField] private bool setForPlayer2 = true;
     // --- 私有变量 ---
-    private List<MyBtn> _buttons = new();
+    public List<MyBtn> Buttons { get; private set; }= new();
     private int _selectedIndex = -1;
+    private bool _isInitialized = false;
 
     // 当前选中的按钮索引
     public int SelectedIndex
@@ -19,29 +19,32 @@ public class MyBtnNavigation : MonoBehaviour
         private set
         {
             // 如果旧索引有效，取消选中
-            if (_selectedIndex >= 0 && _selectedIndex < _buttons.Count)
+            if (_selectedIndex >= 0 && _selectedIndex < Buttons.Count)
             {
-                _buttons[_selectedIndex].OnDeselect();
+                Buttons[_selectedIndex].OnDeselect();
             }
 
             _selectedIndex = value;
             
             // 如果新索引有效，选中它
-            if (_selectedIndex >= 0 && _selectedIndex < _buttons.Count)
+            if (_selectedIndex >= 0 && _selectedIndex < Buttons.Count)
             {
-                _buttons[_selectedIndex].OnSelect();
+                Buttons[_selectedIndex].OnSelect();
             }
         }
     }
 
-    private void Start()
+    private void Initialize()
     {
-        _buttons.Clear();
+        if (_isInitialized)
+            return;
+        _isInitialized = true;
+        Buttons.Clear();
         foreach (Transform child in transform)
         {
             if (child.gameObject.activeInHierarchy && child.TryGetComponent<MyBtn>(out var btn))
             {
-                _buttons.Add(btn);
+                Buttons.Add(btn);
                 btn.Initialize(this);
             }
         }
@@ -49,7 +52,7 @@ public class MyBtnNavigation : MonoBehaviour
 
     void OnEnable()
     {
-        // InitBtn();
+        Initialize();
         SubscribeInputEvents();
         StartCoroutine(SelectFirstAvailableButtonAfterFrame());
     }
@@ -103,29 +106,29 @@ public class MyBtnNavigation : MonoBehaviour
     {
         if (_selectedIndex != -1)
         {
-            _buttons[_selectedIndex].OnClick();
+            Buttons[_selectedIndex].OnClick();
         }
     }
 
     // 核心导航逻辑
     private void Navigate(Vector2 direction)
     {
-        if (_selectedIndex == -1 || _buttons.Count <= 1) return;
+        if (_selectedIndex == -1 || Buttons.Count <= 1) return;
 
-        MyBtn currentButton = _buttons[_selectedIndex];
+        MyBtn currentButton = Buttons[_selectedIndex];
         Vector3 currentPos = currentButton.transform.position;
         
         int bestTargetIndex = -1;
         float minDistance = float.MaxValue;
 
-        for (int i = 0; i < _buttons.Count; i++)
+        for (int i = 0; i < Buttons.Count; i++)
         {
             if (i == _selectedIndex) continue;
 
             // !!! 新增：跳过不可交互的按钮 !!!
-            if (!_buttons[i].IsInteractable) continue;
+            if (!Buttons[i].IsInteractable) continue;
             
-            MyBtn targetButton = _buttons[i];
+            MyBtn targetButton = Buttons[i];
             Vector3 targetPos = targetButton.transform.position;
             Vector3 toTarget = targetPos - currentPos;
             
@@ -168,13 +171,13 @@ public class MyBtnNavigation : MonoBehaviour
     
     private int FindNextAvailableButton(int startIndex)
     {
-        if (_buttons.Count == 0) return -1;
+        if (Buttons.Count == 0) return -1;
 
         // 从 startIndex + 1 开始循环查找
-        for (int i = 1; i <= _buttons.Count; i++)
+        for (int i = 1; i <= Buttons.Count; i++)
         {
-            int checkIndex = (startIndex + i) % _buttons.Count;
-            if (_buttons[checkIndex].IsInteractable)
+            int checkIndex = (startIndex + i) % Buttons.Count;
+            if (Buttons[checkIndex].IsInteractable)
             {
                 return checkIndex; // 找到了，返回索引
             }
@@ -185,7 +188,7 @@ public class MyBtnNavigation : MonoBehaviour
     
     public void ResetAllButtons()
     {
-        foreach (var btn in _buttons)
+        foreach (var btn in Buttons)
         {
             btn.ResetState();
         }
