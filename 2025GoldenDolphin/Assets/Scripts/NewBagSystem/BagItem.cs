@@ -12,13 +12,14 @@ namespace NewBagSystem
         GridH,
         Bag,
         BagH,
+        BagHR,
     }
     public class BagItem : MonoBehaviour
     {
         [SerializeField] private Image itemIcon;
         public BasicItemData itemData;
         private SpriteState _spriteState;
-        private Vector2Int _anchorGridPosition;
+        public Vector2Int AnchorGridPosition { get; private set; }
         private int _currentRotation;
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace NewBagSystem
             var rotatedShape = GetRotatedShape();
             foreach (var point in rotatedShape)
             {
-                occupiedPositions.Add(_anchorGridPosition + point);
+                occupiedPositions.Add(AnchorGridPosition + point);
             }
             return occupiedPositions;
         }
@@ -71,15 +72,28 @@ namespace NewBagSystem
 
         public void SetSprite(SpriteState targetState)
         {
-            Sprite sprite = targetState switch
+            if (targetState == SpriteState.BagHR)
             {
-                SpriteState.Grid => itemData.gridSprite,
-                SpriteState.GridH => itemData.gridHSprite,
-                SpriteState.Bag => itemData.bagSprite,
-                SpriteState.BagH => itemData.bagHSprite,
-                _ => null
-            };
-            itemIcon.sprite = sprite;
+                itemIcon.color = Color.red;
+            }
+            else
+            {
+                itemIcon.color = Color.white;
+                Sprite sprite = targetState switch
+                {
+                    SpriteState.Grid => itemData.gridSprite,
+                    SpriteState.GridH => itemData.gridHSprite,
+                    SpriteState.Bag => itemData.bagSprite,
+                    SpriteState.BagH => itemData.bagHSprite,
+                    _ => null
+                };
+                itemIcon.sprite = sprite;
+            }
+        }
+
+        public void SetAnchor(Vector2Int anchorPos)
+        {
+            AnchorGridPosition = anchorPos;
         }
     }
 }

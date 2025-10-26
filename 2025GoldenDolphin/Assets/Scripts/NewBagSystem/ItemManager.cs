@@ -20,13 +20,13 @@ namespace NewBagSystem
             BasicItemData[] items = Resources.LoadAll<BasicItemData>("Items/BasicItems");
             foreach (BasicItemData item in items)
             {
-                _items.Add(item.id, item);
+                _items.TryAdd(item.id, item);
             }
             
             Recipe[] recipes = Resources.LoadAll<Recipe>("Items/Recipes");
             foreach (Recipe recipe in recipes)
             {
-                _recipes.Add(recipe.id, recipe);
+                _recipes.TryAdd(recipe.id, recipe);
             }
             
             BuildIndex();
@@ -50,6 +50,11 @@ namespace NewBagSystem
         {
             _items.TryGetValue(id, out BasicItemData item);
             return item;
+        }
+
+        public List<BasicItemData> GetAllItems()
+        {
+            return _items.Values.ToList();
         }
 
         public List<BasicItemData> GetRandomItem(int count)
@@ -95,7 +100,7 @@ namespace NewBagSystem
                     return recipe;
             }
 
-            return null; // 未找到
+            return GetRecipe("failed"); // 未找到
         }
         
         // 选择物品时，悬浮显示可能的合成配方时调用，返回对应item可能组合的其他原料

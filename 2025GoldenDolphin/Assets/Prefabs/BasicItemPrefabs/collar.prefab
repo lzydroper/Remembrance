@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 959408212626722431}
   - component: {fileID: 9087704855934556177}
   - component: {fileID: -1878770228073959127}
+  - component: {fileID: -8744161848168562184}
   m_Layer: 0
   m_Name: collar
   m_TagString: Untagged
@@ -115,3 +116,17 @@ MonoBehaviour:
   shape: []
   anchorGridPosition: {x: 0, y: 0}
   currentRotation: 0
+--- !u!114 &-8744161848168562184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225509326009505046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0973d4f5c49240dc9767bd094a226f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 9087704855934556177}
+  itemData: {fileID: 11400000, guid: 9982a7e4d9f441642acfcef1c654c93e, type: 2}

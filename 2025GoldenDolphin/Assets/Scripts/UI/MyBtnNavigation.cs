@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MyBtnNavigation : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class MyBtnNavigation : MonoBehaviour
     [SerializeField] private bool setForPlayer1 = true;
     [SerializeField] private bool setForPlayer2 = true;
     // --- 私有变量 ---
-    public List<MyBtn> Buttons { get; private set; }= new();
+    public List<MyBtn> buttons = new();
     private int _selectedIndex = -1;
     private bool _isInitialized = false;
 
@@ -19,32 +20,42 @@ public class MyBtnNavigation : MonoBehaviour
         private set
         {
             // 如果旧索引有效，取消选中
-            if (_selectedIndex >= 0 && _selectedIndex < Buttons.Count)
+            if (_selectedIndex >= 0 && _selectedIndex < buttons.Count)
             {
-                Buttons[_selectedIndex].OnDeselect();
+                buttons[_selectedIndex].OnDeselect();
             }
 
             _selectedIndex = value;
             
             // 如果新索引有效，选中它
-            if (_selectedIndex >= 0 && _selectedIndex < Buttons.Count)
+            if (_selectedIndex >= 0 && _selectedIndex < buttons.Count)
             {
-                Buttons[_selectedIndex].OnSelect();
+                buttons[_selectedIndex].OnSelect();
             }
         }
     }
 
-    private void Initialize()
+    public void CancelSelect()
+    {
+        SelectedIndex = -1;
+    }
+
+    public void SelectFirstAvailable()
+    {
+        StartCoroutine(SelectFirstAvailableButtonAfterFrame());
+    }
+
+    public void Initialize()
     {
         if (_isInitialized)
             return;
         _isInitialized = true;
-        Buttons.Clear();
+        buttons.Clear();
         foreach (Transform child in transform)
         {
-            if (child.gameObject.activeInHierarchy && child.TryGetComponent<MyBtn>(out var btn))
+            if (child.TryGetComponent<MyBtn>(out var btn))
             {
-                Buttons.Add(btn);
+                buttons.Add(btn);
                 btn.Initialize(this);
             }
         }
@@ -53,8 +64,8 @@ public class MyBtnNavigation : MonoBehaviour
     void OnEnable()
     {
         Initialize();
+        ResetAllButtons();
         SubscribeInputEvents();
-        StartCoroutine(SelectFirstAvailableButtonAfterFrame());
     }
 
     void OnDisable()
@@ -68,10 +79,13 @@ public class MyBtnNavigation : MonoBehaviour
         yield return null; // 等待一帧
         // 查找第一个可用的按钮并选中
         int firstAvailable = FindNextAvailableButton(-1);
+        yield return null; // 等待setdata
+        yield return null; // 等待setdata
+        yield return null; // 等待setdata
         SelectedIndex = firstAvailable;
     }
 
-    private void SubscribeInputEvents()
+    public void SubscribeInputEvents()
     {
         if (setForPlayer1)
         {
@@ -86,7 +100,7 @@ public class MyBtnNavigation : MonoBehaviour
         }
     }
 
-    private void UnsubscribeInputEvents()
+    public void UnsubscribeInputEvents()
     {
         if (setForPlayer1)
         {
@@ -106,29 +120,29 @@ public class MyBtnNavigation : MonoBehaviour
     {
         if (_selectedIndex != -1)
         {
-            Buttons[_selectedIndex].OnClick();
+            buttons[_selectedIndex].OnClick();
         }
     }
 
     // 核心导航逻辑
-    private void Navigate(Vector2 direction)
+    private void Navigate(Vector2Int direction)
     {
-        if (_selectedIndex == -1 || Buttons.Count <= 1) return;
+        if (_selectedIndex == -1 || buttons.Count <= 1) return;
 
-        MyBtn currentButton = Buttons[_selectedIndex];
+        MyBtn currentButton = buttons[_selectedIndex];
         Vector3 currentPos = currentButton.transform.position;
         
         int bestTargetIndex = -1;
         float minDistance = float.MaxValue;
 
-        for (int i = 0; i < Buttons.Count; i++)
+        for (int i = 0; i < buttons.Count; i++)
         {
             if (i == _selectedIndex) continue;
 
             // !!! 新增：跳过不可交互的按钮 !!!
-            if (!Buttons[i].IsInteractable) continue;
+            if (!buttons[i].IsInteractable) continue;
             
-            MyBtn targetButton = Buttons[i];
+            MyBtn targetButton = buttons[i];
             Vector3 targetPos = targetButton.transform.position;
             Vector3 toTarget = targetPos - currentPos;
             
@@ -171,13 +185,13 @@ public class MyBtnNavigation : MonoBehaviour
     
     private int FindNextAvailableButton(int startIndex)
     {
-        if (Buttons.Count == 0) return -1;
+        if (buttons.Count == 0) return -1;
 
         // 从 startIndex + 1 开始循环查找
-        for (int i = 1; i <= Buttons.Count; i++)
+        for (int i = 1; i <= buttons.Count; i++)
         {
-            int checkIndex = (startIndex + i) % Buttons.Count;
-            if (Buttons[checkIndex].IsInteractable)
+            int checkIndex = (startIndex + i) % buttons.Count;
+            if (buttons[checkIndex].IsInteractable)
             {
                 return checkIndex; // 找到了，返回索引
             }
@@ -188,11 +202,9 @@ public class MyBtnNavigation : MonoBehaviour
     
     public void ResetAllButtons()
     {
-        foreach (var btn in Buttons)
+        foreach (var btn in buttons)
         {
             btn.ResetState();
         }
-        // 重置后，重新选择第一个可用的
-        SelectedIndex = FindNextAvailableButton(-1);
     }
 }
