@@ -7,30 +7,29 @@ using NewBagSystem;
 using SKCell;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 #region 枚举变量
 
 // 游戏状态
-public enum GameState
-{
-    None,
-    MainMenu,
-    Playing,
-    Ending,
-}
+// public enum GameState
+// {
+//     None,
+//     MainMenu,
+//     Playing,
+//     Ending,
+// }
 // 回合状态
-public enum RoundState
-{
-    None,
-    RoundStart,
-    SelectItem,
-    PlaceItem,
-    // WaitConfirm,
-    FixCal,
-    RoundEnd,
-}
+// public enum RoundState
+// {
+//     None,
+//     RoundStart,
+//     SelectItem,
+//     PlaceItem,
+//     // WaitConfirm,
+//     FixCal,
+//     RoundEnd,
+// }
 // 光标状态
 // public enum CursorState
 // {
@@ -42,11 +41,11 @@ public enum RoundState
 //     WaitConfirm,
 //     FinishConfirm,
 // }
-public enum PlayerID
-{
-    Player1,
-    Player2,
-}
+// public enum PlayerID
+// {
+//     Player1,
+//     Player2,
+// }
 
 #endregion
 // 管理从按下游戏开始到游戏完全结束，的整个流程
@@ -61,20 +60,24 @@ public class GameManager : SKMonoSingleton<GameManager>
     public List<BasicItemData> SelectResult = new(2) { null, null };
     // 合成结果
     public List<Recipe> CookResult = new(2) { null, null };
-
+    
+    // 主菜单开始游戏走这里
     public void StartGame()
     {
         StartCoroutine(StartGameCoroutine());
     }
-
+    
     IEnumerator StartGameCoroutine()
     {
         // 播放开始动画
+        // 从主菜单按下开始游戏按钮到主界面的动画
+        yield return GameStaAni();
         // 开启游戏循环
         StartGameLoop();
         yield return null;
     }
-
+    
+    // 结束界面再来一把走这里
     [ContextMenu("StartGameLoop")]
     public void StartGameLoop()
     {
@@ -85,8 +88,6 @@ public class GameManager : SKMonoSingleton<GameManager>
     {
         // 游戏开始初始化
         GameStaAct();
-        // 从主菜单按下开始游戏按钮到主界面的动画
-        yield return GameStaAni();
         while (CurrentRound <= TotalRound)
         {
             // ====  回合开始时机  ====
@@ -167,13 +168,13 @@ public class GameManager : SKMonoSingleton<GameManager>
             if (text) text.text = "0";
         }
         // 关闭endPanel
-        endPanel.SetActive(false);
+        endAniPanel.SetActive(false);
     }
 
     private void GameEndAct()
     {
         // 开启endPanel
-        endPanel.SetActive(true);
+        endAniPanel.SetActive(true);
     }
 
     private void RoundStartAct()
@@ -183,13 +184,16 @@ public class GameManager : SKMonoSingleton<GameManager>
         // P2CursorState = CursorState.None;
         // 进入回合开始阶段时，禁用玩家输入
         InputManager.instance.DisableAllInputs();
+        SetSelectItem(0, null);
+        SetSelectItem(1, null);
+        SetCookResult(0, null);
+        SetCookResult(1, null);
+        roundStartText.transform.localScale = Vector3.zero;
     }
     
     private void SelectItemAct()
     {
         // CurrentRoundState = RoundState.SelectItem;
-        SetSelectItem(0, null);
-        SetSelectItem(1, null);
         // 进入选择物品阶段时，恢复玩家输入
         // inputManager.EnableAllInputs();
         // 输入控制在内部修改
@@ -216,7 +220,6 @@ public class GameManager : SKMonoSingleton<GameManager>
         // CurrentRoundState = RoundState.RoundEnd;
         // 开启UI
         gameUI.SetActive(true);
-        // 计算分数
         
     }
 
@@ -235,7 +238,8 @@ public class GameManager : SKMonoSingleton<GameManager>
     #region UIPanel的引用
 
     [SerializeField] private GameObject gameUI;
-    [SerializeField] private GameObject endPanel;
+    [SerializeField] private GameObject endAniPanel;
+    [SerializeField] private GameObject endPanel;       // 问你要不要再来一把的panel
 
     #endregion
 
@@ -311,7 +315,7 @@ public class GameManager : SKMonoSingleton<GameManager>
 
             // 更新UI文本
             scoreText[0].text = currentDisplayScore[0].ToString();
-            scoreText[1].text = currentDisplayScore[0].ToString();
+            scoreText[1].text = currentDisplayScore[1].ToString();
         
             // 等待下一帧
             elapsedTime += Time.deltaTime;
@@ -329,19 +333,19 @@ public class GameManager : SKMonoSingleton<GameManager>
 
     [Header("进度条相关")] 
     [SerializeField] private float fillSpeed = 1f;
-    [SerializeField] private float progressSliderValue;
+    // [SerializeField] private float progressSliderValue;
     [SerializeField] private Slider progressSlider;
     IEnumerator ProgressCoroutine()
     {
         float target = (float)CurrentRound / TotalRound;
         float t = 0f;
-        while (t < 1f)
-        {
+        float startValue = progressSlider.value;
+        while (t < 1f) {
             t += Time.deltaTime * fillSpeed;
-            progressSlider.value = Mathf.Lerp(progressSliderValue, target, t);
-            progressSliderValue = target;
+            progressSlider.value = Mathf.Lerp(startValue, target, t);
             yield return null;
         }
+        // progressSliderValue = progressSlider.value;
     }
 
     [Header("游戏结束动画相关")] 
