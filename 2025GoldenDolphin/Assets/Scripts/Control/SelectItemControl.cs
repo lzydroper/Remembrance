@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using NewBagSystem;
+using SKCell;
 using UnityEngine;
 
 /*
@@ -72,12 +73,36 @@ namespace Control
 
         [Header("开始选择提示动画相关")] 
         [SerializeField] private GameObject arrow;
-        [SerializeField] private GameObject hintText;
+        [SerializeField] private SKText hintText;
+        [SerializeField] private float enterDuration = 1.5f;   // 进入动画时长
+        [SerializeField] private float stayDuration = 1.0f;    // 停留时间
+        [SerializeField] private float exitDuration = 1.5f;    // 退出动画时长
+        private Vector3 _staRotation = new Vector3(0f, 0f, 90f);
         private IEnumerator HintMoveAni(int playerID)
         {
-            // TODO:跳一段文字，文字内容为“开始选择！”
-            arrow.transform.DOScale(1f, 1f).From(0f);
-            arrow.transform.DORotate()
+            arrow.SetActive(true);
+            hintText.gameObject.SetActive(true);
+            yield return null;
+            
+            float targetAngle = playerID == 0 ? 540f : -360f;
+            arrow.transform.DOScale(1f, enterDuration).From(0f).SetEase(Ease.OutBack);
+            arrow.transform.DORotate(new Vector3(0f, 0f, targetAngle), enterDuration,
+                RotateMode.FastBeyond360).From(_staRotation).SetEase(Ease.OutQuad);
+            hintText.DOFade(1f, enterDuration).From(0f);
+            
+            yield return new WaitForSeconds(enterDuration);
+            yield return new WaitForSeconds(stayDuration);
+            
+            // 反向播放
+            arrow.transform.DOScale(0f, exitDuration).SetEase(Ease.OutBack);
+            arrow.transform.DORotate(new Vector3(0f, 0f, -targetAngle), exitDuration,
+                RotateMode.FastBeyond360).SetEase(Ease.InQuad);
+            hintText.DOFade(0f, exitDuration);
+            
+            yield return new WaitForSeconds(exitDuration);
+            
+            arrow.SetActive(false);
+            hintText.gameObject.SetActive(false);
             yield return null;
         }
 
@@ -100,6 +125,12 @@ namespace Control
         private void StartFlow()
         {
             StartCoroutine(Flow());
+        }
+
+        [ContextMenu("ShowHintMoveAni")]
+        private void ShowHintMoveAni()
+        {
+            StartCoroutine(HintMoveAni(1));
         }
     }
 }
