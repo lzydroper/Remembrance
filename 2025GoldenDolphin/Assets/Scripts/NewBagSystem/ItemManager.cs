@@ -102,6 +102,11 @@ namespace NewBagSystem
 
             return GetRecipe("failed"); // 未找到
         }
+
+        public List<Recipe> GetAllRecipes()
+        {
+            return _recipes.Values.ToList();
+        }
         
         // 选择物品时，悬浮显示可能的合成配方时调用，返回对应item可能组合的其他原料
         public List<Recipe> GetPossibleRecipes(string id)

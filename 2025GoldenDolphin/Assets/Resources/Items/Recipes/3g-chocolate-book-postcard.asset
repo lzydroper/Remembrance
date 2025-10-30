@@ -19,3 +19,6 @@ MonoBehaviour:
   - postcard
   score: 5
   type: 0
+  texture: {fileID: 2800000, guid: f4123c70515e02b42884c98812b020ef, type: 3}
+  textContent: "\u7EC8\u4E8E\u6BD5\u4E1A\u4E86\uFF0C\u672A\u6765\u4F1A\u50CF\u5DE7\u514B\u529B\u4E00\u6837\u7F8E\u597D\u5417\uFF1F"
+  scale: {x: 1.6, y: 1, z: 1}

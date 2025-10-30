@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using NewBagSystem;
 using UnityEngine;
 
@@ -69,9 +70,14 @@ namespace Control
             yield return null;
         }
 
+        [Header("开始选择提示动画相关")] 
+        [SerializeField] private GameObject arrow;
+        [SerializeField] private GameObject hintText;
         private IEnumerator HintMoveAni(int playerID)
         {
             // TODO:跳一段文字，文字内容为“开始选择！”
+            arrow.transform.DOScale(1f, 1f).From(0f);
+            arrow.transform.DORotate()
             yield return null;
         }
 

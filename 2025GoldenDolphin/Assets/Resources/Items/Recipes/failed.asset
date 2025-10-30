@@ -16,4 +16,7 @@ MonoBehaviour:
   ingredients:
   - failed
   score: 0
-  type: 1
+  type: 0
+  texture: {fileID: 2800000, guid: 2bfd7c8f179a38448b871a9373c8c985, type: 3}
+  textContent: "\u4E00\u5F20\u5931\u7126\u7684\u62CD\u7ACB\u5F97\u3002"
+  scale: {x: 1, y: 1.6, z: 1}

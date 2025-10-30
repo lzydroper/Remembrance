@@ -18,3 +18,6 @@ MonoBehaviour:
   - collar
   score: 4
   type: 0
+  texture: {fileID: 2800000, guid: ebba37cb965a3a04592d66f7455b762b, type: 3}
+  textContent: "\u670B\u53CB\u8D70\u540E\u53BB\u516C\u56ED\u8D74\u5931\u7EA6\u7684\u7EA6\uFF0C\u6361\u5230\u4E86\u5C0F\u767D\uFF0C\u6211\u4E0D\u518D\u662F\u4E00\u4E2A\u4EBA\u4E86\u3002"
+  scale: {x: 1, y: 1.6, z: 1}

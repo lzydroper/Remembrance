@@ -15,5 +15,8 @@ namespace NewBagSystem
         public List<string> ingredients;
         public int score;
         public RecipeType type;
+        public Texture texture;
+        public string textContent;
+        public Vector3 scale;
     }
 }

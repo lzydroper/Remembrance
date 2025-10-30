@@ -27,6 +27,11 @@ public class CreateAssets : Editor
         Ingredients,
         Score,
         Type,
+        TexturePath,
+        TextContent,
+        Scale,
+        RoundStaEff,
+        RoundEndEff,
         Description,
     }
     [MenuItem("Tools/CreateAssetsFromExcel")]
@@ -77,6 +82,10 @@ public class CreateAssets : Editor
             recipe.ingredients = ParseStringList(sheet.Cells[i, startCol + (int)RecipeSheetTitle.Ingredients].Text);
             recipe.score = int.Parse(sheet.Cells[i, startCol + (int)RecipeSheetTitle.Score].Text);
             recipe.type = (RecipeType)int.Parse(sheet.Cells[i, startCol + (int)RecipeSheetTitle.Type].Text);
+            recipe.texture = 
+                AssetDatabase.LoadAssetAtPath<Texture>(sheet.Cells[i, startCol + (int)RecipeSheetTitle.TexturePath].Text);
+            recipe.textContent = sheet.Cells[i, startCol + (int)RecipeSheetTitle.TextContent].Text;
+            recipe.scale = ParseVector3(sheet.Cells[i, startCol + (int)RecipeSheetTitle.Scale].Text);
 
             string filepath = $"Assets/Resources/items/Recipes/{recipe.id}.asset";
             AssetDatabase.CreateAsset(recipe, filepath);
@@ -118,6 +127,24 @@ public class CreateAssets : Editor
         }
 
         return vectorList;
+    }
+
+    private static Vector3 ParseVector3(string input)
+    {
+        string str = input.Replace(" ", "");
+        str = str.TrimStart('(');
+        str = str.TrimEnd(')');
+        var parts = str.Split(',');
+        if (parts.Length == 3 &&
+            float.TryParse(parts[0], out float x) &&
+            float.TryParse(parts[1], out float y) &&
+            float.TryParse(parts[2], out float z))
+        {
+            return new Vector3(x, y, z);
+        }
+
+        Debug.LogWarning($"无效的坐标格式：{str}");
+        return Vector3.one;
     }
     
     private static List<string> ParseStringList(string input)

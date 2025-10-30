@@ -18,3 +18,6 @@ MonoBehaviour:
   - trash
   score: 3
   type: 1
+  texture: {fileID: 2800000, guid: a62cd90d2bd84d842b601b6092b2b8c8, type: 3}
+  textContent: "\u5750\u5230\u5783\u573E\u6876\u65C1\u8FB9\u4E86\uFF0C\u771F\u8BA8\u538C\u554A\u3002"
+  scale: {x: 1, y: 1.6, z: 1}

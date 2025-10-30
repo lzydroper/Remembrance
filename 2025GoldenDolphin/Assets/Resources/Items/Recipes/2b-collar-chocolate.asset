@@ -18,3 +18,6 @@ MonoBehaviour:
   - chocolate
   score: 4
   type: 1
+  texture: {fileID: 2800000, guid: 4c9b3e443967fb14594bb041cd41c381, type: 3}
+  textContent: "\u5C0F\u767D\u5077\u5403\u5DE7\u514B\u529B\u8FDB\u4E86\u533B\u9662\uFF0C\u597D\u81EA\u8D23\u3002"
+  scale: {x: 1, y: 1.6, z: 1}
