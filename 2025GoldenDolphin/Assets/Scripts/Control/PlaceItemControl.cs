@@ -70,7 +70,11 @@ namespace Control
             }
             // 执行结果
             Cal();
-            // 告知GameManager选择结果
+            // 清理所有界面UI
+            foreach (var obj in willRepairHint)
+                obj.SetActive(false);
+            foreach (var obj in willForceRepairHint)
+                obj.SetActive(false);
             yield return null;
         }
 

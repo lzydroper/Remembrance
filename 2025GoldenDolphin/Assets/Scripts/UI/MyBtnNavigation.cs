@@ -8,6 +8,7 @@ public class MyBtnNavigation : MonoBehaviour
     // 导航系统根据这个来判断事件订阅情况
     [SerializeField] private bool setForPlayer1 = true;
     [SerializeField] private bool setForPlayer2 = true;
+    [SerializeField] private bool startForSelect = false;       // 是否在启用时，立即选择一个可选项
     // --- 私有变量 ---
     public List<MyBtn> buttons = new();
     private int _selectedIndex = -1;
@@ -40,6 +41,7 @@ public class MyBtnNavigation : MonoBehaviour
         SelectedIndex = -1;
     }
 
+    [ContextMenu("SelectFirstAvailable")]
     public void SelectFirstAvailable()
     {
         StartCoroutine(SelectFirstAvailableButtonAfterFrame());
@@ -66,6 +68,9 @@ public class MyBtnNavigation : MonoBehaviour
         Initialize();
         ResetAllButtons();
         SubscribeInputEvents();
+        
+        if (startForSelect)
+            SelectFirstAvailable();
     }
 
     void OnDisable()

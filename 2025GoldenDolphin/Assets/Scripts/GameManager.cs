@@ -237,6 +237,7 @@ public class GameManager : SKMonoSingleton<GameManager>
     
     #region UIPanel的引用
 
+    [Header("UIPanel的引用")]
     [SerializeField] private GameObject gameUI;
     [SerializeField] private GameObject endAniPanel;
     [SerializeField] private GameObject endPanel;       // 问你要不要再来一把的panel
@@ -377,8 +378,8 @@ public class GameManager : SKMonoSingleton<GameManager>
     {
         PlayableDirector director = staAniDirector;
         director.Play();
-        yield return new WaitForSeconds((float)director.duration);
         gameCamera.SetActive(true);
+        yield return new WaitForSeconds((float)director.duration);
         yield return null;
     }
 

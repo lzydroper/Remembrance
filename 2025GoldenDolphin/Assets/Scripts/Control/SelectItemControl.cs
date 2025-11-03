@@ -72,6 +72,7 @@ namespace Control
         }
 
         [Header("开始选择提示动画相关")] 
+        [SerializeField] private GameObject hintPanel;
         [SerializeField] private GameObject arrow;
         [SerializeField] private SKText hintText;
         [SerializeField] private float enterDuration = 1.5f;   // 进入动画时长
@@ -80,8 +81,9 @@ namespace Control
         private Vector3 _staRotation = new Vector3(0f, 0f, 90f);
         private IEnumerator HintMoveAni(int playerID)
         {
-            arrow.SetActive(true);
-            hintText.gameObject.SetActive(true);
+            hintPanel.SetActive(true);
+            // arrow.SetActive(true);
+            // hintText.gameObject.SetActive(true);
             yield return null;
             
             float targetAngle = playerID == 0 ? 540f : -360f;
@@ -101,8 +103,9 @@ namespace Control
             
             yield return new WaitForSeconds(exitDuration);
             
-            arrow.SetActive(false);
-            hintText.gameObject.SetActive(false);
+            // arrow.SetActive(false);
+            // hintText.gameObject.SetActive(false);
+            hintPanel.SetActive(false);
             yield return null;
         }
 

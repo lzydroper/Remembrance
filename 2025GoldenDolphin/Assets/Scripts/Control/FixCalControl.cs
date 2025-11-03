@@ -28,12 +28,10 @@ namespace Control
             //     string key = dir.name;
             //     _anis.TryAdd(key, dir);
             // }
-            _director = GetComponent<PlayableDirector>();
-            _renderer = postcard.GetComponent<Renderer>();
-            if (!_renderer || !_director)
-            {
-                Debug.LogError($"{postcard.name}缺少组件");
-            }
+            if (!TryGetComponent(out _director))
+                Debug.LogError("Can't get playable director");
+            if (!postcard.TryGetComponent(out _renderer))
+                Debug.LogError("Can't get renderer from postcard");
         }
 
         public IEnumerator Flow()

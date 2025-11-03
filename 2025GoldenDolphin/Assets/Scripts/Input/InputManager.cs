@@ -30,6 +30,9 @@ public class InputManager : SKMonoSingleton<InputManager>
         inputController.onMoveRight2 += OnP2MoveRight;
         inputController.onConfirm2 += OnP2ConfirmInput;
         inputController.onRotate2 += OnP2RotateInput;
+        
+        // 默认启用输入
+        EnableAllInputs();
     }
 
     #region 公共函数

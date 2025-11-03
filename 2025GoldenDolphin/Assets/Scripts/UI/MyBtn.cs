@@ -11,6 +11,7 @@ public class MyBtn : MonoBehaviour
     // public Color normalColor = Color.white;
     // public Color selectedColor = new Color(0.9f, 0.9f, 0.9f, 1f);
     // public Color confirmedColor = Color.gray; // 新增：确认后的颜色
+    public Image img;
 
     [Header("按钮事件")]
     public UnityEvent onClick = new UnityEvent();
