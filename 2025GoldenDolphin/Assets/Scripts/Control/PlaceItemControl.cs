@@ -99,7 +99,7 @@ namespace Control
                 }
             }
         }
-
+        
         private void OnPlace(int playerID)
         {
             // 放置后应该让玩家选择选项
@@ -136,6 +136,14 @@ namespace Control
         private void StartFlow()
         {
             StartCoroutine(Flow());
+        }
+
+        public void Restart()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                bags[i].ClearBag();
+            }
         }
     }
 }

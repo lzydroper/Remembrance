@@ -143,5 +143,16 @@ namespace Control
         {
             StartCoroutine(HintMoveAni(1));
         }
+
+        public void Restart()
+        {
+            _firstPlayer = -1;
+            // 反向遍历：从最后一个子物体往前处理，避免索引错乱
+            for (int i = objectGenerateTransform.childCount - 1; i >= 0; i--)
+            {
+                Transform child = objectGenerateTransform.GetChild(i);
+                Destroy(child.gameObject);
+            }
+        }
     }
 }

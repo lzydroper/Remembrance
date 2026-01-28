@@ -56,16 +56,17 @@ public class GameManager : SKMonoSingleton<GameManager>
     // public CursorState P1CursorState { get; private set; } = CursorState.None;
     // public CursorState P2CursorState { get; private set; } = CursorState.None;
 
+    [SerializeField] private List<int> scores = new() { 0, 0 };
     public List<BasicItemData> SelectResult = new(2) { null, null };
     // 合成结果
     public List<Recipe> CookResult = new(2) { null, null };
     
-    // 主菜单开始游戏走这里
+    // 主菜单开始游戏走这里，和结束界面再来一把走这里
+    [ContextMenu("StartGame")]
     public void StartGame()
     {
         StartCoroutine(StartGameCoroutine());
     }
-    
     IEnumerator StartGameCoroutine()
     {
         // 播放开始动画
@@ -76,13 +77,10 @@ public class GameManager : SKMonoSingleton<GameManager>
         yield return null;
     }
     
-    // 结束界面再来一把走这里
-    [ContextMenu("StartGameLoop")]
-    public void StartGameLoop()
+    private void StartGameLoop()
     {
         StartCoroutine(GameLoop());
     }
-    
     IEnumerator GameLoop()
     {
         // 游戏开始初始化
@@ -127,8 +125,16 @@ public class GameManager : SKMonoSingleton<GameManager>
         GameEndAct();
         // 游戏结束，播放根据最后分数，播放结束动画
         yield return GameEndAni();
-        // TODO:播放完以后跳出再来一局、回主界面
         yield return null;
+        // 播放完以后跳出再来一局、回主界面
+        GameFinishAct();
+    }
+
+    public void CloseAllPanel()
+    {
+        gameUI.SetActive(false);
+        endAniPanel.SetActive(false);
+        endPanel.SetActive(false);
     }
 
     #region 公共回调函数
@@ -167,8 +173,31 @@ public class GameManager : SKMonoSingleton<GameManager>
         {
             if (text) text.text = "0";
         }
+        // 初始化分数为0
+        for (int i = 0; i < scores.Count; i++)
+        {
+            scores[i] = 0;
+        }
+        // 初始化已选择和结果
+        for (int i = 0; i < SelectResult.Count; i++)
+        {
+            SelectResult[i] = null;
+        }
+
+        for (int i = 0; i < CookResult.Count; i++)
+        {
+            CookResult[i] = null;
+        }
+        // 初始化回合数为1
+        currentRound = 1;
         // 关闭endPanel
         endAniPanel.SetActive(false);
+        // 重置slider
+        progressSlider.value = 0;
+        // 清空背包
+        placeItemControl.Restart();
+        // 重置选项顺序，清空场景中的物体
+        selectItemControl.Restart();
     }
 
     private void GameEndAct()
@@ -225,6 +254,14 @@ public class GameManager : SKMonoSingleton<GameManager>
         
     }
 
+    private void GameFinishAct()
+    {
+        endPanel?.SetActive(true);
+        InputManager.instance.EnableAllInputs();
+        gameCamera.SetActive(false);
+        mainMenuCamera.SetActive(true);
+    }
+    
     #endregion
 
     #region 子系统引用
@@ -284,7 +321,6 @@ public class GameManager : SKMonoSingleton<GameManager>
     
     [Header("回合结束动画相关")]
     [SerializeField] private List<SKText> scoreText = new() { null, null };
-    [SerializeField] private List<int> scores = new() { 0, 0 };
     [SerializeField] private float scoreChangAniDuration = 1.5f;
     IEnumerator EndRoundAni()
     {
@@ -374,11 +410,15 @@ public class GameManager : SKMonoSingleton<GameManager>
         yield return null;
     }
 
-    [Header("游戏开始动画相关")]
+    [Header("游戏开始动画相关")] 
+    [SerializeField] private GameObject mainMenuCamera;
     [SerializeField] private GameObject gameCamera;
     [SerializeField] private PlayableDirector staAniDirector;
     IEnumerator GameStaAni()
     {
+        // 重置摄像机
+        gameCamera.SetActive(false);
+        mainMenuCamera.SetActive(true);
         PlayableDirector director = staAniDirector;
         director.Play();
         gameCamera.SetActive(true);
