@@ -26,8 +26,11 @@ public class MainMenuPanel : MonoBehaviour
         objectsOnBook.SetActive(true);
         
         startBtn.gameObject.SetActive(true);
+        startBtn.img.enabled = true;
         pauseBtn.gameObject.SetActive(true);
+        pauseBtn.img.enabled = true;
         aboutBtn.gameObject.SetActive(true);
+        aboutBtn.img.enabled = true;
         titleImg.gameObject.SetActive(true);
         mainMenuPanelImg.gameObject.SetActive(true);
     }
@@ -43,8 +46,8 @@ public class MainMenuPanel : MonoBehaviour
         startBtn.img.DOFade(0, 1f);
         titleImg.DOFade(0, 1f);
         mainMenuPanelImg.DOFade(0, 1f);
-        pauseBtn.gameObject.SetActive(false);
-        aboutBtn.gameObject.SetActive(false);
+        pauseBtn.img.enabled = false;
+        aboutBtn.img.enabled = false;
         
         // 调用从主菜单开始游戏
         GameManager.instance.StartGame();

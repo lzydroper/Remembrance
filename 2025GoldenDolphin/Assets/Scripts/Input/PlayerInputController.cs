@@ -14,7 +14,7 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
     
     #region Events
 
-    // TODO: 添加事件
+    // TO-DO: 添加事件
     public event UnityAction onPause = delegate { };
     public event UnityAction onMoveUp1 = delegate { };
     public event UnityAction onMoveDown1 = delegate { };
@@ -37,7 +37,7 @@ public class PlayerInputController : ScriptableObject, PlayerControl.IPlayer1Act
     {
         playerControl = new PlayerControl();
         
-        // TODO： 初始化回调
+        // TO-DO： 初始化回调
         playerControl.Player1.SetCallbacks(this);
         playerControl.Player2.SetCallbacks(this);
     }

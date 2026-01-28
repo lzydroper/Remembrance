@@ -121,7 +121,7 @@ public class PlayerCursorController : MonoBehaviour
         {
             return CursorContext.Inventory;
         }
-        // TODO: 将区域判定逻辑改为自己的
+        // TO-DO: 将区域判定逻辑改为自己的
         if (uiBounds.Contains(position))
         {
             if (inventoryController != null && inventoryController.IsHoldingItem)

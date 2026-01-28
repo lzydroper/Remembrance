@@ -62,6 +62,7 @@ namespace Control
             _director.Play();
             yield return new WaitForSeconds((float)_director.duration);
             yield return null;
+            postcard.transform.localScale = Vector3.zero;
         }
 
         public void StartScaleTween()

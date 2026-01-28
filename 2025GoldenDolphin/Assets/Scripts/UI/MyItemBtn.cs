@@ -52,7 +52,7 @@ public class MyItemBtn : MyBtnData<BasicItemData>
         // Debug.Log("======");
         if (!isInteractable) return;
         SetConfirmedState();
-        SetParentFocus();
+        // SetParentFocus();
         onClickWithData.Invoke(Data);
         icon.color = Color.gray;
         // hintRecipe.text = "";

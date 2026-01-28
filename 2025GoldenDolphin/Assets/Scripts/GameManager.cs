@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Control;
 using DG.Tweening;
 using NewBagSystem;
@@ -51,8 +50,8 @@ using UnityEngine.UI;
 // 管理从按下游戏开始到游戏完全结束，的整个流程
 public class GameManager : SKMonoSingleton<GameManager>
 {
-    public int TotalRound { get; private set; } = 10;
-    public int CurrentRound { get; private set; } = 1;
+    [SerializeField] private int totalRound = 10;
+    [SerializeField] private int currentRound = 1;
     // public RoundState CurrentRoundState { get; private set; } = RoundState.None;
     // public CursorState P1CursorState { get; private set; } = CursorState.None;
     // public CursorState P2CursorState { get; private set; } = CursorState.None;
@@ -88,7 +87,7 @@ public class GameManager : SKMonoSingleton<GameManager>
     {
         // 游戏开始初始化
         GameStaAct();
-        while (CurrentRound <= TotalRound)
+        while (currentRound <= totalRound)
         {
             // ====  回合开始时机  ====
             // 阶段进入操作
@@ -122,7 +121,7 @@ public class GameManager : SKMonoSingleton<GameManager>
             // 回合结束的动画
             yield return EndRoundAni();
             
-            CurrentRound++;
+            currentRound++;
         }
 
         GameEndAct();
@@ -149,6 +148,7 @@ public class GameManager : SKMonoSingleton<GameManager>
     public void SetSelectItem(int playerID, BasicItemData result)
     {
         SelectResult[playerID] = result;
+        // 选中物品后掉落对应实体的功能放到Select
     }
 
     public void SetCookResult(int playerID, Recipe result)
@@ -175,6 +175,8 @@ public class GameManager : SKMonoSingleton<GameManager>
     {
         // 开启endPanel
         endAniPanel.SetActive(true);
+        // 关闭gameUI
+        gameUI.SetActive(false);
     }
 
     private void RoundStartAct()
@@ -240,6 +242,7 @@ public class GameManager : SKMonoSingleton<GameManager>
     [Header("UIPanel的引用")]
     [SerializeField] private GameObject gameUI;
     [SerializeField] private GameObject endAniPanel;
+    [Tooltip("问你要不要再来一把的panel")]
     [SerializeField] private GameObject endPanel;       // 问你要不要再来一把的panel
 
     #endregion
@@ -255,10 +258,10 @@ public class GameManager : SKMonoSingleton<GameManager>
     IEnumerator StartRoundAni()
     {
         // 计算应当显示的文字
-        int remainRounds = TotalRound - CurrentRound;
+        int remainRounds = totalRound - currentRound + 1;
         if (remainRounds > 3)
         {
-            roundStartText.text = "第" + CurrentRound + "回合！";
+            roundStartText.text = "第" + currentRound + "回合！";
         }
         else
         {
@@ -299,10 +302,10 @@ public class GameManager : SKMonoSingleton<GameManager>
             scoreDiffs[1] = (CookResult[1].type == RecipeType.Bad) ? CookResult[1].score : -CookResult[1].score;
         }
         // 如果没有分数变化，直接设置最终值并退出
-        if (scoreDiffs.All(num => num == 0))
-        {
-            yield break;
-        }
+        // if (scoreDiffs.All(num => num == 0))
+        // {
+        //     yield break;
+        // }
 
         int[] currentDisplayScore = { 0, 0 };
         while (elapsedTime < scoreChangAniDuration)
@@ -338,7 +341,7 @@ public class GameManager : SKMonoSingleton<GameManager>
     [SerializeField] private Slider progressSlider;
     IEnumerator ProgressCoroutine()
     {
-        float target = (float)CurrentRound / TotalRound;
+        float target = (float)currentRound / totalRound;
         float t = 0f;
         float startValue = progressSlider.value;
         while (t < 1f) {

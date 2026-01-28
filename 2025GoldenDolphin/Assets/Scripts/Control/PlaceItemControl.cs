@@ -14,6 +14,8 @@ namespace Control
         
         [SerializeField] private MyBtnNavigation[] navs;
         [SerializeField] private BagController[] bags;
+
+        [SerializeField] private float afterSelectWaiting = 0.5f;
         private List<ConfirmType> choices = new() { ConfirmType.None, ConfirmType.None };
         private bool _bothConfirm;
         public IEnumerator Flow()
@@ -51,6 +53,8 @@ namespace Control
             // 订阅BagController的static action回调确认放置，在回调中开启对应的navigation
             // 等待双方选择完毕
             yield return new WaitUntil(() => _bothConfirm);
+            // 选择完毕后等待一小会，缓冲一下
+            yield return new WaitForSeconds(afterSelectWaiting);
             // 取消各类订阅事件
             foreach (var nav in navs)
             {

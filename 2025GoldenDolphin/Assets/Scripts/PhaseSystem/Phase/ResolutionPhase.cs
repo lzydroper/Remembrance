@@ -19,7 +19,7 @@ namespace PhaseSystem
             // player1Confirmed = false;
             // player2Confirmed = false;
             Debug.Log("等待双方玩家确认结算结果...");
-            // TODO: 在这里可以调用UI，显示结算界面和“等待确认”的提示
+            // TO-DO: 在这里可以调用UI，显示结算界面和“等待确认”的提示
             duration = ItemSelectionUI.instance.endAnimationTime;
             Debug.Log($"等待时间{duration}");
             timer = duration;

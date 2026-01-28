@@ -14,6 +14,8 @@ namespace Control
     public class SelectItemControl : MonoBehaviour
     {
         // [SerializeField] private InputManager inputManager;
+        // 选择物品后，实体化物体生成的位置
+        [SerializeField] private Transform objectGenerateTransform;
         [SerializeField] private MyBtnNavigation selectUIGroup;
         private int _firstPlayer = -1;
         public int _currentPlayer = -1;
@@ -24,7 +26,7 @@ namespace Control
         {
             // 显示UI
             selectUIGroup.gameObject.SetActive(true);
-            selectUIGroup.SelectFirstAvailable();
+            // selectUIGroup.SelectFirstAvailable();
             // 获取四个随机物品
             List<BasicItemData> randomItems = ItemManager.instance.GetRandomItem(4);
             // 更新选项image
@@ -47,16 +49,19 @@ namespace Control
             // 等待先手选择
             // 切换玩家控制权
             // GameManager.instance.SetCursorState(_currentPlayer, CursorState.SelectItem);
+            selectUIGroup.SelectFirstAvailable();
             InputManager.instance.SwitchInput(_currentPlayer);
             _firstSelected = false;
             yield return new WaitUntil(() => _firstSelected);
             // GameManager.instance.SetCursorState(_currentPlayer, CursorState.FinishedSelect);
             // 显示后手动画
+            InputManager.instance.DisableAllInputs();
             _currentPlayer = (_firstPlayer + 1) % 2;
             yield return HintMoveAni(_currentPlayer);
             // 等待后手选择
             // 切换玩家控制权
             // GameManager.instance.SetCursorState(_currentPlayer, CursorState.SelectItem);
+            selectUIGroup.SelectFirstAvailable();
             InputManager.instance.SwitchInput(_currentPlayer);
             _secondSelected = false;
             yield return new WaitUntil(() => _secondSelected);
@@ -77,7 +82,7 @@ namespace Control
         [SerializeField] private SKText hintText;
         [SerializeField] private float enterDuration = 1.5f;   // 进入动画时长
         [SerializeField] private float stayDuration = 1.0f;    // 停留时间
-        [SerializeField] private float exitDuration = 1.5f;    // 退出动画时长
+        [SerializeField] private float exitDuration = 1.15f;    // 退出动画时长
         private Vector3 _staRotation = new Vector3(0f, 0f, 90f);
         private IEnumerator HintMoveAni(int playerID)
         {
@@ -101,7 +106,7 @@ namespace Control
                 RotateMode.FastBeyond360).SetEase(Ease.InQuad);
             hintText.DOFade(0f, exitDuration);
             
-            yield return new WaitForSeconds(exitDuration);
+            yield return new WaitForSeconds(exitDuration - 0.5f);
             
             // arrow.SetActive(false);
             // hintText.gameObject.SetActive(false);
@@ -122,6 +127,9 @@ namespace Control
             {
                 _secondSelected = true;
             }
+            // 选择物品后，在指定位置实例化对应3d物体
+            GameObject d3Object = Instantiate(item.d3Prefab, objectGenerateTransform);
+            d3Object.transform.position = objectGenerateTransform.transform.position;
         }
 
         [ContextMenu("StartFlow")]

@@ -2926,6 +2926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04372d130a1c45bd9533255fe2974bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectGenerateTransform: {fileID: 863812288}
   selectUIGroup: {fileID: 1576154151}
   _currentPlayer: -1
   _selectResult:
@@ -2936,7 +2937,7 @@ MonoBehaviour:
   hintText: {fileID: 1319572607}
   enterDuration: 1.5
   stayDuration: 1
-  exitDuration: 1.5
+  exitDuration: 1.15
 --- !u!1 &296299822
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,7 +5346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &621692416
 Transform:
   m_ObjectHideFlags: 0
@@ -5371,7 +5372,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 6ac788e75b2123b4b9fec2fbc78b61e9, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -6520,7 +6521,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -11260,7 +11261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1355231845
 Transform:
   m_ObjectHideFlags: 0
@@ -11286,7 +11287,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: f1d96198878a4084da77dfc7f896ae75, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -13030,8 +13031,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1021173438}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -56.989136, y: 0}
   m_SizeDelta: {x: 133.9783, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14314,6 +14315,7 @@ MonoBehaviour:
   bags:
   - {fileID: 1672218912}
   - {fileID: 941248076}
+  afterSelectWaiting: 0.5
 --- !u!1 &1726717433 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9079265143653339564, guid: 337a5fa7cff673f4aa65ae3487682eaf, type: 3}
@@ -14351,6 +14353,18 @@ PrefabInstance:
     - target: {fileID: 424330489073825155, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301223948852354522, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301223948852354522, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301223948852354522, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3301223948852354522, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14391,6 +14405,10 @@ PrefabInstance:
     - target: {fileID: 3301223948852354522, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301223948852354522, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5837866756194827343, guid: a481d43b3060adf45b55c50ab95e6051, type: 3}
       propertyPath: m_Name
@@ -15707,6 +15725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727c701629dd40c581fa6e7603fca3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalRound: 10
+  currentRound: 1
   SelectResult:
   - {fileID: 0}
   - {fileID: 0}
@@ -17015,7 +17035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2129890836
 Transform:
   m_ObjectHideFlags: 0
@@ -17041,7 +17061,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: c6d94df41ed3b5d4490268fe41e43a08, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
