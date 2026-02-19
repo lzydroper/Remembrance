@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class InputManager : SKMonoSingleton<InputManager>
 {
+    [SerializeField] private PhotonView photonView;
     [SerializeField] private PlayerInputController inputController;
     // 移动事件，返回方向
     public static UnityAction<Vector2Int> OnP1Move;
@@ -139,7 +140,7 @@ public class InputManager : SKMonoSingleton<InputManager>
         // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
         else if (PhotonNetwork.IsMasterClient)
         {
-            GameManager.instance.photonView.RPC(nameof(RpcP1Move), RpcTarget.All, dir);
+            photonView.RPC(nameof(RpcP1Move), RpcTarget.All, dir.x, dir.y);
         }
     }
 
@@ -154,7 +155,7 @@ public class InputManager : SKMonoSingleton<InputManager>
         // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
         else if (PhotonNetwork.IsMasterClient)
         {
-            GameManager.instance.photonView.RPC(nameof(RpcP1Confirm), RpcTarget.All);
+            photonView.RPC(nameof(RpcP1Confirm), RpcTarget.All);
         }
     }
 
@@ -169,7 +170,7 @@ public class InputManager : SKMonoSingleton<InputManager>
         // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
         else if (PhotonNetwork.IsMasterClient)
         {
-            GameManager.instance.photonView.RPC(nameof(RpcP1Rotate), RpcTarget.All);
+            photonView.RPC(nameof(RpcP1Rotate), RpcTarget.All);
         }
     }
 
@@ -208,7 +209,7 @@ public class InputManager : SKMonoSingleton<InputManager>
         // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
         else if (!PhotonNetwork.IsMasterClient)
         {
-            GameManager.instance.photonView.RPC(nameof(RpcP2Move), RpcTarget.All, dir);
+            photonView.RPC(nameof(RpcP2Move), RpcTarget.All, dir.x, dir.y);
         }
     }
 
@@ -223,7 +224,7 @@ public class InputManager : SKMonoSingleton<InputManager>
         // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
         else if (!PhotonNetwork.IsMasterClient)
         {
-            GameManager.instance.photonView.RPC(nameof(RpcP2Confirm), RpcTarget.All);
+            photonView.RPC(nameof(RpcP2Confirm), RpcTarget.All);
         }
     }
 
@@ -238,7 +239,7 @@ public class InputManager : SKMonoSingleton<InputManager>
         // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
         else if (!PhotonNetwork.IsMasterClient)
         {
-            GameManager.instance.photonView.RPC(nameof(RpcP2Rotate), RpcTarget.All);
+            photonView.RPC(nameof(RpcP2Rotate), RpcTarget.All);
         }
     }
 
@@ -247,8 +248,9 @@ public class InputManager : SKMonoSingleton<InputManager>
     #region 联机输入RPC处理
 
     [PunRPC]
-    private void RpcP1Move(Vector2Int dir)
+    private void RpcP1Move(int dirX, int dirY)
     {
+        Vector2Int dir = new Vector2Int(dirX, dirY);
         OnP1Move?.Invoke(dir); // 触发事件，UI听到后会移动光标
     }
 
@@ -265,8 +267,9 @@ public class InputManager : SKMonoSingleton<InputManager>
     }
 
     [PunRPC]
-    private void RpcP2Move(Vector2Int dir)
+    private void RpcP2Move(int dirX, int dirY)
     {
+        Vector2Int dir = new Vector2Int(dirX, dirY);
         OnP2Move?.Invoke(dir);
     }
 

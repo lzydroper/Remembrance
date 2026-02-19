@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SKCell;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace NewBagSystem
 {
@@ -46,6 +47,13 @@ namespace NewBagSystem
             }
         }
 
+        public string GetRandomItemId()
+        {
+            if (_items.Count == 0) return "";
+            List<string> keys = new List<string>(_items.Keys);
+            return keys[Random.Range(0, keys.Count)];
+        }
+        
         public BasicItemData GetItem(string id)
         {
             _items.TryGetValue(id, out BasicItemData item);

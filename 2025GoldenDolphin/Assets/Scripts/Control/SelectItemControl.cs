@@ -14,6 +14,7 @@ namespace Control
 {
     public class SelectItemControl : MonoBehaviour
     {
+        [SerializeField] private PhotonView photonView;
         // [SerializeField] private InputManager inputManager;
         // 选择物品后，实体化物体生成的位置
         [SerializeField] private Transform objectGenerateTransform;
@@ -53,7 +54,7 @@ namespace Control
 
                 // 3. 发送 RPC 给所有人（包括自己）
                 // 注意：这里需要强转为 object 类型传递数组
-                GameManager.instance.photonView.RPC(nameof(RpcSyncRandomItems), RpcTarget.All, (object)itemIds);
+                photonView.RPC(nameof(RpcSyncRandomItems), RpcTarget.All, (object)itemIds);
             }
 
             yield return new WaitUntil(() => _isItemSynced);
