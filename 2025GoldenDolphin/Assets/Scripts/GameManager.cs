@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Control;
 using DG.Tweening;
 using NewBagSystem;
+using Photon.Pun;
 using SKCell;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -425,6 +426,27 @@ public class GameManager : SKMonoSingleton<GameManager>
         yield return new WaitForSeconds((float)director.duration);
         yield return null;
     }
+
+    #endregion
+
+    #region 多人游戏
+
+    [SerializeField] public PhotonView photonView;
+    private static bool isMultiPlaying = false;
+    // 有是否是主机来判断，主机一定是玩家1
+    // private static bool isPlayer1 = false;
+
+    public bool GetIsMultiPlaying() => isMultiPlaying;
+    // public bool GetIsPlayer1() => isPlayer1;
+    
+    public void SetMultiPlay(bool value = true)
+    {
+        isMultiPlaying = value;
+    }
+    // public void SetPlayer1(bool value = true)
+    // {
+    //     isPlayer1 = value;
+    // }
 
     #endregion
     
