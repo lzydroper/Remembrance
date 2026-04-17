@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7717dd9d8dbb4c4981f3db55c5de31ee, type: 3}
+  m_Name: 2g-book-postcard
+  m_EditorClassIdentifier: 
+  id: 2g-book-postcard
+  ingredients:
+  - book
+  - postcard
+  score: 3
+  type: 0
+  texture: {fileID: 2800000, guid: 7e73c310e357233429772a1a520c64fa, type: 3}
+  textContent: "\u751F\u65E5\u7684\u65F6\u5019\u670B\u53CB\u7ED9\u6211\u5199\u4E86\u660E\u4FE1\u7247\u3002"
+  scale: {x: 1.6, y: 1, z: 1}

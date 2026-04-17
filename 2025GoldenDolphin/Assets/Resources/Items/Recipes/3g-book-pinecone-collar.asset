@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7717dd9d8dbb4c4981f3db55c5de31ee, type: 3}
+  m_Name: 3g-book-pinecone-collar
+  m_EditorClassIdentifier: 
+  id: 3g-book-pinecone-collar
+  ingredients:
+  - book
+  - pinecone
+  - collar
+  score: 5
+  type: 0
+  texture: {fileID: 2800000, guid: bee0ecd2bade0e14bbe6c24ef455f0ff, type: 3}
+  textContent: "\u9003\u8BFE\u5E26\u5C0F\u767D\u53BB\u516C\u56ED\uFF0C\u6211\u4EEC\u4E5F\u6700\u559C\u6B22\u8FD9\u91CC\u4E86\u3002"
+  scale: {x: 1, y: 1.6, z: 1}

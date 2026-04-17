@@ -56,7 +56,7 @@ namespace SKCell
 
         public void OnDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         [Serializable]
