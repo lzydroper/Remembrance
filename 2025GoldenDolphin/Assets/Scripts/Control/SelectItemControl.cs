@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using NewBagSystem;
+using Photon.Pun;
 using SKCell;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Control
 {
     public class SelectItemControl : MonoBehaviour
     {
+        [SerializeField] private PhotonView photonView;
         // [SerializeField] private InputManager inputManager;
         // 选择物品后，实体化物体生成的位置
         [SerializeField] private Transform objectGenerateTransform;
@@ -22,19 +24,47 @@ namespace Control
         public BasicItemData[] _selectResult = new BasicItemData[2];
         private bool _firstSelected;
         private bool _secondSelected;
+        
+        private List<BasicItemData> _currentSyncedItems;
+        private bool _isItemSynced;
         public IEnumerator Flow()
         {
             // 显示UI
             selectUIGroup.gameObject.SetActive(true);
             // selectUIGroup.SelectFirstAvailable();
+
+            _isItemSynced = false;
+            // 随机物品生成只能由主机生成，客机RPC获取生成数据来赋值randomItems
             // 获取四个随机物品
-            List<BasicItemData> randomItems = ItemManager.instance.GetRandomItem(4);
+            // 本地模式，直接随机生成
+            if (!GameManager.instance.GetIsMultiPlaying())
+            {
+                _currentSyncedItems = ItemManager.instance.GetRandomItem(4);
+                _isItemSynced = true;
+            }
+            // 联机模式只有主机负责生成，主客机RPC同步结果
+            else if (PhotonNetwork.IsMasterClient)
+            {
+                List<BasicItemData> randomItems = ItemManager.instance.GetRandomItem(4);
+                string[] itemIds = new string[randomItems.Count];
+                for (int i = 0; i < randomItems.Count; i++)
+                {
+                    itemIds[i] = randomItems[i].id; 
+                }
+
+                // 3. 发送 RPC 给所有人（包括自己）
+                // 注意：这里需要强转为 object 类型传递数组
+                photonView.RPC(nameof(RpcSyncRandomItems), RpcTarget.All, (object)itemIds);
+            }
+
+            yield return new WaitUntil(() => _isItemSynced);
+            
             // 更新选项image
             List<MyItemBtn> btns = selectUIGroup.buttons.Cast<MyItemBtn>().ToList();
-            int n = Mathf.Min(btns.Count, randomItems.Count);
+            int n = Mathf.Min(btns.Count, _currentSyncedItems.Count);
             for (int i = 0; i < n; i++)
             {
-                btns[i].SetData(randomItems[i]);
+                btns[i].SetData(_currentSyncedItems[i]);
             }
             // 订阅按钮按下事件
             foreach (MyItemBtn btn in btns)
@@ -74,6 +104,29 @@ namespace Control
             // 关闭UI
             selectUIGroup.gameObject.SetActive(false);
             yield return null;
+        }
+        
+        [PunRPC]
+        public void RpcSyncRandomItems(string[] itemIds)
+        {
+            _currentSyncedItems = new List<BasicItemData>();
+
+            // 根据 string ID 还原出 Item 对象
+            foreach (string id in itemIds)
+            {
+                BasicItemData item = ItemManager.instance.GetItem(id);
+                if (item != null)
+                {
+                    _currentSyncedItems.Add(item);
+                }
+                else
+                {
+                    Debug.LogError($"[Sync] 客户端无法找到 ID 为 {id} 的物品，请检查 ItemManager 配置！");
+                }
+            }
+
+            // 标记同步完成，通知 Flow 协程继续执行
+            _isItemSynced = true;
         }
 
         [Header("开始选择提示动画相关")] 

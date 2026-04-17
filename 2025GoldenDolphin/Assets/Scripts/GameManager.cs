@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Control;
 using DG.Tweening;
 using NewBagSystem;
+using Photon.Pun;
 using SKCell;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -50,6 +51,8 @@ using UnityEngine.UI;
 // 管理从按下游戏开始到游戏完全结束，的整个流程
 public class GameManager : SKMonoSingleton<GameManager>
 {
+    private bool _gameState;
+    
     [SerializeField] private int totalRound = 10;
     [SerializeField] private int currentRound = 1;
     // public RoundState CurrentRoundState { get; private set; } = RoundState.None;
@@ -69,6 +72,8 @@ public class GameManager : SKMonoSingleton<GameManager>
     }
     IEnumerator StartGameCoroutine()
     {
+        // 设置游戏状态为开始
+        _gameState = true;
         // 播放开始动画
         // 从主菜单按下开始游戏按钮到主界面的动画
         yield return GameStaAni();
@@ -260,6 +265,8 @@ public class GameManager : SKMonoSingleton<GameManager>
         InputManager.instance.EnableAllInputs();
         gameCamera.SetActive(false);
         mainMenuCamera.SetActive(true);
+        
+        _gameState = false;
     }
     
     #endregion
@@ -424,6 +431,47 @@ public class GameManager : SKMonoSingleton<GameManager>
         gameCamera.SetActive(true);
         yield return new WaitForSeconds((float)director.duration);
         yield return null;
+    }
+
+    #endregion
+
+    #region 多人游戏
+
+    [Header("多人游戏相关")]
+    [SerializeField] private MainMenuPanel mainMenuPanel;
+    [SerializeField] public PhotonView photonView;
+    private static bool isMultiPlaying = false;
+    // 有是否是主机来判断，主机一定是玩家1
+    // private static bool isPlayer1 = false;
+
+    public bool GetIsMultiPlaying() => isMultiPlaying;
+    // public bool GetIsPlayer1() => isPlayer1;
+    
+    public void SetMultiPlay(bool value = true)
+    {
+        isMultiPlaying = value;
+    }
+    // public void SetPlayer1(bool value = true)
+    // {
+    //     isPlayer1 = value;
+    // }
+
+    public void MultiPlayError()
+    {
+        // 出现意外，立刻停止游戏进度，退出至主菜单界面
+        // 检测游戏状态
+        if (isMultiPlaying && _gameState)
+        {
+            StopAllCoroutines();
+            InputManager.instance.EnableAllInputs();
+            gameCamera.SetActive(false);
+            mainMenuCamera.SetActive(true);
+            isMultiPlaying = false;
+            _gameState = false;
+            CloseAllPanel();
+            mainMenuPanel.Restart();
+            PhotonNetwork.Disconnect();
+        }
     }
 
     #endregion

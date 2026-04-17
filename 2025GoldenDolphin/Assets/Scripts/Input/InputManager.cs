@@ -1,9 +1,11 @@
+using Photon.Pun;
 using SKCell;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class InputManager : SKMonoSingleton<InputManager>
 {
+    [SerializeField] private PhotonView photonView;
     [SerializeField] private PlayerInputController inputController;
     // 移动事件，返回方向
     public static UnityAction<Vector2Int> OnP1Move;
@@ -104,67 +106,181 @@ public class InputManager : SKMonoSingleton<InputManager>
     #region 私有功能函数
 
     // 玩家1移动输入处理函数
-    private void OnP1MoveUp()
+    // private void OnP1MoveUp()
+    // {
+    //     OnP1Move?.Invoke(Vector2Int.up);
+    // }
+    //
+    // private void OnP1MoveDown()
+    // {
+    //     OnP1Move?.Invoke(Vector2Int.down);
+    // }
+    //
+    // private void OnP1MoveLeft()
+    // {
+    //     OnP1Move?.Invoke(Vector2Int.left);
+    // }
+    //
+    // private void OnP1MoveRight()
+    // {
+    //     OnP1Move?.Invoke(Vector2Int.right);
+    // }
+    private void OnP1MoveUp()    { OnP1MoveDir(Vector2Int.up); }
+    private void OnP1MoveDown()  { OnP1MoveDir(Vector2Int.down); }
+    private void OnP1MoveLeft()  { OnP1MoveDir(Vector2Int.left); }
+    private void OnP1MoveRight() { OnP1MoveDir(Vector2Int.right); }
+    
+    private void OnP1MoveDir(Vector2Int dir)
     {
-        OnP1Move?.Invoke(Vector2Int.up);
-    }
-
-    private void OnP1MoveDown()
-    {
-        OnP1Move?.Invoke(Vector2Int.down);
-    }
-
-    private void OnP1MoveLeft()
-    {
-        OnP1Move?.Invoke(Vector2Int.left);
-    }
-
-    private void OnP1MoveRight()
-    {
-        OnP1Move?.Invoke(Vector2Int.right);
+        // 单机模式直接操作
+        if (!GameManager.instance.GetIsMultiPlaying())
+        {
+            OnP1Move?.Invoke(dir);
+        }
+        // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
+        else if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC(nameof(RpcP1Move), RpcTarget.All, dir.x, dir.y);
+        }
     }
 
     // 玩家1确认输入处理函数
     private void OnP1ConfirmInput()
     {
-        OnP1Confirm?.Invoke();
+        // 单机模式直接操作
+        if (!GameManager.instance.GetIsMultiPlaying())
+        {
+            OnP1Confirm?.Invoke();
+        }
+        // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
+        else if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC(nameof(RpcP1Confirm), RpcTarget.All);
+        }
     }
 
     // 玩家1旋转输入处理函数
     private void OnP1RotateInput()
     {
-        OnP1Rotate?.Invoke();
+        // 单机模式直接操作
+        if (!GameManager.instance.GetIsMultiPlaying())
+        {
+            OnP1Rotate?.Invoke();
+        }
+        // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
+        else if (PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC(nameof(RpcP1Rotate), RpcTarget.All);
+        }
     }
 
     // 玩家2移动输入处理函数
-    private void OnP2MoveUp()
+    // private void OnP2MoveUp()
+    // {
+    //     OnP2Move?.Invoke(Vector2Int.up);
+    // }
+    //
+    // private void OnP2MoveDown()
+    // {
+    //     OnP2Move?.Invoke(Vector2Int.down);
+    // }
+    //
+    // private void OnP2MoveLeft()
+    // {
+    //     OnP2Move?.Invoke(Vector2Int.left);
+    // }
+    //
+    // private void OnP2MoveRight()
+    // {
+    //     OnP2Move?.Invoke(Vector2Int.right);
+    // }
+    private void OnP2MoveUp()    { OnP2MoveDir(Vector2Int.up); }
+    private void OnP2MoveDown()  { OnP2MoveDir(Vector2Int.down); }
+    private void OnP2MoveLeft()  { OnP2MoveDir(Vector2Int.left); }
+    private void OnP2MoveRight() { OnP2MoveDir(Vector2Int.right); }
+    
+    private void OnP2MoveDir(Vector2Int dir)
     {
-        OnP2Move?.Invoke(Vector2Int.up);
-    }
-
-    private void OnP2MoveDown()
-    {
-        OnP2Move?.Invoke(Vector2Int.down);
-    }
-
-    private void OnP2MoveLeft()
-    {
-        OnP2Move?.Invoke(Vector2Int.left);
-    }
-
-    private void OnP2MoveRight()
-    {
-        OnP2Move?.Invoke(Vector2Int.right);
+        // 单机模式直接操作
+        if (!GameManager.instance.GetIsMultiPlaying())
+        {
+            OnP2Move?.Invoke(dir);
+        }
+        // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
+        else if (!PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC(nameof(RpcP2Move), RpcTarget.All, dir.x, dir.y);
+        }
     }
 
     // 玩家2确认输入处理函数
     private void OnP2ConfirmInput()
     {
-        OnP2Confirm?.Invoke();
+        // 单机模式直接操作
+        if (!GameManager.instance.GetIsMultiPlaying())
+        {
+            OnP2Confirm?.Invoke();
+        }
+        // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
+        else if (!PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC(nameof(RpcP2Confirm), RpcTarget.All);
+        }
     }
 
     // 玩家2旋转输入处理函数
     private void OnP2RotateInput()
+    {
+        // 单机模式直接操作
+        if (!GameManager.instance.GetIsMultiPlaying())
+        {
+            OnP2Rotate?.Invoke();
+        }
+        // 联机模式判断是否有权限操作，具体为若是主机，则只能操作P1相关动作，若是客机，则只能操作P2相关动作
+        else if (!PhotonNetwork.IsMasterClient)
+        {
+            photonView.RPC(nameof(RpcP2Rotate), RpcTarget.All);
+        }
+    }
+
+    #endregion
+
+    #region 联机输入RPC处理
+
+    [PunRPC]
+    private void RpcP1Move(int dirX, int dirY)
+    {
+        Vector2Int dir = new Vector2Int(dirX, dirY);
+        OnP1Move?.Invoke(dir); // 触发事件，UI听到后会移动光标
+    }
+
+    [PunRPC]
+    private void RpcP1Confirm()
+    {
+        OnP1Confirm?.Invoke();
+    }
+
+    [PunRPC]
+    private void RpcP1Rotate()
+    {
+        OnP1Rotate?.Invoke();
+    }
+
+    [PunRPC]
+    private void RpcP2Move(int dirX, int dirY)
+    {
+        Vector2Int dir = new Vector2Int(dirX, dirY);
+        OnP2Move?.Invoke(dir);
+    }
+
+    [PunRPC]
+    private void RpcP2Confirm()
+    {
+        OnP2Confirm?.Invoke();
+    }
+
+    [PunRPC]
+    private void RpcP2Rotate()
     {
         OnP2Rotate?.Invoke();
     }

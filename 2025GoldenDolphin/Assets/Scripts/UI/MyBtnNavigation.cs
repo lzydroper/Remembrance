@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class MyBtnNavigation : MonoBehaviour
 {
+    // 为scroll view增加的额外屎山
+    [SerializeField] private ScrollRect contentScrollRect; 
     // 导航系统根据这个来判断事件订阅情况
     [SerializeField] private bool setForPlayer1 = true;
     [SerializeField] private bool setForPlayer2 = true;
@@ -31,9 +34,28 @@ public class MyBtnNavigation : MonoBehaviour
             // 如果新索引有效，选中它
             if (_selectedIndex >= 0 && _selectedIndex < buttons.Count)
             {
-                buttons[_selectedIndex].OnSelect();
+                var targetBtn = buttons[_selectedIndex];
+                targetBtn.OnSelect();
+                
+                // scroll view 特判
+                if (contentScrollRect)
+                {
+                    if (targetBtn.transform.IsChildOf(contentScrollRect.content))
+                    {
+                        AutoScrollTo(targetBtn.GetComponent<RectTransform>());
+                    }
+                }
             }
         }
+    }
+
+    private void AutoScrollTo(RectTransform target)
+    {
+        float targetY = -target.localPosition.y;
+        
+        contentScrollRect.content.DOLocalMoveY(
+            targetY - (contentScrollRect.viewport.rect.height / 2),
+            0.3f);
     }
 
     public void CancelSelect()
@@ -49,18 +71,31 @@ public class MyBtnNavigation : MonoBehaviour
 
     public void Initialize()
     {
-        if (_isInitialized)
-            return;
-        _isInitialized = true;
+        // if (_isInitialized)
+        //     return;
+        // _isInitialized = true;
         buttons.Clear();
-        foreach (Transform child in transform)
+        MyBtn[] allButtons = GetComponentsInChildren<MyBtn>(true);
+        foreach (var btn in allButtons)
         {
-            if (child.TryGetComponent<MyBtn>(out var btn))
-            {
-                buttons.Add(btn);
-                btn.Initialize(this);
-            }
+            buttons.Add(btn);
+            btn.Initialize(this);
         }
+        // foreach (Transform child in transform)
+        // {
+        //     if (child.TryGetComponent<MyBtn>(out var btn))
+        //     {
+        //         buttons.Add(btn);
+        //         btn.Initialize(this);
+        //     }
+        // }
+    }
+    
+    public void RefreshButtonList()
+    {
+        Initialize();
+        // 刷新后，重新定位到一个默认按钮，防止焦点丢失
+        SelectFirstAvailable();
     }
 
     void OnEnable()
@@ -145,7 +180,9 @@ public class MyBtnNavigation : MonoBehaviour
             if (i == _selectedIndex) continue;
 
             // !!! 新增：跳过不可交互的按钮 !!!
-            if (!buttons[i].IsInteractable) continue;
+            if (!buttons[i].isActiveAndEnabled ||
+                !buttons[i].IsInteractable) 
+                continue;
             
             MyBtn targetButton = buttons[i];
             Vector3 targetPos = targetButton.transform.position;
@@ -196,7 +233,8 @@ public class MyBtnNavigation : MonoBehaviour
         for (int i = 1; i <= buttons.Count; i++)
         {
             int checkIndex = (startIndex + i) % buttons.Count;
-            if (buttons[checkIndex].IsInteractable)
+            // 防止按钮处于inactive状态
+            if (buttons[checkIndex].isActiveAndEnabled && buttons[checkIndex].IsInteractable)
             {
                 return checkIndex; // 找到了，返回索引
             }
